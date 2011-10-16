@@ -4,6 +4,9 @@
  */
 package game;
 
+import game.gui.MyFrame;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Lucas
@@ -14,6 +17,7 @@ public class UltimateDefender {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        JFrame game = new MyFrame();
+        game.setVisible(true);
     }
 }
