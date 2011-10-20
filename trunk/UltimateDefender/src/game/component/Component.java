@@ -5,6 +5,7 @@
 package game.component;
 
 import game.entity.Entity;
+import java.awt.Graphics;
 
 /**
  *
@@ -22,4 +23,6 @@ public abstract class Component {
     public void setOwnerEntity(Entity owner) {
         this.owner = owner;
     }
+    
+    public abstract void update();
 }
