@@ -4,7 +4,7 @@
  */
 package game;
 
-import game.gui.MyFrame;
+import game.gui.GamePlay;
 import javax.swing.JFrame;
 
 /**
@@ -13,11 +13,11 @@ import javax.swing.JFrame;
  */
 public class UltimateDefender {
 
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFrame game = new MyFrame();
-        game.setVisible(true);
+        JFrame gameplay = new GamePlay();
     }
 }
