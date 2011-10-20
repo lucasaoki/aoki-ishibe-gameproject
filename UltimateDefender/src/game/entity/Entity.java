@@ -5,6 +5,7 @@
 package game.entity;
 
 import game.component.Component;
+import java.awt.Point;
 import java.util.ArrayList;
 
 /**
@@ -14,15 +15,13 @@ import java.util.ArrayList;
 public class Entity {
 
     String id;
-    float x;
-    float y;
+    Point position;
     ArrayList<Component> components = null;
 
     public Entity(String id) {
         this.id = id;
         components = new ArrayList<Component>();
-        x = 0;
-        y = 0;
+        position = new Point(0, 0);
     }
 
     public void addComponent(Component component) {
@@ -41,20 +40,20 @@ public class Entity {
         return null;
     }
 
-    public float getX() {
-        return x;
+    public Point getPosition() {
+        return position;
     }
 
-    public void setX(float x) {
-        this.x = x;
+    public void setPosition(Point position) {
+        this.position = position;
     }
 
-    public float getY() {
-        return y;
+    public void update() {
+        for (Component component : components) {
+            component.update();
+        }
     }
 
-    public void setY(float y) {
-        this.y = y;
+    public void render() {
     }
-    
 }
