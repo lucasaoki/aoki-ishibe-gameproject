@@ -5,7 +5,6 @@
 package game.component;
 
 import game.entity.Entity;
-import java.awt.Graphics;
 
 /**
  *
