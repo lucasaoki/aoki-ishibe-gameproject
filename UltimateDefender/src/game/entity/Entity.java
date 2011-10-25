@@ -5,6 +5,8 @@
 package game.entity;
 
 import game.component.Component;
+import game.component.render.RenderComponent;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -16,6 +18,7 @@ public class Entity {
 
     String id;
     Point position;
+    RenderComponent renderComponent = null;
     ArrayList<Component> components = null;
 
     public Entity(String id) {
@@ -25,7 +28,9 @@ public class Entity {
     }
 
     public void addComponent(Component component) {
-        //render comp
+        if (RenderComponent.class.isInstance(component)) {
+            renderComponent = (RenderComponent) component;
+        }
 
         component.setOwnerEntity(this);
         components.add(component);
@@ -44,6 +49,10 @@ public class Entity {
         return position;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public void setPosition(Point position) {
         this.position = position;
     }
@@ -54,6 +63,9 @@ public class Entity {
         }
     }
 
-    public void render() {
+    public void render(Graphics gr) {
+        if (renderComponent != null) {
+            renderComponent.render(gr);
+        }
     }
 }
