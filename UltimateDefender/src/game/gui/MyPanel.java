@@ -18,9 +18,10 @@ import javax.swing.JPanel;
  */
 public class MyPanel extends JPanel implements ActionListener {
 
-    JButton exitButton = new JButton("Exit");
+    JButton exitButton = null;
 
     public MyPanel() {
+        exitButton = new JButton("Exit");
         this.setLayout(new BorderLayout());
         this.add(exitButton, BorderLayout.SOUTH);
         exitButton.addActionListener(this);
