@@ -5,7 +5,6 @@
 package game.component.characters;
 
 import game.component.Component;
-import java.awt.Point;
 
 /**
  *
