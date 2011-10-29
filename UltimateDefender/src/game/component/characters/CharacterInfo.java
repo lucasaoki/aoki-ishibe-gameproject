@@ -52,7 +52,7 @@ public class CharacterInfo extends Component {
     }
 
     @Override
-    public void update(/*Timer timer ?*/) {
+    public void control(/*Timer timer ?*/) {
         System.out.println(owner.getPosition().x + owner.getPosition().y);
 ////        float rotation = owner.getRotation();
 ////        float scale = owner.getScale();

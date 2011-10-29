@@ -11,8 +11,8 @@ import java.awt.Graphics;
  *
  * @author Lucas Aoki
  */
-public abstract class RenderComponent extends Component {
-
+public abstract class RenderComponent extends Component{
+    
     public RenderComponent(String id) {
         this.id = id;
     }

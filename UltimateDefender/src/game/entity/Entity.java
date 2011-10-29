@@ -7,8 +7,11 @@ package game.entity;
 import game.component.Component;
 import game.component.render.RenderComponent;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
+import java.net.URL;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -56,10 +59,20 @@ public class Entity {
     public void setPosition(Point position) {
         this.position = position;
     }
+    
+    public Image[] readFrames(String path, int num) {
+        Image tmp[] = new Image[num];
+        for (int i = 1; i <= num; i++) {
+            String filename = path + i + ".png";
+            URL url = Entity.class.getResource(filename);
+            tmp[i-1] = (new ImageIcon(url)).getImage();
+        }
+        return tmp;
+    }
 
     public void update() {
         for (Component component : components) {
-            component.update();
+            component.control();
         }
     }
 

@@ -24,7 +24,6 @@ public class Timer extends Thread {
         while (run) {
             try {
                 Thread.sleep(time);
-                System.out.println("aeHOOOOOOOOOOOOOOO");
                 listener.update(this);
             } catch (InterruptedException ex) {
             }
