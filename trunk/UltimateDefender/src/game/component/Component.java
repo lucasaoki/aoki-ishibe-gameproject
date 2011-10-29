@@ -23,5 +23,5 @@ public abstract class Component {
         this.owner = owner;
     }
     
-    public abstract void update();
+    public abstract void control();
 }
