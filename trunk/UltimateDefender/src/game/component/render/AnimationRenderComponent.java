@@ -23,6 +23,7 @@ public class AnimationRenderComponent extends RenderComponent {
 
     private Timer frameTimer;
     private GamePanel panel;
+    private Chars charsMoveInfo;
     private CharacterInfo characterInfo = null;
     private Image[][] animation;
     private Image[] currentAnimation;
@@ -41,12 +42,12 @@ public class AnimationRenderComponent extends RenderComponent {
             public void update(Timer timer) {
                 updateFrame();
             }
-        }, 100);
+        }, 80);
         frameTimer.start();
 
-        Chars a = new Chars("Helper");
+        charsMoveInfo = new Chars("control");
         this.animation = imageFrames;
-        this.currentAnimation = this.animation[a.getMoveIndex("STAND")]; //FAZER CONTROLE AQUI
+        this.currentAnimation = this.animation[charsMoveInfo.getMoveIndex("STAND")]; //FAZER CONTROLE AQUI
     }
 
     public void setAnimation(Image[] animation) {
@@ -55,14 +56,16 @@ public class AnimationRenderComponent extends RenderComponent {
 
     @Override
     public void update() {
-//        if (characterInfo.isJumping()) {
-//            //acertar frame inicial, para não rodar sequencia errada da animação.
-////            currentAnimation = this.animation[2];
-//        } else if (characterInfo.isWalkingR()) {
-////            currentAnimation = this.animation[0];
-//        } else {
-////            currentAnimation = this.animation[1];
-//        }
+        AffineTransform af = owner.getAf();
+        
+        if(characterInfo.isJumping()){
+            currentAnimation = this.animation[charsMoveInfo.getMoveIndex("JUMP")];
+        }
+         else if (characterInfo.isWalkingR()) {
+            currentAnimation = this.animation[charsMoveInfo.getMoveIndex("WALK")];
+        } else {
+            currentAnimation = this.animation[charsMoveInfo.getMoveIndex("STAND")];
+        }
     }
 
     public void updateFrame() {

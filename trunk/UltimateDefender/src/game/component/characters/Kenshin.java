@@ -7,6 +7,7 @@ package game.component.characters;
 import game.component.render.AnimationRenderComponent;
 import game.gui.GamePanel;
 import java.awt.Image;
+import java.awt.Point;
 
 /**
  *
@@ -29,6 +30,7 @@ public class Kenshin extends Chars {
         images[getMoveIndex("ULTACTION")] = readFrames("ULTACTION", 6);
         images[getMoveIndex("WALK")] = readFrames("WALK", 8);
         
+        setPosition(new Point(200, 200));
         this.kenshinInfo = new CharacterInfo("KenshinInfo");
         this.addComponent(kenshinInfo);
         this.addComponent(new AnimationRenderComponent("KenshinRender", panel, kenshinInfo, images));

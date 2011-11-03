@@ -10,16 +10,12 @@ import game.component.render.ImageRenderComponent;
 import game.entity.Entity;
 import game.util.Timer;
 import game.util.TimerListener;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -42,7 +38,6 @@ public class GamePanel extends JPanel {
         getEntity("Background").setPosition(new Point(0, 0));
 
         entities.add(new Kenshin("Kenshin", this));
-        getEntity("Kenshin").setPosition(new Point(250, 250));
         gameframe.addKeyListener((CharacterInfo) getEntity("Kenshin").getComponent("KenshinInfo"));
 
         timer = new Timer(new TimerListener() {
