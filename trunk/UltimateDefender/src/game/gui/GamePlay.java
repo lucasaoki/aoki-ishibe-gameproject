@@ -18,7 +18,7 @@ public class GamePlay extends JFrame {
         setLocation(300, 200);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        getContentPane().add(new GamePanel());
+        getContentPane().add(new GamePanel(this));
 
         this.setVisible(true);
     }
