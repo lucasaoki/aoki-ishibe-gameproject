@@ -5,12 +5,17 @@
 package game.component.characters;
 
 import game.component.Component;
+import java.awt.Point;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.geom.AffineTransform;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Lucas
  */
-public class CharacterInfo extends Component {
+public class CharacterInfo extends Component implements KeyListener{
 
     private final float gravity = 0.5f; //???????????????
     private final float jumpSpeed = 12f;
@@ -20,11 +25,13 @@ public class CharacterInfo extends Component {
     private boolean isWalkingL = false;
     float direction;
     float speed;
+    private boolean[] input = new boolean[256];
 
     public CharacterInfo(String id) {
         this.id = id;
-        vertSpeed = 0;
-        isJumping = false;
+        this.vertSpeed = 0;
+        this.isJumping = false;
+        this.speed = 5f;
     }
 
     public float getDirection() {
@@ -52,8 +59,30 @@ public class CharacterInfo extends Component {
     }
 
     @Override
-    public void control(/*Timer timer ?*/) {
-        System.out.println(owner.getPosition().x + owner.getPosition().y);
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        input[e.getKeyCode() & 0xff] = true;
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        input[e.getKeyCode() & 0xff] = false;
+    }
+
+    @Override
+    public void update() {
+        AffineTransform af = owner.getAf();
+        
+        if (input[KeyEvent.VK_RIGHT & 0xff] == true) {
+            af.translate(speed, 0);
+            af.scale(1, 1);
+        }
+        owner.setAf(af);
+        
 ////        float rotation = owner.getRotation();
 ////        float scale = owner.getScale();
 //        Point pos = owner.getPosition();

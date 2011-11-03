@@ -5,17 +5,17 @@
 package game.component.render;
 
 import game.component.Component;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  *
  * @author Lucas Aoki
  */
-public abstract class RenderComponent extends Component{
-    
+public abstract class RenderComponent extends Component {
+
     public RenderComponent(String id) {
         this.id = id;
     }
 
-    public abstract void render(Graphics gr);
+    public abstract void render(Graphics2D gr);
 }

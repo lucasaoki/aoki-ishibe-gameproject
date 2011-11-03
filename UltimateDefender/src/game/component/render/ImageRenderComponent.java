@@ -4,11 +4,12 @@
  */
 package game.component.render;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Point;
+import java.awt.geom.AffineTransform;
 import java.net.URL;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -28,13 +29,13 @@ public class ImageRenderComponent extends RenderComponent {
     }
 
     @Override
-    public void render(Graphics gr) {
-        Point position = owner.getPosition();
+    public void render(Graphics2D gr) {
+        AffineTransform af = owner.getAf();
 
-        gr.drawImage(image, position.x, position.y, null);
+        gr.drawImage(image, af, null);
     }
 
     @Override
-    public void control() {
+    public void update() {
     }
 }

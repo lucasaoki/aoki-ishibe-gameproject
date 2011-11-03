@@ -6,12 +6,11 @@ package game.entity;
 
 import game.component.Component;
 import game.component.render.RenderComponent;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.Graphics2D;
 import java.awt.Point;
-import java.net.URL;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -21,6 +20,8 @@ public class Entity {
 
     String id;
     Point position;
+    float scale;
+    AffineTransform af;
     RenderComponent renderComponent = null;
     ArrayList<Component> components = null;
 
@@ -28,6 +29,13 @@ public class Entity {
         this.id = id;
         components = new ArrayList<Component>();
         position = new Point(0, 0);
+        scale = 1;
+
+
+
+        af = new AffineTransform();
+        af.translate(position.x, position.y);
+        af.scale(scale, 1);
     }
 
     public void addComponent(Component component) {
@@ -56,27 +64,39 @@ public class Entity {
         return id;
     }
 
+    public AffineTransform getAf() {
+        return af;
+    }
+
+    public float getScale() {
+        return scale;
+    }
+
     public void setPosition(Point position) {
         this.position = position;
     }
-    
-    public Image[] readFrames(String path, int num) {
-        Image tmp[] = new Image[num];
-        for (int i = 1; i <= num; i++) {
-            String filename = path + i + ".png";
-            URL url = Entity.class.getResource(filename);
-            tmp[i-1] = (new ImageIcon(url)).getImage();
-        }
-        return tmp;
+
+    public void setAf(AffineTransform af) {
+        this.af = af;
     }
 
-    public void update() {
+//
+//    public Image[] readFrames(String path, int num) {
+//        Image tmp[] = new Image[num];
+//        for (int i = 1; i <= num; i++) {
+//            String filename = path + i + ".png";
+//            URL url = Entity.class.getResource(filename);
+//            tmp[i - 1] = (new ImageIcon(url)).getImage();
+//        }
+//        return tmp;
+//    }
+    public void update(JFrame myFrame) {
         for (Component component : components) {
-            component.control();
+            component.update();
         }
     }
 
-    public void render(Graphics gr) {
+    public void render(Graphics2D gr) {
         if (renderComponent != null) {
             renderComponent.render(gr);
         }

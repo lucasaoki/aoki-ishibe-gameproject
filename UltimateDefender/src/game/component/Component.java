@@ -22,6 +22,6 @@ public abstract class Component {
     public void setOwnerEntity(Entity owner) {
         this.owner = owner;
     }
-    
-    public abstract void control();
+
+    public abstract void update();
 }
