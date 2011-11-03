@@ -9,16 +9,16 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
-import javax.swing.JFrame;
 
 /**
  *
  * @author Lucas
  */
-public class CharacterInfo extends Component implements KeyListener{
+public class CharacterInfo extends Component implements KeyListener {
 
-    private final float gravity = 0.5f; //???????????????
-    private final float jumpSpeed = 12f;
+    private final float gravity = 2.5f; //???????????????
+    private final float jumpSpeed = 20f;
+    private final float walkSpeed = 5f;
     private float vertSpeed;
     private boolean isJumping = false;
     private boolean isWalkingR = false;
@@ -31,7 +31,6 @@ public class CharacterInfo extends Component implements KeyListener{
         this.id = id;
         this.vertSpeed = 0;
         this.isJumping = false;
-        this.speed = 5f;
     }
 
     public float getDirection() {
@@ -60,7 +59,6 @@ public class CharacterInfo extends Component implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
     }
 
     @Override
@@ -75,14 +73,35 @@ public class CharacterInfo extends Component implements KeyListener{
 
     @Override
     public void update() {
+        Point pos = owner.getPosition();
         AffineTransform af = owner.getAf();
-        
-        if (input[KeyEvent.VK_RIGHT & 0xff] == true) {
-            af.translate(speed, 0);
-            af.scale(1, 1);
+        float scale = owner.getScale();
+
+        if (input[KeyEvent.VK_RIGHT & 0xff] && pos.x < 640) {
+            af.translate(walkSpeed, 0);
+            isWalkingR = true;
+        } else if (input[KeyEvent.VK_LEFT & 0xff] && pos.x > 0) {
+            af.translate(-walkSpeed, 0);
+            isWalkingL = true;
+        } else {
+            isWalkingL = false;
+            isWalkingR = false;
+        }
+        if (isJumping) {
+            af.translate(0, -vertSpeed);
+            if (vertSpeed <= -jumpSpeed) {
+                vertSpeed = 0;
+                isJumping = false;
+            }
+            vertSpeed -= gravity;
+        } else {
+            if (input[KeyEvent.VK_SPACE & 0xff]) {
+                vertSpeed = jumpSpeed;
+                isJumping = true;
+            }
         }
         owner.setAf(af);
-        
+
 ////        float rotation = owner.getRotation();
 ////        float scale = owner.getScale();
 //        Point pos = owner.getPosition();

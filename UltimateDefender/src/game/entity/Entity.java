@@ -30,12 +30,7 @@ public class Entity {
         components = new ArrayList<Component>();
         position = new Point(0, 0);
         scale = 1;
-
-
-
         af = new AffineTransform();
-        af.translate(position.x, position.y);
-        af.scale(scale, 1);
     }
 
     public void addComponent(Component component) {
@@ -74,6 +69,7 @@ public class Entity {
 
     public void setPosition(Point position) {
         this.position = position;
+        af.translate(-af.getTranslateX() + position.x, -af.getTranslateY()+ position.y);
     }
 
     public void setAf(AffineTransform af) {
