@@ -20,9 +20,10 @@ public class CharacterInfo extends Component implements KeyListener {
     private final float jumpSpeed = 20f;
     private final float walkSpeed = 5f;
     private float vertSpeed;
-    private boolean isJumping = false;
-    private boolean isWalkingR = false;
-    private boolean isWalkingL = false;
+    private boolean isJumping;
+    private boolean isWalkingR;
+    private boolean isWalkingL;
+    private boolean isAttacking;
     float direction;
     float speed;
     private boolean[] input = new boolean[256];
@@ -30,7 +31,10 @@ public class CharacterInfo extends Component implements KeyListener {
     public CharacterInfo(String id) {
         this.id = id;
         this.vertSpeed = 0;
-        this.isJumping = false;
+        isJumping = false;
+        isWalkingR = false;
+        isWalkingL = false;
+        isAttacking = false;
     }
 
     public float getDirection() {
@@ -57,6 +61,14 @@ public class CharacterInfo extends Component implements KeyListener {
         return isWalkingL;
     }
 
+    public boolean isAttacking() {
+        return isAttacking;
+    }
+
+    public void setIsAttacking(boolean isAttacking) {
+        this.isAttacking = isAttacking;
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -77,31 +89,44 @@ public class CharacterInfo extends Component implements KeyListener {
         AffineTransform af = owner.getAf();
         float scale = owner.getScale();
 
-        if (input[KeyEvent.VK_RIGHT & 0xff] && pos.x < 640) {
-            af.translate(walkSpeed, 0);
-            isWalkingR = true;
-        } else if (input[KeyEvent.VK_LEFT & 0xff] && pos.x > 0) {
-            af.translate(-walkSpeed, 0);
-            isWalkingL = true;
-        } else {
-            isWalkingL = false;
-            isWalkingR = false;
-        }
-        if (isJumping) {
-            af.translate(0, -vertSpeed);
-            if (vertSpeed <= -jumpSpeed) {
-                vertSpeed = 0;
-                isJumping = false;
+
+        if (!isAttacking) {
+            if (input[KeyEvent.VK_RIGHT & 0xff] && pos.x < 640) {
+                if (af.getScaleX() == -1) {
+                    af.translate(45, 0);
+                    af.scale(-1, 1);
+                }
+                af.translate(walkSpeed, 0);
+                isWalkingR = true;
+            } else if (input[KeyEvent.VK_LEFT & 0xff] && pos.x > 0) {
+                if (af.getScaleX() == 1) {
+                    af.translate(45, 0);
+                    af.scale(-1, 1);
+                }
+                af.translate(walkSpeed, 0);
+                isWalkingL = true;
+            } else {
+                isWalkingL = false;
+                isWalkingR = false;
             }
-            vertSpeed -= gravity;
-        } else {
-            if (input[KeyEvent.VK_SPACE & 0xff]) {
+            if (isJumping) {
+                af.translate(0, -vertSpeed);
+                if (vertSpeed <= -jumpSpeed) {
+                    vertSpeed = 0;
+                    isJumping = false;
+                }
+                vertSpeed -= gravity;
+            } else if (input[KeyEvent.VK_UP & 0xff]) {
                 vertSpeed = jumpSpeed;
                 isJumping = true;
+            } else if (input[KeyEvent.VK_C & 0xff]) {
+                isAttacking = true;
             }
-        }
-        owner.setAf(af);
 
+        }
+
+
+        owner.setAf(af);
 ////        float rotation = owner.getRotation();
 ////        float scale = owner.getScale();
 //        Point pos = owner.getPosition();
