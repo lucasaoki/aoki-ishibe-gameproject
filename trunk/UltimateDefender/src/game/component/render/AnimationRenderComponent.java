@@ -12,7 +12,6 @@ import game.util.Timer;
 import game.util.TimerListener;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.geom.AffineTransform;
 
 /**
@@ -45,7 +44,8 @@ public class AnimationRenderComponent extends RenderComponent {
         }, 80);
         frameTimer.start();
 
-        charsMoveInfo = new Chars("control");
+        this.charsMoveInfo = new Chars("control");
+        this.index = 0;
         this.animation = imageFrames;
         this.currentAnimation = this.animation[charsMoveInfo.getMoveIndex("STAND")]; //FAZER CONTROLE AQUI
     }
@@ -57,15 +57,32 @@ public class AnimationRenderComponent extends RenderComponent {
     @Override
     public void update() {
         AffineTransform af = owner.getAf();
-        
-        if(characterInfo.isJumping()){
+
+        if (characterInfo.isAttacking()) {
+            if (currentAnimation != this.animation[charsMoveInfo.getMoveIndex("B")]) {
+                index = 0;
+            }
+            currentAnimation = this.animation[charsMoveInfo.getMoveIndex("B")];
+            if (index + 1 == currentAnimation.length) {
+                characterInfo.setIsAttacking(false);
+            }
+        } else if (characterInfo.isJumping()) {
+            if (currentAnimation != this.animation[charsMoveInfo.getMoveIndex("JUMP")]) {
+                index = 0;
+            }
             currentAnimation = this.animation[charsMoveInfo.getMoveIndex("JUMP")];
-        }
-         else if (characterInfo.isWalkingR()) {
+        } else if (characterInfo.isWalkingR()) {
+            currentAnimation = this.animation[charsMoveInfo.getMoveIndex("WALK")];
+        } else if (characterInfo.isWalkingL()) {
             currentAnimation = this.animation[charsMoveInfo.getMoveIndex("WALK")];
         } else {
             currentAnimation = this.animation[charsMoveInfo.getMoveIndex("STAND")];
         }
+
+        if (index >= currentAnimation.length) { /*correção de erro index out of bounds*/
+            index = 0;
+        }
+
     }
 
     public void updateFrame() {
@@ -75,15 +92,6 @@ public class AnimationRenderComponent extends RenderComponent {
 
     @Override
     public void render(Graphics2D gr) {
-        Point pos = owner.getPosition();
-
-        AffineTransform af = owner.getAf();
-//        af.translate(pos.x, pos.y);
-        if (currentAnimation != null) {
-//            af.translate(pos.x + currentAnimation[index].getWidth(panel), pos.y);
-//            af.scale(-1, 1);
-        }
-
-        gr.drawImage(currentAnimation[index], af, null);
+        gr.drawImage(currentAnimation[index], owner.getAf(), null);
     }
 }
