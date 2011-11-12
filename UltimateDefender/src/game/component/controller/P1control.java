@@ -43,6 +43,5 @@ public class P1control extends PlayerCtrl {
 
     @Override
     public void update() {
-        System.out.println(input[KeyEvent.VK_RIGHT]);
     }
 }
