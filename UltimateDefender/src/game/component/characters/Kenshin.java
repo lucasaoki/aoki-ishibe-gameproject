@@ -7,8 +7,8 @@ package game.component.characters;
 import game.component.controller.PlayerCtrl;
 import game.component.render.AnimationRenderComponent;
 import game.entity.Entity;
-import game.gui.GamePanel;
-import game.gui.GamePlay;
+import game.gui2.GameContainer;
+import game.gui2.GamePanel;
 import java.awt.Image;
 import java.awt.Point;
 
@@ -18,9 +18,8 @@ import java.awt.Point;
  */
 public class Kenshin extends Entity {
 
-    public Kenshin(String id, GamePlay gameframe, PlayerCtrl playerCtrl) {
+    public Kenshin(String id, GameContainer gc, PlayerCtrl playerCtrl) {
         super(id);
-        this.panel = panel;
 
         images = new Image[9][];
         images[Chars.getMoveIndex("ATTACK")] = readFrames("ATTACK", 5);
@@ -34,11 +33,11 @@ public class Kenshin extends Entity {
         images[Chars.getMoveIndex("WALK")] = readFrames("WALK", 8);
 
         setPosition(new Point(200, 200));
-        gameframe.addKeyListener(playerCtrl);
+        gc.getGameframe().addKeyListener(playerCtrl);
         this.kenshinInfo = new CharacterInfo("KenshinInfo", playerCtrl);
         this.addComponent(playerCtrl);
         this.addComponent(kenshinInfo);
-        this.addComponent(new AnimationRenderComponent("KenshinRender", gameframe, kenshinInfo, images));
+        this.addComponent(new AnimationRenderComponent("KenshinRender", gc, kenshinInfo, images));
     }
     private GamePanel panel;
     private Image images[][];

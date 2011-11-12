@@ -4,8 +4,7 @@
  */
 package game;
 
-import game.gui.GamePlay;
-import javax.swing.JFrame;
+import game.gui2.GameContainer;
 
 /**
  *
@@ -18,6 +17,7 @@ public class UltimateDefender {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFrame gameplay = new GamePlay();
+        GameContainer gc = new GameContainer("Ultimate Defenders");
+        gc.start();
     }
 }

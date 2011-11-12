@@ -4,11 +4,6 @@
  */
 package game.component.characters;
 
-import game.entity.Entity;
-import java.awt.Image;
-import java.net.URL;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author Lucas
