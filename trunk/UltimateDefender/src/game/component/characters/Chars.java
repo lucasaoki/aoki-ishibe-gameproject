@@ -13,23 +13,9 @@ import javax.swing.ImageIcon;
  *
  * @author Lucas
  */
-public class Chars extends Entity {
+public class Chars {
 
-    public Chars(String id) {
-        super(id);
-    }
-
-    public Image[] readFrames(String move, int num) {
-        Image tmp[] = new Image[num];
-        for (int i = 1; i <= num; i++) {
-            String filename = "/images/" + this.getId() + "/" + move + " (" + i + ").png";
-            URL url = Chars.class.getResource(filename);
-            tmp[i - 1] = (new ImageIcon(url)).getImage();
-        }
-        return tmp;
-    }
-
-    public int getMoveIndex(String move) {
+    public static int getMoveIndex(String move) {
         int index = 0;
 
         if ("ATTACK".equals(move)) {

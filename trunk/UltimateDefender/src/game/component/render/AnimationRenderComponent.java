@@ -7,7 +7,7 @@ package game.component.render;
 import game.component.Component;
 import game.component.characters.CharacterInfo;
 import game.component.characters.Chars;
-import game.gui.GamePanel;
+import game.gui.GamePlay;
 import game.util.Timer;
 import game.util.TimerListener;
 import java.awt.Graphics2D;
@@ -21,16 +21,15 @@ import java.awt.geom.AffineTransform;
 public class AnimationRenderComponent extends RenderComponent {
 
     private Timer frameTimer;
-    private GamePanel panel;
-    private Chars charsMoveInfo;
+    private GamePlay gameframe;
     private CharacterInfo characterInfo = null;
     private Image[][] animation;
     private Image[] currentAnimation;
     private int index;
 
-    public AnimationRenderComponent(String id, GamePanel panel, Component characterInfo, Image[][] imageFrames) {
+    public AnimationRenderComponent(String id, GamePlay gameframe, Component characterInfo, Image[][] imageFrames) {
         super(id);
-        this.panel = panel;
+        this.gameframe = gameframe;
         if (characterInfo instanceof CharacterInfo) {
             this.characterInfo = (CharacterInfo) characterInfo;
         }
@@ -43,11 +42,10 @@ public class AnimationRenderComponent extends RenderComponent {
             }
         }, 80);
         frameTimer.start();
-
-        this.charsMoveInfo = new Chars("control");
+        
         this.index = 0;
         this.animation = imageFrames;
-        this.currentAnimation = this.animation[charsMoveInfo.getMoveIndex("STAND")]; //FAZER CONTROLE AQUI
+        this.currentAnimation = this.animation[Chars.getMoveIndex("STAND")]; //FAZER CONTROLE AQUI
     }
 
     public void setAnimation(Image[] animation) {
@@ -59,24 +57,24 @@ public class AnimationRenderComponent extends RenderComponent {
         AffineTransform af = owner.getAf();
 
         if (characterInfo.isAttacking()) {
-            if (currentAnimation != this.animation[charsMoveInfo.getMoveIndex("B")]) {
+            if (currentAnimation != this.animation[Chars.getMoveIndex("B")]) {
                 index = 0;
             }
-            currentAnimation = this.animation[charsMoveInfo.getMoveIndex("B")];
+            currentAnimation = this.animation[Chars.getMoveIndex("B")];
             if (index + 1 == currentAnimation.length) {
                 characterInfo.setIsAttacking(false);
             }
         } else if (characterInfo.isJumping()) {
-            if (currentAnimation != this.animation[charsMoveInfo.getMoveIndex("JUMP")]) {
+            if (currentAnimation != this.animation[Chars.getMoveIndex("JUMP")]) {
                 index = 0;
             }
-            currentAnimation = this.animation[charsMoveInfo.getMoveIndex("JUMP")];
+            currentAnimation = this.animation[Chars.getMoveIndex("JUMP")];
         } else if (characterInfo.isWalkingR()) {
-            currentAnimation = this.animation[charsMoveInfo.getMoveIndex("WALK")];
+            currentAnimation = this.animation[Chars.getMoveIndex("WALK")];
         } else if (characterInfo.isWalkingL()) {
-            currentAnimation = this.animation[charsMoveInfo.getMoveIndex("WALK")];
+            currentAnimation = this.animation[Chars.getMoveIndex("WALK")];
         } else {
-            currentAnimation = this.animation[charsMoveInfo.getMoveIndex("STAND")];
+            currentAnimation = this.animation[Chars.getMoveIndex("STAND")];
         }
 
         if (index >= currentAnimation.length) { /*correção de erro array index out of bounds*/
@@ -87,7 +85,7 @@ public class AnimationRenderComponent extends RenderComponent {
 
     public void updateFrame() {
         index = (index + 1) % currentAnimation.length;
-        panel.repaint();
+        gameframe.repaint();
     }
 
     @Override

@@ -4,11 +4,12 @@
  */
 package game.gui;
 
-import game.component.characters.CharacterInfo;
 import game.component.characters.Hiei;
 import game.component.characters.Ichigo;
 import game.component.characters.Kenshin;
 import game.component.characters.Zoro;
+import game.component.controller.P1control;
+import game.component.controller.PlayerCtrl;
 import game.component.render.ImageRenderComponent;
 import game.entity.Entity;
 import game.util.Timer;
@@ -40,14 +41,10 @@ public class GamePanel extends JPanel {
         getEntity("Background").addComponent(new ImageRenderComponent("BGImage", "/BG.jpg"));
         getEntity("Background").setPosition(new Point(0, 0));
 
-        entities.add(new Kenshin("Kenshin", this));
-        gameframe.addKeyListener((CharacterInfo) getEntity("Kenshin").getComponent("KenshinInfo"));
-        entities.add(new Hiei("Hiei", this));
-        gameframe.addKeyListener((CharacterInfo) getEntity("Hiei").getComponent("HieiInfo"));
-        entities.add(new Ichigo("Ichigo", this));
-        gameframe.addKeyListener((CharacterInfo) getEntity("Ichigo").getComponent("IchigoInfo"));
-        entities.add(new Zoro("Zoro", this));
-        gameframe.addKeyListener((CharacterInfo) getEntity("Zoro").getComponent("ZoroInfo"));
+        entities.add(new Kenshin("Kenshin", gameframe, new P1control("KenshinCtrl")));
+        entities.add(new Hiei("Hiei", gameframe, new P1control("HieiCtrl")));
+        entities.add(new Ichigo("Ichigo", gameframe, new P1control("IchigoCtrl")));
+        entities.add(new Zoro("Zoro", gameframe, new P1control("ZoroCtrl")));
 
         timer = new Timer(new TimerListener() {
 
