@@ -5,7 +5,10 @@
 package game.gui;
 
 import game.component.characters.CharacterInfo;
+import game.component.characters.Hiei;
+import game.component.characters.Ichigo;
 import game.component.characters.Kenshin;
+import game.component.characters.Zoro;
 import game.component.render.ImageRenderComponent;
 import game.entity.Entity;
 import game.util.Timer;
@@ -39,6 +42,12 @@ public class GamePanel extends JPanel {
 
         entities.add(new Kenshin("Kenshin", this));
         gameframe.addKeyListener((CharacterInfo) getEntity("Kenshin").getComponent("KenshinInfo"));
+        entities.add(new Hiei("Hiei", this));
+        gameframe.addKeyListener((CharacterInfo) getEntity("Hiei").getComponent("HieiInfo"));
+        entities.add(new Ichigo("Ichigo", this));
+        gameframe.addKeyListener((CharacterInfo) getEntity("Ichigo").getComponent("IchigoInfo"));
+        entities.add(new Zoro("Zoro", this));
+        gameframe.addKeyListener((CharacterInfo) getEntity("Zoro").getComponent("ZoroInfo"));
 
         timer = new Timer(new TimerListener() {
 

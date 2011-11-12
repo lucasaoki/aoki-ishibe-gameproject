@@ -22,7 +22,7 @@ public class Chars extends Entity {
     public Image[] readFrames(String move, int num) {
         Image tmp[] = new Image[num];
         for (int i = 1; i <= num; i++) {
-            String filename = "/images/" + this.getId() + "/" + move + "/" + i + ".png";
+            String filename = "/images/" + this.getId() + "/" + move + " (" + i + ").png";
             URL url = Chars.class.getResource(filename);
             tmp[i - 1] = (new ImageIcon(url)).getImage();
         }
@@ -32,7 +32,7 @@ public class Chars extends Entity {
     public int getMoveIndex(String move) {
         int index = 0;
 
-        if ("B".equals(move)) {
+        if ("ATTACK".equals(move)) {
             index = 0;
         } else if ("DASH".equals(move)) {
             index = 1;

@@ -79,7 +79,7 @@ public class AnimationRenderComponent extends RenderComponent {
             currentAnimation = this.animation[charsMoveInfo.getMoveIndex("STAND")];
         }
 
-        if (index >= currentAnimation.length) { /*correção de erro index out of bounds*/
+        if (index >= currentAnimation.length) { /*correção de erro array index out of bounds*/
             index = 0;
         }
 

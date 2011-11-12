@@ -14,11 +14,8 @@ import java.awt.geom.AffineTransform;
  *
  * @author Lucas
  */
-public class CharacterInfo extends Component implements KeyListener {
+public class CharacterInfo extends Component implements KeyListener, Constants {
 
-    private final float gravity = 2.5f; //???????????????
-    private final float jumpSpeed = 20f;
-    private final float walkSpeed = 5f;
     private float vertSpeed;
     private boolean isJumping;
     private boolean isWalkingR;
@@ -94,14 +91,14 @@ public class CharacterInfo extends Component implements KeyListener {
             if (input[KeyEvent.VK_RIGHT & 0xff] && pos.x < 640) {
                 if (af.getScaleX() == -1) {
                     af.translate(45, 0);
-                    af.scale(-1, 1);
+                    af.scale(-scale, scale);
                 }
                 af.translate(walkSpeed, 0);
                 isWalkingR = true;
             } else if (input[KeyEvent.VK_LEFT & 0xff] && pos.x > 0) {
                 if (af.getScaleX() == 1) {
                     af.translate(45, 0);
-                    af.scale(-1, 1);
+                    af.scale(-scale, scale);
                 }
                 af.translate(walkSpeed, 0);
                 isWalkingL = true;
@@ -125,39 +122,6 @@ public class CharacterInfo extends Component implements KeyListener {
 
         }
 
-
         owner.setAf(af);
-////        float rotation = owner.getRotation();
-////        float scale = owner.getScale();
-//        Point pos = owner.getPosition();
-////        Input input = gc.getInput();
-//
-//        if (input.isKeyDown(Input.KEY_LEFT) && pos.x > 0) {
-//            pos.x -= 0.2f;
-//            isWalkingL = true;
-//        } else if (input.isKeyDown(Input.KEY_RIGHT) && pos.x < 800) {
-//            pos.x += 0.2f;
-//            isWalkingR = true;
-//        } else {
-//            isWalkingL = false;
-//            isWalkingR = false;
-//        }
-//        if (isJumping) {
-//            pos.y -= vertSpeed;
-//            if (vertSpeed <= -jumpSpeed) {
-//                vertSpeed = 0;
-//                isJumping = false;
-//            }
-//            vertSpeed -= gravity;
-//        } else {
-//            if (input.isKeyDown(Input.KEY_SPACE)) {
-//                vertSpeed = jumpSpeed;
-//                isJumping = true;
-//            }
-//        }
-//
-//        owner.setPosition(pos);
-////        owner.setRotation(rotation);
-////        owner.setScale(scale);
     }
 }
