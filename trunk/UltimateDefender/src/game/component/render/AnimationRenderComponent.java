@@ -7,7 +7,7 @@ package game.component.render;
 import game.component.Component;
 import game.component.characters.CharacterInfo;
 import game.component.characters.Chars;
-import game.gui.GamePlay;
+import game.gui2.GameContainer;
 import game.util.Timer;
 import game.util.TimerListener;
 import java.awt.Graphics2D;
@@ -21,15 +21,15 @@ import java.awt.geom.AffineTransform;
 public class AnimationRenderComponent extends RenderComponent {
 
     private Timer frameTimer;
-    private GamePlay gameframe;
+    private GameContainer gc;
     private CharacterInfo characterInfo = null;
     private Image[][] animation;
     private Image[] currentAnimation;
     private int index;
 
-    public AnimationRenderComponent(String id, GamePlay gameframe, Component characterInfo, Image[][] imageFrames) {
+    public AnimationRenderComponent(String id, GameContainer gc, Component characterInfo, Image[][] imageFrames) {
         super(id);
-        this.gameframe = gameframe;
+        this.gc = gc;
         if (characterInfo instanceof CharacterInfo) {
             this.characterInfo = (CharacterInfo) characterInfo;
         }
@@ -85,7 +85,7 @@ public class AnimationRenderComponent extends RenderComponent {
 
     public void updateFrame() {
         index = (index + 1) % currentAnimation.length;
-        gameframe.repaint();
+        gc.getGameframe().repaint();
     }
 
     @Override
