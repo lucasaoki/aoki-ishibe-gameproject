@@ -16,13 +16,14 @@ import java.awt.geom.AffineTransform;
 public class CharacterInfo extends Component implements Constants {
 
     private float vertSpeed;
+    private float direction;
+    private float speed;
+    private PlayerCtrl playerCtrl;
     private boolean isJumping;
     private boolean isWalkingR;
     private boolean isWalkingL;
     private boolean isAttacking;
-    private float direction;
-    private float speed;
-    private PlayerCtrl playerCtrl;
+    private boolean isDashing;
 
     public CharacterInfo(String id, PlayerCtrl playerCtrl) {
         this.id = id;
@@ -32,6 +33,7 @@ public class CharacterInfo extends Component implements Constants {
         this.isWalkingR = false;
         this.isWalkingL = false;
         this.isAttacking = false;
+        this.isDashing = false;
     }
 
     public float getDirection() {
@@ -62,6 +64,14 @@ public class CharacterInfo extends Component implements Constants {
         return isAttacking;
     }
 
+    public boolean isDashing() {
+        return isDashing;
+    }
+
+    public void setIsDashing(boolean isDashing) {
+        this.isDashing = isDashing;
+    }
+
     public void setIsAttacking(boolean isAttacking) {
         this.isAttacking = isAttacking;
     }
@@ -74,7 +84,7 @@ public class CharacterInfo extends Component implements Constants {
 
 
         if (!isAttacking) {
-            if (playerCtrl.isMovingRight() && pos.x < 640) {
+            if (playerCtrl.isMovingRight() && pos.x < 600) {
                 if (af.getScaleX() == -1) {
                     af.translate(45, 0);
                     af.scale(-scale, scale);
@@ -88,7 +98,7 @@ public class CharacterInfo extends Component implements Constants {
                 }
                 af.translate(walkSpeed, 0);
                 isWalkingL = true;
-            } else {
+            } else { //is standing
                 isWalkingL = false;
                 isWalkingR = false;
             }
@@ -104,6 +114,9 @@ public class CharacterInfo extends Component implements Constants {
                 isJumping = true;
             } else if (playerCtrl.isAttacking()) {
                 isAttacking = true;
+            } else if (playerCtrl.isDashing()) {
+                af.translate(10 * walkSpeed, 0);
+                isDashing = true;
             }
 
         }

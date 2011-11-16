@@ -7,8 +7,8 @@ package game.component.characters;
 import game.component.controller.PlayerCtrl;
 import game.component.render.AnimationRenderComponent;
 import game.entity.Entity;
-import game.gui2.GameContainer;
-import game.gui2.GamePanel;
+import game.gui.GameContainer;
+import game.gui.GamePanel;
 import java.awt.Image;
 import java.awt.Point;
 
