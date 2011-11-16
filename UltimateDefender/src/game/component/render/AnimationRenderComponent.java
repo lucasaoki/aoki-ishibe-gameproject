@@ -7,7 +7,7 @@ package game.component.render;
 import game.component.Component;
 import game.component.characters.CharacterInfo;
 import game.component.characters.Chars;
-import game.gui2.GameContainer;
+import game.gui.GameContainer;
 import game.util.Timer;
 import game.util.TimerListener;
 import java.awt.Graphics2D;
@@ -42,7 +42,7 @@ public class AnimationRenderComponent extends RenderComponent {
             }
         }, 80);
         frameTimer.start();
-        
+
         this.index = 0;
         this.animation = imageFrames;
         this.currentAnimation = this.animation[Chars.getMoveIndex("STAND")]; //FAZER CONTROLE AQUI
@@ -69,6 +69,14 @@ public class AnimationRenderComponent extends RenderComponent {
                 index = 0;
             }
             currentAnimation = this.animation[Chars.getMoveIndex("JUMP")];
+        } else if (characterInfo.isDashing()) {
+            if (currentAnimation != this.animation[Chars.getMoveIndex("DASH")]) {
+                index = 0;
+            }
+            currentAnimation = this.animation[Chars.getMoveIndex("DASH")];
+            if (index + 1 == currentAnimation.length) {
+                characterInfo.setIsDashing(false);
+            }
         } else if (characterInfo.isWalkingR()) {
             currentAnimation = this.animation[Chars.getMoveIndex("WALK")];
         } else if (characterInfo.isWalkingL()) {

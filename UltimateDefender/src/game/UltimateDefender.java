@@ -4,7 +4,7 @@
  */
 package game;
 
-import game.gui2.GameContainer;
+import game.gui.GameContainer;
 
 /**
  *
