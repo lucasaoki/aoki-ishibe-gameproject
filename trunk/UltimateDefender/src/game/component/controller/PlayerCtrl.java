@@ -15,19 +15,9 @@ import java.awt.event.KeyListener;
 public abstract class PlayerCtrl extends Component implements KeyListener {
 
     protected boolean[] input = new boolean[256];
-    protected boolean hold;
 
     public PlayerCtrl(String id) {
         this.id = id;
-        hold = false;
-    }
-
-    public boolean isHold() {
-        return hold;
-    }
-
-    public void setHold(boolean hold) {
-        this.hold = hold;
     }
 
     public abstract boolean isMovingRight();
