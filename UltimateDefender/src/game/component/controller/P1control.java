@@ -4,8 +4,6 @@
  */
 package game.component.controller;
 
-import game.util.Timer;
-import game.util.TimerListener;
 import java.awt.event.KeyEvent;
 
 /**
@@ -13,8 +11,6 @@ import java.awt.event.KeyEvent;
  * @author Lucas
  */
 public class P1control extends PlayerCtrl {
-
-    Timer holdDelay;
 
     public P1control(String id) {
         super(id);
@@ -37,20 +33,7 @@ public class P1control extends PlayerCtrl {
 
     @Override
     public boolean isDashing() {
-        if (input[KeyEvent.VK_L] == true && hold == false) {
-            setHold(true);
-            holdDelay = new Timer(new TimerListener() {
-
-                @Override
-                public void update(Timer timer) {
-                    setHold(false);
-                }
-            }, 2000);
-            holdDelay.start();
-            return true;
-        } else {
-            return false;
-        }
+        return input[KeyEvent.VK_L];
     }
 
     @Override

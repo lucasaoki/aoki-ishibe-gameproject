@@ -12,25 +12,34 @@ public class Chars {
 
     public static int getMoveIndex(String move) {
         int index = 0;
-
-        if ("ATTACK".equals(move)) {
-            index = 0;
-        } else if ("DASH".equals(move)) {
-            index = 1;
-        } else if ("FALL".equals(move)) {
-            index = 2;
-        } else if ("GETHIT".equals(move)) {
-            index = 3;
-        } else if ("GUARD".equals(move)) {
-            index = 4;
-        } else if ("JUMP".equals(move)) {
-            index = 5;
-        } else if ("STAND".equals(move)) {
-            index = 6;
-        } else if ("ULTACTION".equals(move)) {
-            index = 7;
-        } else if ("WALK".equals(move)) {
-            index = 8;
+        switch (move) {
+            case "ATTACK":
+                index = 0;
+                break;
+            case "DASH":
+                index = 1;
+                break;
+            case "FALL":
+                index = 2;
+                break;
+            case "GETHIT":
+                index = 3;
+                break;
+            case "GUARD":
+                index = 4;
+                break;
+            case "JUMP":
+                index = 5;
+                break;
+            case "STAND":
+                index = 6;
+                break;
+            case "ULTACTION":
+                index = 7;
+                break;
+            case "WALK":
+                index = 8;
+                break;
         }
         return index;
     }
