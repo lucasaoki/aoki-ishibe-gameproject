@@ -22,6 +22,8 @@ public class CharacterInfo extends Component implements Constants {
     private boolean isJumping;
     private boolean isWalkingR;
     private boolean isWalkingL;
+    private boolean toRight;
+    private boolean toLeft;
     private boolean isAttacking;
     private boolean isDashing;
 
@@ -34,6 +36,8 @@ public class CharacterInfo extends Component implements Constants {
         this.isWalkingL = false;
         this.isAttacking = false;
         this.isDashing = false;
+        this.toRight = true;
+        this.toLeft = false;
     }
 
     public float getDirection() {
@@ -68,6 +72,14 @@ public class CharacterInfo extends Component implements Constants {
         return isDashing;
     }
 
+    public boolean toRight() {
+        return toRight;
+    }
+
+    public boolean toLeft() {
+        return toLeft;
+    }
+
     public void setIsDashing(boolean isDashing) {
         this.isDashing = isDashing;
     }
@@ -79,31 +91,25 @@ public class CharacterInfo extends Component implements Constants {
     @Override
     public void update() {
         Point pos = owner.getPosition();
-        AffineTransform af = owner.getAf();
-        float scale = owner.getScale();
 
 
         if (!isAttacking) {
             if (playerCtrl.isMovingRight() && pos.x < 600) {
-                if (af.getScaleX() == -1) {
-                    af.translate(45, 0);
-                    af.scale(-scale, scale);
-                }
-                af.translate(walkSpeed, 0);
+                pos.x += walkSpeed;
+                toRight = true;
+                toLeft = false;
                 isWalkingR = true;
             } else if (playerCtrl.isMovingLeft() && pos.x > 0) {
-                if (af.getScaleX() == 1) {
-                    af.translate(45, 0);
-                    af.scale(-scale, scale);
-                }
-                af.translate(walkSpeed, 0);
+                pos.x -= walkSpeed;
+                toLeft = true;
+                toRight = false;
                 isWalkingL = true;
             } else { //is standing
                 isWalkingL = false;
                 isWalkingR = false;
             }
             if (isJumping) {
-                af.translate(0, -vertSpeed);
+                pos.y -= vertSpeed;
                 if (vertSpeed <= -jumpSpeed) {
                     vertSpeed = 0;
                     isJumping = false;
@@ -115,12 +121,16 @@ public class CharacterInfo extends Component implements Constants {
             } else if (playerCtrl.isAttacking()) {
                 isAttacking = true;
             } else if (playerCtrl.isDashing()) {
-                af.translate(10 * walkSpeed, 0);
+                if (toRight) {
+                    pos.x += 10 * walkSpeed;
+                } else {
+                    pos.x -= 10 * walkSpeed;
+                }
+
                 isDashing = true;
             }
 
         }
-
-        owner.setAf(af);
+        owner.setPosition(pos);
     }
 }
