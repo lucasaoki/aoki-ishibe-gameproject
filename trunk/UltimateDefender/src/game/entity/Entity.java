@@ -25,7 +25,6 @@ public class Entity {
     String id;
     Point position;
     float scale;
-    AffineTransform af;
     RenderComponent renderComponent = null;
     ArrayList<Component> components = null;
 
@@ -34,7 +33,6 @@ public class Entity {
         components = new ArrayList<Component>();
         position = new Point(0, 0);
         scale = 1;
-        af = new AffineTransform();
     }
 
     public void addComponent(Component component) {
@@ -63,23 +61,14 @@ public class Entity {
         return id;
     }
 
-    public AffineTransform getAf() {
-        return af;
-    }
-
     public float getScale() {
         return scale;
     }
 
     public void setPosition(Point position) {
         this.position = position;
-        af.translate(-af.getTranslateX() + position.x, -af.getTranslateY() + position.y);
     }
-
-    public void setAf(AffineTransform af) {
-        this.af = af;
-    }
-
+    
     public Image[] readFrames(String move, int num) {
         Image tmp[] = new Image[num];
         for (int i = 1; i <= num; i++) {

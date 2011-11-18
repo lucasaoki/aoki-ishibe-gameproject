@@ -6,6 +6,7 @@ package game.component.render;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 import javax.swing.ImageIcon;
@@ -30,8 +31,9 @@ public class ImageRenderComponent extends RenderComponent {
 
     @Override
     public void render(Graphics2D gr) {
-        AffineTransform af = owner.getAf();
-
+        AffineTransform af = new AffineTransform();
+        Point pos = owner.getPosition();
+        af.translate(pos.x, pos.y);
         gr.drawImage(image, af, null);
     }
 

@@ -12,6 +12,7 @@ import game.util.Timer;
 import game.util.TimerListener;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.geom.AffineTransform;
 
 /**
@@ -54,8 +55,6 @@ public class AnimationRenderComponent extends RenderComponent {
 
     @Override
     public void update() {
-        AffineTransform af = owner.getAf();
-
         if (characterInfo.isAttacking()) {
             if (currentAnimation != this.animation[Chars.getMoveIndex("B")]) {
                 index = 0;
@@ -98,6 +97,17 @@ public class AnimationRenderComponent extends RenderComponent {
 
     @Override
     public void render(Graphics2D gr) {
-        gr.drawImage(currentAnimation[index], owner.getAf(), null);
+        AffineTransform af = new AffineTransform();
+        Point pos = owner.getPosition();
+        float scale = owner.getScale();
+
+        af.translate(pos.x, pos.y);
+        if (characterInfo.toLeft()) {
+            af.translate(45, 0);
+            af.scale(-scale, scale);
+        }
+        
+        gr.drawImage(currentAnimation[index], af, null);
+
     }
 }
