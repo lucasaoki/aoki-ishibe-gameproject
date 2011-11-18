@@ -4,19 +4,28 @@
  */
 package gui.panel;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.JButton;
 
 /**
  *
  * @author Seiji
  */
-class ButtonConf extends JButton {
+public class ButtonConf extends JButton {
 
-    public ButtonConf(String string, int i, int i0) {
-    }
-
-    ButtonConf(JButton start, int i, int i0) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+    JButton Button = null;
     
+    public JButton ButtonConf(String string, int width, int heigth) {
+        Button = new JButton(string);
+        Button.setPreferredSize(new Dimension(width, heigth));
+        return Button;
+    }
+
+    public JButton ButtonConf(String string) {
+        
+        Button.setRequestFocusEnabled(false);
+        Button = new JButton(string);
+        return Button;
+    }
 }
