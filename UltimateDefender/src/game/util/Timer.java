@@ -18,7 +18,7 @@ public class Timer extends Thread {
         this.listener = listener;
         this.time = time;
     }
-    
+
     @Override
     public void run() {
         while (run) {

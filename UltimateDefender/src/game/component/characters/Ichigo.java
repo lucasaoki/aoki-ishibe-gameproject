@@ -8,7 +8,6 @@ import game.component.controller.PlayerCtrl;
 import game.component.render.AnimationRenderComponent;
 import game.entity.Entity;
 import game.gui.GameContainer;
-import game.gui.GamePanel;
 import java.awt.Image;
 import java.awt.Point;
 
@@ -39,7 +38,6 @@ public class Ichigo extends Entity {
         this.addComponent(ichigoInfo);
         this.addComponent(new AnimationRenderComponent("IchigoRender", gc, ichigoInfo, images));
     }
-    private GamePanel panel;
     Image images[][];
     private CharacterInfo ichigoInfo;
 }

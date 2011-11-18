@@ -34,7 +34,7 @@ public class GamePanel extends JPanel {
     public GamePanel(GameContainer gc) {
 
         exitButton = new JButton("Exit");
-        entities = new ArrayList<Entity>();
+        entities = new ArrayList<>();
 
         entities.add(new Entity("Background"));
         getEntity("Background").addComponent(new ImageRenderComponent("BGImage", "/BG.jpg"));

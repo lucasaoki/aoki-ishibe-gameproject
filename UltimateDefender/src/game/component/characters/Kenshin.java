@@ -8,7 +8,6 @@ import game.component.controller.PlayerCtrl;
 import game.component.render.AnimationRenderComponent;
 import game.entity.Entity;
 import game.gui.GameContainer;
-import game.gui.GamePanel;
 import java.awt.Image;
 import java.awt.Point;
 
@@ -39,7 +38,6 @@ public class Kenshin extends Entity {
         this.addComponent(kenshinInfo);
         this.addComponent(new AnimationRenderComponent("KenshinRender", gc, kenshinInfo, images));
     }
-    private GamePanel panel;
     private Image images[][];
     private CharacterInfo kenshinInfo;
 }

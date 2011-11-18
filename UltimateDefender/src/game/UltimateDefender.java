@@ -17,7 +17,7 @@ public class UltimateDefender {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GameContainer gc = new GameContainer("Ultimate Defenders");
+        GameContainer gc = new GameContainer("Ultimate Defender");
         gc.start();
     }
 }

@@ -10,7 +10,7 @@ package game.component.characters;
  */
 public interface Constants {
 
-    static final float gravity = 2.5f; //???????????????
+    static final float gravity = 2.5f;
     static final float jumpSpeed = 20f;
     static final float walkSpeed = 5f;
 }
