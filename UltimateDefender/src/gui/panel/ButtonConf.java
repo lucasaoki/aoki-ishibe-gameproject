@@ -4,18 +4,17 @@
  */
 package gui.panel;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JButton;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
  * @author Seiji
  */
 public class ButtonConf extends JButton {
-
-    JButton Button = null;
     
+    JButton Button = null;
+
     public JButton ButtonConf(String string, int width, int heigth) {
         Button = new JButton(string);
         Button.setPreferredSize(new Dimension(width, heigth));
@@ -23,7 +22,7 @@ public class ButtonConf extends JButton {
     }
 
     public JButton ButtonConf(String string) {
-        
+
         Button.setRequestFocusEnabled(false);
         Button = new JButton(string);
         return Button;
