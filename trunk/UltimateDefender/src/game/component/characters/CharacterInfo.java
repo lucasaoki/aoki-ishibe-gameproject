@@ -7,7 +7,6 @@ package game.component.characters;
 import game.component.Component;
 import game.component.controller.PlayerCtrl;
 import java.awt.Point;
-import java.awt.geom.AffineTransform;
 
 /**
  *
@@ -23,7 +22,6 @@ public class CharacterInfo extends Component implements Constants {
     private boolean isWalkingR;
     private boolean isWalkingL;
     private boolean toRight;
-    private boolean toLeft;
     private boolean isAttacking;
     private boolean isDashing;
 
@@ -37,7 +35,6 @@ public class CharacterInfo extends Component implements Constants {
         this.isAttacking = false;
         this.isDashing = false;
         this.toRight = true;
-        this.toLeft = false;
     }
 
     public float getDirection() {
@@ -76,32 +73,25 @@ public class CharacterInfo extends Component implements Constants {
         return toRight;
     }
 
-    public boolean toLeft() {
-        return toLeft;
+    public void setIsAttacking(boolean isAttacking) {
+        this.isAttacking = isAttacking;
     }
 
     public void setIsDashing(boolean isDashing) {
         this.isDashing = isDashing;
     }
 
-    public void setIsAttacking(boolean isAttacking) {
-        this.isAttacking = isAttacking;
-    }
-
     @Override
     public void update() {
         Point pos = owner.getPosition();
-
 
         if (!isAttacking) {
             if (playerCtrl.isMovingRight() && pos.x < 600) {
                 pos.x += walkSpeed;
                 toRight = true;
-                toLeft = false;
                 isWalkingR = true;
             } else if (playerCtrl.isMovingLeft() && pos.x > 0) {
                 pos.x -= walkSpeed;
-                toLeft = true;
                 toRight = false;
                 isWalkingL = true;
             } else { //is standing
@@ -120,17 +110,25 @@ public class CharacterInfo extends Component implements Constants {
                 isJumping = true;
             } else if (playerCtrl.isAttacking()) {
                 isAttacking = true;
-            } else if (playerCtrl.isDashing()) {
-                if (toRight) {
-                    pos.x += 10 * walkSpeed;
-                } else {
-                    pos.x -= 10 * walkSpeed;
-                }
+            }
+        }
 
+        if (!isDashing && !playerCtrl.isHolding()) {
+            if (playerCtrl.isDashing()) {
+                playerCtrl.startHolding();
                 isDashing = true;
             }
-
+        } else if (isDashing && playerCtrl.isHolding()) {
+            if (toRight) {
+                pos.x += 5 * walkSpeed;
+            } else {
+                pos.x -= 5 * walkSpeed;
+            }
         }
+        else if (!playerCtrl.isDashing()){
+            playerCtrl.stopHolding();
+        }
+
         owner.setPosition(pos);
     }
 }

@@ -10,7 +10,6 @@ import game.component.render.RenderComponent;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.geom.AffineTransform;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -30,7 +29,7 @@ public class Entity {
 
     public Entity(String id) {
         this.id = id;
-        components = new ArrayList<Component>();
+        components = new ArrayList<>();
         position = new Point(0, 0);
         scale = 1;
     }

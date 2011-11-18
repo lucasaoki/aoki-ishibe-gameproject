@@ -41,7 +41,7 @@ public class AnimationRenderComponent extends RenderComponent {
             public void update(Timer timer) {
                 updateFrame();
             }
-        }, 80);
+        }, 100);
         frameTimer.start();
 
         this.index = 0;
@@ -63,11 +63,6 @@ public class AnimationRenderComponent extends RenderComponent {
             if (index + 1 == currentAnimation.length) {
                 characterInfo.setIsAttacking(false);
             }
-        } else if (characterInfo.isJumping()) {
-            if (currentAnimation != this.animation[Chars.getMoveIndex("JUMP")]) {
-                index = 0;
-            }
-            currentAnimation = this.animation[Chars.getMoveIndex("JUMP")];
         } else if (characterInfo.isDashing()) {
             if (currentAnimation != this.animation[Chars.getMoveIndex("DASH")]) {
                 index = 0;
@@ -76,6 +71,11 @@ public class AnimationRenderComponent extends RenderComponent {
             if (index + 1 == currentAnimation.length) {
                 characterInfo.setIsDashing(false);
             }
+        } else if (characterInfo.isJumping()) {
+            if (currentAnimation != this.animation[Chars.getMoveIndex("JUMP")]) {
+                index = 0;
+            }
+            currentAnimation = this.animation[Chars.getMoveIndex("JUMP")];
         } else if (characterInfo.isWalkingR()) {
             currentAnimation = this.animation[Chars.getMoveIndex("WALK")];
         } else if (characterInfo.isWalkingL()) {
@@ -102,11 +102,11 @@ public class AnimationRenderComponent extends RenderComponent {
         float scale = owner.getScale();
 
         af.translate(pos.x, pos.y);
-        if (characterInfo.toLeft()) {
+        if (!characterInfo.toRight()) {
             af.translate(45, 0);
             af.scale(-scale, scale);
         }
-        
+
         gr.drawImage(currentAnimation[index], af, null);
 
     }
