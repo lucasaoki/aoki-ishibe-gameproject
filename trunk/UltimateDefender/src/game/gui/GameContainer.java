@@ -4,6 +4,8 @@
  */
 package game.gui;
 
+import gui.panel.MenuPanel;
+import gui.windows.MainWindow;
 import java.awt.Container;
 import javax.swing.JFrame;
 
@@ -27,7 +29,7 @@ public class GameContainer extends Thread {
         gameframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         cp = gameframe.getContentPane();
-        setGameState(GameContainer.State.GAMESTATE);
+        setGameState(GameContainer.State.MENUSTATE);
 
         gameframe.setVisible(true);
     }
@@ -44,7 +46,7 @@ public class GameContainer extends Thread {
         cp.removeAll();
         switch(state){
             case MENUSTATE:
-//                cp.add(new GameMenu());
+                cp.add(new MenuPanel(this));
                 break;
             case GAMESTATE:
                 cp.add(new GamePanel(this));

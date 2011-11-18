@@ -54,7 +54,7 @@ public class GamePanel extends JPanel {
                 }
             }
         }, 50);
-
+        
         timer.start();
     }
 

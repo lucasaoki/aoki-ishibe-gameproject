@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 public class Window extends JFrame {
 
     public Window() throws HeadlessException {
-        super("Ultimate Defender");
+        
         
         setPreferredSize(new Dimension(640, 480));
         setLocation(300, 200);
