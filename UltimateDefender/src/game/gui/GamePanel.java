@@ -14,7 +14,6 @@ import game.entity.Entity;
 import game.util.Timer;
 import game.util.TimerListener;
 import java.awt.Point;
-import java.awt.Polygon;
 
 /**
  *
@@ -23,10 +22,9 @@ import java.awt.Polygon;
 public class GamePanel extends StatePanel {
 
     private final Timer timer;
-    private GameContainer gc = null;
 
     public GamePanel(GameContainer gc) {
-        
+        gc.setMainPanel(this);
         entities.add(new Entity("Background"));
         getEntity("Background").addComponent(new ImageRenderComponent("BGImage", "/images/backgrounds/bg_bleach.png"));
         getEntity("Background").setPosition(new Point(0, 0));

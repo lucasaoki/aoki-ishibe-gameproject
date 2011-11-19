@@ -35,7 +35,8 @@ public class Kenshin extends Entity {
 
         setPosition(new Point(200, 335));
         setBox(new Rectangle(200, 335, 64, 64));
-        gc.getMainFrame().addKeyListener(playerCtrl);
+//        gc.getMainFrame().addKeyListener(playerCtrl);
+        gc.getMainPanel().addKeyListener(playerCtrl);
         this.kenshinInfo = new CharacterInfo("KenshinInfo", playerCtrl);
         this.addComponent(playerCtrl);
         this.addComponent(kenshinInfo);
