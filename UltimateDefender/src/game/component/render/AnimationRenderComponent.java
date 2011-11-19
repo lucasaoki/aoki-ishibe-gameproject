@@ -92,7 +92,7 @@ public class AnimationRenderComponent extends RenderComponent {
 
     public void updateFrame() {
         index = (index + 1) % currentAnimation.length;
-        gc.getGameframe().repaint();
+        gc.getMainFrame().repaint();
     }
 
     @Override
@@ -103,9 +103,10 @@ public class AnimationRenderComponent extends RenderComponent {
 
         af.translate(pos.x, pos.y);
         if (!characterInfo.toRight()) {
-            af.translate(45, 0);
-            af.scale(-scale, scale);
+            af.translate(64, 0);
+            af.scale(-1, 1);
         }
+        af.scale(scale, scale);
 
         gr.drawImage(currentAnimation[index], af, null);
 
