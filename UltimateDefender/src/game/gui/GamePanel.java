@@ -35,7 +35,6 @@ public class GamePanel extends StatePanel {
         entities.add(new Zoro("Zoro", gc, new P1control("ZoroCtrl")));
         
         timer = new Timer(new TimerListener() {
-
             @Override
             public void update(Timer timer) {
                 for (Entity entity : entities) {

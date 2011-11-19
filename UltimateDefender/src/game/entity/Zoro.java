@@ -34,7 +34,6 @@ public class Zoro extends Entity {
         images[Chars.getMoveIndex("WALK")] = readFrames("WALK", 8);
 
         setPosition(new Point(500, 335));
-        setBox(new Rectangle(494, 335, 64, 64));
         gc.getMainFrame().addKeyListener(playerCtrl);
         this.zoroInfo = new CharacterInfo("ZoroInfo", playerCtrl);
         this.addComponent(playerCtrl);

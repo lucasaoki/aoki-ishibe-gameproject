@@ -35,7 +35,6 @@ public class Ichigo extends Entity {
         images[Chars.getMoveIndex("WALK")] = readFrames("WALK", 8);
 
         setPosition(new Point(400, 335));
-        setBox(new Rectangle(400, 335, 64, 64));
         gc.getMainFrame().addKeyListener(playerCtrl);
         this.ichigoInfo = new CharacterInfo("IchigoInfo", playerCtrl);
         this.addComponent(playerCtrl);

@@ -4,18 +4,19 @@
  */
 package game.component;
 
+import java.awt.Rectangle;
+
 /**
  *
  * @author Lucas Aoki
  */
 public class ColisionComponent extends Component{
 
-    public ColisionComponent(String id) {
-        this.id = id;
-    }
+    Rectangle box = null;
     
-    public boolean colision(){
-        return false;
+    public ColisionComponent(String id, Rectangle box) {
+        this.id = id;
+        this.box = box;
     }
     
     @Override
