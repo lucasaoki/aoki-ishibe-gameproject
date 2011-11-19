@@ -4,14 +4,15 @@
  */
 package game.gui;
 
+import game.gui.menus.MenuCredits;
+import game.gui.menus.MenuHighscore;
+import game.gui.menus.MenuPanel;
 import game.stages.Stage;
-import gui.panel.MenuCredits;
-import gui.panel.MenuHighscore;
-import gui.panel.MenuPanel;
 import java.awt.Container;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.JFrame;
+import javazoom.jl.decoder.JavaLayerException;
 
 /**
  *
@@ -34,7 +35,7 @@ public class GameContainer extends Thread {
             mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             cp = mainFrame.getContentPane();
-            setGameState(GameContainer.State.GAMESTATE);
+            setGameState(GameContainer.State.MENUSTATE);
 
             mainFrame.setVisible(true);
         } catch (FileNotFoundException ex) {
@@ -66,26 +67,30 @@ public class GameContainer extends Thread {
     }
 
     public void setGameState(State state) throws FileNotFoundException, IOException {
-        cp.removeAll();
-        switch (state) {
-            case MENUSTATE:
-                cp.add(new MenuPanel(this));
-                break;
-            case PLAYERSELECT:
-                cp.add(new PlayerSelectPanel(this));
-                break;
-            case GAMESTATE:
-                cp.add(new GamePanel(this));
-                break;
-            case HIGHSTATE:
-                cp.add(new MenuHighscore(this));
-                break;
-            case CREDITS:
-                cp.add(new MenuCredits(this));
-                break;
-        }
+        try {
+            cp.removeAll();
+            switch (state) {
+                case MENUSTATE:
+                    cp.add(new MenuPanel(this));
+                    break;
+                case PLAYERSELECT:
+                    cp.add(new PlayerSelectPanel(this));
+                    break;
+                case GAMESTATE:
+                    cp.add(new GamePlay(this));
+                    break;
+                case HIGHSTATE:
+                    cp.add(new MenuHighscore(this));
+                    break;
+                case CREDITS:
+                    cp.add(new MenuCredits(this));
+                    break;
+            }
 
-        cp.validate();
+            cp.validate();
+        } catch (JavaLayerException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public enum State {

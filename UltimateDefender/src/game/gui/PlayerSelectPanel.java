@@ -16,9 +16,10 @@ public class PlayerSelectPanel extends StatePanel {
     GameContainer gc;
 
     public PlayerSelectPanel(GameContainer gc) {
+        super(640,300);/////Arrumar
         this.gc = gc;
         entities.add(new Entity("Background"));
-        getEntity("Background").addComponent(new ImageRenderComponent("BG", "/images/backgrounds/bg2.jpg"));
+        getEntity("Background").addComponent(new ImageRenderComponent("BG", "/images/backgrounds/bg4.jpg"));
     }
 
 }
