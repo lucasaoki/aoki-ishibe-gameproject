@@ -34,7 +34,6 @@ public class Kenshin extends Entity {
         images[Chars.getMoveIndex("WALK")] = readFrames("WALK", 8);
 
         setPosition(new Point(200, 335));
-        setBox(new Rectangle(200, 335, 64, 64));
 //        gc.getMainFrame().addKeyListener(playerCtrl);
         gc.getMainPanel().addKeyListener(playerCtrl);
         this.kenshinInfo = new CharacterInfo("KenshinInfo", playerCtrl);
