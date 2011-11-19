@@ -6,7 +6,6 @@ package game.gui;
 
 import gui.panel.MenuCredits;
 import gui.panel.MenuHighscore;
-import gui.panel.MenuPanel;
 import java.awt.Container;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,6 +16,8 @@ import javax.swing.JFrame;
  * @author Lucas
  */
 public class GameContainer extends Thread {
+    private GamePanel gp;
+    private PlayerSelectPanel ps;
 
     public GameContainer(String name) {
         super(name);
@@ -25,38 +26,45 @@ public class GameContainer extends Thread {
 
     @Override
     public void run() {
-        gameframe = new JFrame(id);
-        gameframe.setSize(640, 480);
-        gameframe.setLocation(200, 200);
-        gameframe.setResizable(false);
-        gameframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame = new JFrame(id);
+        mainFrame.setSize(640, 480);
+        mainFrame.setLocation(200, 200);
+        mainFrame.setResizable(false);
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        cp = gameframe.getContentPane();
+        cp = mainFrame.getContentPane();
         try {
             setGameState(GameContainer.State.MENUSTATE);
         } catch (FileNotFoundException ex) {
         } catch (IOException ex) {
         }
 
-        gameframe.setVisible(true);
+        mainFrame.setVisible(true);
     }
 
-    public JFrame getGameframe() {
-        return gameframe;
+    public JFrame getMainFrame() {
+        return mainFrame;
     }
 
-    public GamePanel getGamepanel() {
-        return gamepanel;
+    public StatePanel getMainPanel() {
+        return mainPanel;
     }
 
     public void setGameState(State state) throws FileNotFoundException, IOException {
         cp.removeAll();
         switch (state) {
             case MENUSTATE:
-                cp.add(new MenuPanel(this));
+//                gamepanel = new MenuPanel(this);
+                break;
+            case PLAYERSELECT:
+                ps = new PlayerSelectPanel(this);
+//                cp.add(new PlayerSelectPanel(this));
+                cp.add(ps);
                 break;
             case GAMESTATE:
-                cp.add(new GamePanel(this));
+                gp = new GamePanel(this);
+//                cp.add(new GamePanel(this));
+                cp.add(gp);
                 break;
             case HIGHSTATE:
                 cp.add(new MenuHighscore(this));
@@ -65,15 +73,16 @@ public class GameContainer extends Thread {
                 cp.add(new MenuCredits(this));
                 break;
         }
-        gameframe.validate();
+//        cp.add();
+        cp.validate();
     }
 
     public enum State {
 
-        MENUSTATE, GAMESTATE, HIGHSTATE, CREDITS;
+        MENUSTATE, PLAYERSELECT, GAMESTATE, HIGHSTATE, CREDITS;
     }
     private String id;
-    private JFrame gameframe;
-    private GamePanel gamepanel;
-    private Container cp;
+    private JFrame mainFrame = null;
+    private StatePanel mainPanel = null;
+    private Container cp = null;
 }

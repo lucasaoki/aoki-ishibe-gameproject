@@ -10,10 +10,10 @@ import game.component.render.RenderComponent;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
 /**
  *
@@ -24,6 +24,7 @@ public class Entity {
     String id;
     Point position;
     float scale;
+    Rectangle box;
     RenderComponent renderComponent = null;
     ArrayList<Component> components = null;
 
@@ -31,7 +32,7 @@ public class Entity {
         this.id = id;
         components = new ArrayList<>();
         position = new Point(0, 0);
-        scale = 1;
+        scale = 1.6f;
     }
 
     public void addComponent(Component component) {
@@ -64,8 +65,20 @@ public class Entity {
         return scale;
     }
 
+    public Rectangle getBox() {
+        return box;
+    }
+
+    public void setBox(Rectangle box) {
+        this.box = box;
+    }
+
     public void setPosition(Point position) {
         this.position = position;
+    }
+    
+    public boolean intersect(Rectangle rect){
+        return rect.intersects(box);
     }
     
     public Image[] readFrames(String move, int num) {
@@ -78,7 +91,7 @@ public class Entity {
         return tmp;
     }
 
-    public void update(JFrame myFrame) {
+    public void update() {
         for (Component component : components) {
             component.update();
         }
@@ -89,4 +102,6 @@ public class Entity {
             renderComponent.render(gr);
         }
     }
+    
+//    public abstract boolean colision();
 }

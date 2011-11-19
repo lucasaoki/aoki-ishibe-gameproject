@@ -4,41 +4,31 @@
  */
 package game.gui;
 
-import game.component.characters.Hiei;
-import game.component.characters.Ichigo;
-import game.component.characters.Kenshin;
-import game.component.characters.Zoro;
+import game.entity.Hiei;
+import game.entity.Ichigo;
+import game.entity.Kenshin;
+import game.entity.Zoro;
 import game.component.controller.P1control;
 import game.component.render.ImageRenderComponent;
 import game.entity.Entity;
 import game.util.Timer;
 import game.util.TimerListener;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Point;
-import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import java.awt.Polygon;
 
 /**
  *
  * @author Lucas
  */
-public class GamePanel extends JPanel {
+public class GamePanel extends StatePanel {
 
-    private ArrayList<Entity> entities = null;
-    JButton exitButton = null;
     private final Timer timer;
     private GameContainer gc = null;
 
     public GamePanel(GameContainer gc) {
-        this.gc = gc;
-        exitButton = new JButton("Exit");
-        entities = new ArrayList<>();
-        entities.add(new Entity("Background"));
         
-        getEntity("Background").addComponent(new ImageRenderComponent("BGImage", "/BG.jpg"));
+        entities.add(new Entity("Background"));
+        getEntity("Background").addComponent(new ImageRenderComponent("BGImage", "/images/backgrounds/bg_bleach.png"));
         getEntity("Background").setPosition(new Point(0, 0));
         
         entities.add(new Kenshin("Kenshin", gc, new P1control("KenshinCtrl")));
@@ -51,33 +41,11 @@ public class GamePanel extends JPanel {
             @Override
             public void update(Timer timer) {
                 for (Entity entity : entities) {
-                    entity.update(null);
+                    entity.update();
                 }
             }
-        }, 50);
+        }, 30);
 
         timer.start();
-    }
-
-    private Entity getEntity(String id) {
-        for (Entity entity : entities) {
-            if (entity.getId().equals(id)) {
-                return entity;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        this.setBackground(Color.BLACK);
-
-        Graphics2D gr2d = (Graphics2D) g;
-
-        for (Entity entity : entities) {
-            entity.render(gr2d);
-        }
-        repaint();
     }
 }
