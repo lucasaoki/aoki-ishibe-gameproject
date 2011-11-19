@@ -4,6 +4,7 @@
  */
 package game.gui;
 
+import game.stages.Stage;
 import gui.panel.MenuCredits;
 import gui.panel.MenuHighscore;
 import gui.panel.MenuPanel;
@@ -51,6 +52,14 @@ public class GameContainer extends Thread {
         return mainPanel;
     }
 
+    public Stage getStageSelected() {
+        return stageSelected;
+    }
+
+    public void setStageSelected(Stage stageSelected) {
+        this.stageSelected = stageSelected;
+    }
+
     public void setMainPanel(StatePanel mainPanel) {
         this.mainPanel = mainPanel;
         this.mainPanel.setFocusable(true);
@@ -87,4 +96,5 @@ public class GameContainer extends Thread {
     private JFrame mainFrame = null;
     private StatePanel mainPanel = null;
     private Container cp = null;
+    private Stage stageSelected = null;
 }

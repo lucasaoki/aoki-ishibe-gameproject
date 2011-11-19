@@ -8,10 +8,11 @@ import game.component.characters.CharacterInfo;
 import game.component.characters.Chars;
 import game.component.controller.PlayerCtrl;
 import game.component.render.AnimationRenderComponent;
-import game.entity.Entity;
 import game.gui.GameContainer;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  *
@@ -34,8 +35,10 @@ public class Hiei extends Entity {
         images[Chars.getMoveIndex("WALK")] = readFrames("WALK", 8);
 
         setPosition(new Point(300, 335));
-        gc.getMainFrame().addKeyListener(playerCtrl);
-        this.hieiInfo = new CharacterInfo("HieiInfo", playerCtrl);
+        setColisionBox(new Rectangle(getPosition(), new Dimension(64, 64)));
+        gc.getMainPanel().addKeyListener(playerCtrl);
+        gc.getStageSelected().addEntity(this);
+        this.hieiInfo = new CharacterInfo("HieiInfo", playerCtrl, gc.getStageSelected());
         this.addComponent(playerCtrl);
         this.addComponent(hieiInfo);
         this.addComponent(new AnimationRenderComponent("HieiRender", gc, hieiInfo, images));

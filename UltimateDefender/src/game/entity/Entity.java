@@ -4,7 +4,6 @@
  */
 package game.entity;
 
-import game.component.ColisionComponent;
 import game.component.Component;
 import game.component.characters.Chars;
 import game.component.render.RenderComponent;
@@ -25,14 +24,16 @@ public class Entity {
     String id;
     Point position;
     float scale;
+    Rectangle box;
     RenderComponent renderComponent = null;
     ArrayList<Component> components = null;
 
     public Entity(String id) {
-        this.id = id;
-        components = new ArrayList<>();
+        this.id = id;        
         position = new Point(0, 0);
-        scale = 1.6f;
+        box = new Rectangle();
+        components = new ArrayList<>();
+        scale = 1.2f;
     }
 
     public void addComponent(Component component) {
@@ -65,8 +66,24 @@ public class Entity {
         return scale;
     }
 
+    public Rectangle getColisionBox() {
+        return box;
+    }
+
+    public void setColisionBox(Rectangle box) {
+        this.box = box;
+    }
+
+    public void setScale(float scale) {
+        this.scale = scale;
+    }
+
     public void setPosition(Point position) {
         this.position = position;
+    }
+    
+    public boolean intersects(Entity entity){
+        return this.getColisionBox().intersects(entity.getColisionBox());
     }
     
     public Image[] readFrames(String move, int num) {

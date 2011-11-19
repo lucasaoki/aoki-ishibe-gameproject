@@ -9,6 +9,7 @@ import game.component.characters.Chars;
 import game.component.controller.PlayerCtrl;
 import game.component.render.AnimationRenderComponent;
 import game.gui.GameContainer;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -34,9 +35,10 @@ public class Kenshin extends Entity {
         images[Chars.getMoveIndex("WALK")] = readFrames("WALK", 8);
 
         setPosition(new Point(200, 335));
-//        gc.getMainFrame().addKeyListener(playerCtrl);
+        setColisionBox(new Rectangle(getPosition(), new Dimension(64, 64)));
         gc.getMainPanel().addKeyListener(playerCtrl);
-        this.kenshinInfo = new CharacterInfo("KenshinInfo", playerCtrl);
+        gc.getStageSelected().addEntity(this);
+        this.kenshinInfo = new CharacterInfo("KenshinInfo", playerCtrl, gc.getStageSelected());
         this.addComponent(playerCtrl);
         this.addComponent(kenshinInfo);
         this.addComponent(new AnimationRenderComponent("KenshinRender", gc, kenshinInfo, images));
