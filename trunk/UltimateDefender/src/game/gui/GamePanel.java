@@ -30,21 +30,22 @@ public class GamePanel extends JPanel {
     private ArrayList<Entity> entities = null;
     JButton exitButton = null;
     private final Timer timer;
+    private GameContainer gc = null;
 
     public GamePanel(GameContainer gc) {
-
+        this.gc = gc;
         exitButton = new JButton("Exit");
         entities = new ArrayList<>();
-
         entities.add(new Entity("Background"));
+        
         getEntity("Background").addComponent(new ImageRenderComponent("BGImage", "/BG.jpg"));
         getEntity("Background").setPosition(new Point(0, 0));
-
+        
         entities.add(new Kenshin("Kenshin", gc, new P1control("KenshinCtrl")));
         entities.add(new Hiei("Hiei", gc, new P1control("HieiCtrl")));
         entities.add(new Ichigo("Ichigo", gc, new P1control("IchigoCtrl")));
         entities.add(new Zoro("Zoro", gc, new P1control("ZoroCtrl")));
-
+        
         timer = new Timer(new TimerListener() {
 
             @Override
@@ -54,7 +55,7 @@ public class GamePanel extends JPanel {
                 }
             }
         }, 50);
-        
+
         timer.start();
     }
 

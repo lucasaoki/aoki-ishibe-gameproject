@@ -4,9 +4,12 @@
  */
 package game.gui;
 
+import gui.panel.MenuCredits;
+import gui.panel.MenuHighscore;
 import gui.panel.MenuPanel;
-import gui.windows.MainWindow;
 import java.awt.Container;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.JFrame;
 
 /**
@@ -29,7 +32,11 @@ public class GameContainer extends Thread {
         gameframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         cp = gameframe.getContentPane();
-        setGameState(GameContainer.State.MENUSTATE);
+        try {
+            setGameState(GameContainer.State.MENUSTATE);
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }
 
         gameframe.setVisible(true);
     }
@@ -41,15 +48,21 @@ public class GameContainer extends Thread {
     public GamePanel getGamepanel() {
         return gamepanel;
     }
-    
-    public void setGameState(State state){
+
+    public void setGameState(State state) throws FileNotFoundException, IOException {
         cp.removeAll();
-        switch(state){
+        switch (state) {
             case MENUSTATE:
                 cp.add(new MenuPanel(this));
                 break;
             case GAMESTATE:
                 cp.add(new GamePanel(this));
+                break;
+            case HIGHSTATE:
+                cp.add(new MenuHighscore(this));
+                break;
+            case CREDITS:
+                cp.add(new MenuCredits(this));
                 break;
         }
         gameframe.validate();
@@ -57,9 +70,8 @@ public class GameContainer extends Thread {
 
     public enum State {
 
-        MENUSTATE, GAMESTATE;
+        MENUSTATE, GAMESTATE, HIGHSTATE, CREDITS;
     }
-    
     private String id;
     private JFrame gameframe;
     private GamePanel gamepanel;
