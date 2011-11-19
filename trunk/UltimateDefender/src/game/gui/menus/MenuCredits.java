@@ -16,8 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -26,7 +24,7 @@ import javax.swing.JPanel;
  *
  * @author Seiji
  */
-public class MenuCredits extends JPanel implements MouseListener , ActionListener {
+public class MenuCredits extends JPanel implements MouseListener, ActionListener {
 
     private JButton back = null;
     private JButton button = null;
@@ -88,13 +86,7 @@ public class MenuCredits extends JPanel implements MouseListener , ActionListene
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if (obj == back) {
-            try {
-                gc.setGameState(GameContainer.State.MENUSTATE);
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            gc.setGameState(GameContainer.State.MENUSTATE);
         }
 
     }
@@ -107,8 +99,6 @@ public class MenuCredits extends JPanel implements MouseListener , ActionListene
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
-        
     }
 
     @Override

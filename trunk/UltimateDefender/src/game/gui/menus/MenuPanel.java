@@ -17,7 +17,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import javax.swing.JButton;
-import javazoom.jl.decoder.JavaLayerException;
 
 public class MenuPanel extends StatePanel implements KeyListener, ActionListener {
 
@@ -28,7 +27,7 @@ public class MenuPanel extends StatePanel implements KeyListener, ActionListener
     private JButton button = null;
     private GameContainer gc = null;
 
-    public MenuPanel(GameContainer gc) throws FileNotFoundException, JavaLayerException {
+    public MenuPanel(GameContainer gc) {
         super(640, 480);
         this.gc = gc;
         gc.setMainPanel(this);
@@ -80,29 +79,11 @@ public class MenuPanel extends StatePanel implements KeyListener, ActionListener
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if (obj == startButton) {
-            try {
                 gc.setGameState(GameContainer.State.GAMESTATE);
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         } else if (obj == creditsButton) {
-            try {
                 gc.setGameState(GameContainer.State.CREDITS);
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         } else if (obj == highscoreButton) {
-            try {
                 gc.setGameState(GameContainer.State.HIGHSTATE);
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         } else if (obj == exitButton) {
             System.exit(0);
         }

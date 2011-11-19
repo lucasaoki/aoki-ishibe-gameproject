@@ -4,7 +4,6 @@
  */
 package game.gui.menus;
 
-import game.entity.Entity;
 import game.gui.StatePanel;
 import java.awt.Color;
 import java.awt.Font;
@@ -13,7 +12,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.swing.JTextArea;
 
 /**
@@ -23,19 +21,21 @@ import javax.swing.JTextArea;
 public class HighScorePanel extends StatePanel {
 
     private JTextArea HighScore = null;
-    private File Arq = null;
-    private BufferedReader bReader = null;
     private String linha = null;
     private int i = 1;
+    private File Arq = null;
+    private BufferedReader bReader = null;
+    private FileReader fReader = null;
 
-    public HighScorePanel(int width, int height) throws FileNotFoundException, IOException {
+    public HighScorePanel(int width, int height) {
         super(width, height);
+        try {
 
-        Arq = new File("Highscore.txt");
-        HighScore = new JTextArea(10, 20);
-        add(HighScore);
-        
-        try (FileReader fReader = new FileReader(Arq)) {
+            Arq = new File("Highscore.txt");
+            HighScore = new JTextArea(10, 20);
+
+            add(HighScore);
+            fReader = new FileReader(Arq);
             bReader = new BufferedReader(fReader);
             String texto = "";
 
@@ -46,9 +46,18 @@ public class HighScorePanel extends StatePanel {
                 texto += "\r\n";
             }
             confArea(HighScore, texto);
-            bReader.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                bReader.close();
+                fReader.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
-
     }
 
     public void confArea(JTextArea Area, String texto) {

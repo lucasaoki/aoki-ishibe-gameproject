@@ -5,6 +5,7 @@
 package game.entity;
 
 import game.component.Component;
+import game.component.characters.CharacterInfo;
 import game.component.characters.Chars;
 import game.component.render.RenderComponent;
 import java.awt.Graphics2D;
@@ -27,6 +28,7 @@ public class Entity {
     Rectangle box;
     RenderComponent renderComponent = null;
     ArrayList<Component> components = null;
+    CharacterInfo charInfoComp = null;
 
     public Entity(String id) {
         this.id = id;
@@ -41,7 +43,9 @@ public class Entity {
         if (RenderComponent.class.isInstance(component)) {
             renderComponent = (RenderComponent) component;
         }
-        
+        if (CharacterInfo.class.isInstance(component)) {
+            charInfoComp = (CharacterInfo) component;
+        }
         component.setOwnerEntity(this);
         components.add(component);
     }
@@ -53,6 +57,10 @@ public class Entity {
             }
         }
         return null;
+    }
+
+    public CharacterInfo getCharInfo() {
+        return charInfoComp;
     }
 
     public Point getPosition() {

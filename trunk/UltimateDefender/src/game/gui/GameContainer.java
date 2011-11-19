@@ -12,7 +12,6 @@ import java.awt.Container;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.JFrame;
-import javazoom.jl.decoder.JavaLayerException;
 
 /**
  *
@@ -27,7 +26,6 @@ public class GameContainer extends Thread {
 
     @Override
     public void run() {
-        try {
             mainFrame = new JFrame(id);
             mainFrame.setSize(640, 480);
             mainFrame.setLocation(200, 200);
@@ -38,11 +36,6 @@ public class GameContainer extends Thread {
             setGameState(GameContainer.State.MENUSTATE);
 
             mainFrame.setVisible(true);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 
     public JFrame getMainFrame() {
@@ -66,8 +59,7 @@ public class GameContainer extends Thread {
         this.mainPanel.setFocusable(true);
     }
 
-    public void setGameState(State state) throws FileNotFoundException, IOException {
-        try {
+    public void setGameState(State state){
             cp.removeAll();
             switch (state) {
                 case MENUSTATE:
@@ -88,9 +80,6 @@ public class GameContainer extends Thread {
             }
 
             cp.validate();
-        } catch (JavaLayerException ex) {
-            ex.printStackTrace();
-        }
     }
 
     public enum State {
