@@ -33,7 +33,7 @@ public class GameContainer extends Thread {
             mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             cp = mainFrame.getContentPane();
-            setGameState(GameContainer.State.MENUSTATE);
+            setGameState(GameContainer.State.GAMESTATE);
 
             mainFrame.setVisible(true);
         } catch (FileNotFoundException ex) {
@@ -49,6 +49,11 @@ public class GameContainer extends Thread {
 
     public StatePanel getMainPanel() {
         return mainPanel;
+    }
+
+    public void setMainPanel(StatePanel mainPanel) {
+        this.mainPanel = mainPanel;
+        this.mainPanel.setFocusable(true);
     }
 
     public void setGameState(State state) throws FileNotFoundException, IOException {

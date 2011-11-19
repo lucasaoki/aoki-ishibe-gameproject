@@ -5,40 +5,30 @@
 package gui.panel;
 
 import game.component.render.ImageRenderComponent;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import game.entity.Entity;
 import game.gui.GameContainer;
+import game.gui.StatePanel;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
-public class MenuPanel extends JPanel implements KeyListener , ActionListener {
-    
-    private ArrayList<Entity> entities = null;
-    
+public class MenuPanel extends StatePanel implements KeyListener , ActionListener {
     private JButton startButton = null;
     private JButton creditsButton = null;
     private JButton exitButton = null;
     private JButton highscoreButton = null;
     private JButton button = null;
-    
     private GameContainer gc = null;
     
     public MenuPanel(GameContainer gc) {
-        
         this.gc = gc;
-        
-        entities = new ArrayList<>();
+        gc.setMainPanel(this);
         entities.add(new Entity("Background"));
         getEntity("Background").addComponent(new ImageRenderComponent("BGImage", "/BG3.jpg"));
         
@@ -76,28 +66,7 @@ public class MenuPanel extends JPanel implements KeyListener , ActionListener {
         this.add(PanelNorth, BorderLayout.NORTH);
         this.add(PanelCenter, BorderLayout.CENTER);
     }
-    
-    private Entity getEntity(String id) {
-        for (Entity entity : entities) {
-            if (entity.getId().equals(id)) {
-                return entity;
-            }
-        }
-        return null;
-    }
-    
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        this.setBackground(Color.BLACK);
-        
-        Graphics2D gr2d = (Graphics2D) g;
-        
-        for (Entity entity : entities) {
-            entity.render(gr2d);
-        }
-        repaint();
-    }
-    
+
     public JButton ButtonConf(String string, int width, int heigth) {
         button = new JButton(string);
         button.setPreferredSize(new Dimension(width, heigth));
@@ -138,7 +107,6 @@ public class MenuPanel extends JPanel implements KeyListener , ActionListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -171,7 +139,6 @@ public class MenuPanel extends JPanel implements KeyListener , ActionListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
   
