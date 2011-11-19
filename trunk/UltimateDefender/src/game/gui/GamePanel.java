@@ -4,8 +4,7 @@
  */
 package game.gui;
 
-import game.entity.Hiei;
-import game.entity.Ichigo;
+import game.component.controller.CreepCtrl;
 import game.entity.Kenshin;
 import game.entity.Zoro;
 import game.component.controller.P1control;
@@ -23,15 +22,22 @@ public class GamePanel extends StatePanel {
     private final Timer timer;
 
     public GamePanel(GameContainer gc) {
+        super(640, 380);
         gc.setMainPanel(this);
         entities.add(new Stage("Background", gc));
-        
-        entities.add(new Kenshin("Kenshin", gc, new P1control("KenshinCtrl")));
-        entities.add(new Hiei("Hiei", gc, new P1control("HieiCtrl")));
-        entities.add(new Ichigo("Ichigo", gc, new P1control("IchigoCtrl")));
-        entities.add(new Zoro("Zoro", gc, new P1control("ZoroCtrl")));
-        
+
+        Kenshin kenshin = new Kenshin("Kenshin", gc, new P1control("KenshinCtrl"));
+        entities.add(kenshin);
+        Zoro zoro = new Zoro("Zoro", gc, new CreepCtrl("ZoroCtrl", kenshin));
+        entities.add(zoro);
+
+
+
+
+
+
         timer = new Timer(new TimerListener() {
+
             @Override
             public void update(Timer timer) {
                 for (Entity entity : entities) {

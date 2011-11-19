@@ -33,7 +33,7 @@ public class Kenshin extends Entity {
         images[Chars.getMoveIndex("STAND")] = readFrames("STAND", 4);
         images[Chars.getMoveIndex("ULTACTION")] = readFrames("ULTACTION", 6);
         images[Chars.getMoveIndex("WALK")] = readFrames("WALK", 8);
-
+        
         setPosition(new Point(200, 335));
         setColisionBox(new Rectangle(getPosition(), new Dimension(64, 64)));
         gc.getMainPanel().addKeyListener(playerCtrl);

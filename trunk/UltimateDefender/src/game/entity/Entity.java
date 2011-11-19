@@ -29,11 +29,12 @@ public class Entity {
     ArrayList<Component> components = null;
 
     public Entity(String id) {
-        this.id = id;        
+        this.id = id;
+        components = new ArrayList<>();
         position = new Point(0, 0);
         box = new Rectangle();
         components = new ArrayList<>();
-        scale = 1.2f;
+        scale = 1;
     }
 
     public void addComponent(Component component) {

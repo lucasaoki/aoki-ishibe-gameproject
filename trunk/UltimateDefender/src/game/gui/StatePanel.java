@@ -5,23 +5,28 @@
 package game.gui;
 
 import game.entity.Entity;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-
-/**
+/*
  *
  * @author Lucas Aoki
  */
+
 public class StatePanel extends JPanel {
 
     protected ArrayList<Entity> entities = null;
 
-    public StatePanel() {
+    public StatePanel(int width,int height) {
         entities = new ArrayList<>();
+        this.setPreferredSize(new Dimension(width, height));
+        this.setBackground(new Color(255, 255, 255, 0));
+
     }
-    
+
     protected Entity getEntity(String id) {
         for (Entity entity : entities) {
             if (entity.getId().equals(id)) {
@@ -30,7 +35,7 @@ public class StatePanel extends JPanel {
         }
         return null;
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
