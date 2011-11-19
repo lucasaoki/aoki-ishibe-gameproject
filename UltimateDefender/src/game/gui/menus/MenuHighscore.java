@@ -37,7 +37,7 @@ public class MenuHighscore extends JPanel implements ActionListener {
     private ArrayList<Entity> entities = null;
     private GameContainer gc = null;
 
-    public MenuHighscore(GameContainer gc) throws FileNotFoundException, IOException {
+    public MenuHighscore(GameContainer gc) {
         //Make sure we have nice window decorations.
         this.gc = gc;
 
@@ -47,19 +47,19 @@ public class MenuHighscore extends JPanel implements ActionListener {
 
         highScorePanel = new HighScorePanel(200, 200);
 
-       
+
         panelNorth = new BasicPanel(640, 100);
         panelWest = new BasicPanel(200, 100);
         panelEast = new BasicPanel(0, 100);
         panelSouth = new BasicPanel(640, 100);
 
-        
+
         back = ButtonConf("back", 100, 50);
         back.addActionListener(this);
         panelSouth.add(back);
-        
+
         this.setLayout(new BorderLayout());
-        
+
         this.add(highScorePanel, BorderLayout.CENTER);
         this.add(panelNorth, BorderLayout.NORTH);
         this.add(panelWest, BorderLayout.WEST);
@@ -96,11 +96,7 @@ public class MenuHighscore extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if (obj == back) {
-            try {
-                gc.setGameState(GameContainer.State.MENUSTATE);
-            } catch (FileNotFoundException ex) {
-            } catch (IOException ex) {
-            }
+            gc.setGameState(GameContainer.State.MENUSTATE);
         }
 
     }

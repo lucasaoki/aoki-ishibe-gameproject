@@ -9,6 +9,7 @@ import game.component.render.ImageRenderComponent;
 import game.entity.Entity;
 import game.gui.GameContainer;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -35,33 +36,6 @@ public class Stage extends Entity implements Colision{
         
         this.addEntity(this);
     }
-
-//        this.name_ = name;
-//        this.width_ = width;
-//        this.height_ = height;
-//        int[] vert = {1, 1, this.width_, 1, this.width_, this.height_, 1, this.height_};
-//        Bloco bloco = new Bloco(0, 0, vert, "ret");
-//        borderEntity = new Entity("borda", bloco) {
-//
-//            public boolean colision() {
-//                Iterator<Entity> it = Mapa.this.getEntityIterator();
-//                Entity entidade = null;
-//                while(it.hasNext()){
-//                    entidade = it.next();
-//                    if (this.intersects(entidade) ) {
-//                        entidade.setOnMap(true);
-//                        this.colisionAction(entidade);
-//                    }
-//                    else entidade.setOnMap(false);
-//                }
-//                return false;
-//            }
-//
-//            @Override
-//            public void colisionAction(Entity entidade) {
-//                //entidade.setOnMap(true);
-//            }
-//        };
 
     /*insercao de entidades que implementam colisao no mapa*/
     public void addEntity(Entity entidade) {
