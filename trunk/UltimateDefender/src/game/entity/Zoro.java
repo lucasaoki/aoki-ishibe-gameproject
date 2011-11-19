@@ -9,6 +9,7 @@ import game.component.characters.Chars;
 import game.component.controller.PlayerCtrl;
 import game.component.render.AnimationRenderComponent;
 import game.gui.GameContainer;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -34,8 +35,10 @@ public class Zoro extends Entity {
         images[Chars.getMoveIndex("WALK")] = readFrames("WALK", 8);
 
         setPosition(new Point(500, 335));
-        gc.getMainFrame().addKeyListener(playerCtrl);
-        this.zoroInfo = new CharacterInfo("ZoroInfo", playerCtrl);
+        setColisionBox(new Rectangle(getPosition(), new Dimension(64, 64)));
+        gc.getMainPanel().addKeyListener(playerCtrl);
+        gc.getStageSelected().addEntity(this);
+        this.zoroInfo = new CharacterInfo("ZoroInfo", playerCtrl, gc.getStageSelected());
         this.addComponent(playerCtrl);
         this.addComponent(zoroInfo);
         this.addComponent(new AnimationRenderComponent("ZoroRender", gc, zoroInfo, images));

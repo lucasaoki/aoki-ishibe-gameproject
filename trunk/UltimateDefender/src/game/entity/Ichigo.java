@@ -35,8 +35,10 @@ public class Ichigo extends Entity {
         images[Chars.getMoveIndex("WALK")] = readFrames("WALK", 8);
 
         setPosition(new Point(400, 335));
-        gc.getMainFrame().addKeyListener(playerCtrl);
-        this.ichigoInfo = new CharacterInfo("IchigoInfo", playerCtrl);
+        setColisionBox(new Rectangle(getPosition(), new Dimension(64, 64)));
+        gc.getMainPanel().addKeyListener(playerCtrl);
+        gc.getStageSelected().addEntity(this);
+        this.ichigoInfo = new CharacterInfo("IchigoInfo", playerCtrl, gc.getStageSelected());
         this.addComponent(playerCtrl);
         this.addComponent(ichigoInfo);
         this.addComponent(new AnimationRenderComponent("IchigoRender", gc, ichigoInfo, images));
