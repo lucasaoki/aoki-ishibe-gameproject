@@ -14,4 +14,5 @@ public interface Colision {
     
     public boolean colision();
     public void colisionAction(Entity entity);
+    public boolean stageColision();
 }

@@ -95,6 +95,10 @@ public class Entity {
         return this.getColisionBox().intersects(entity.getColisionBox());
     }
     
+    public boolean intersects(Rectangle box){
+        return this.getColisionBox().intersects(box);
+    }
+    
     public Image[] readFrames(String move, int num) {
         Image tmp[] = new Image[num];
         for (int i = 1; i <= num; i++) {
