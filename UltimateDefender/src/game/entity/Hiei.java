@@ -5,7 +5,7 @@
 package game.entity;
 
 import game.component.characters.CharacterInfo;
-import game.component.characters.Chars;
+import game.component.characters.CharsMoves;
 import game.component.controller.PlayerCtrl;
 import game.component.render.AnimationRenderComponent;
 import game.gui.GameContainer;
@@ -20,22 +20,23 @@ import java.awt.Rectangle;
  */
 public class Hiei extends Entity {
 
-    public Hiei(String id, GameContainer gc, PlayerCtrl playerCtrl) {
-        super(id);
+    public Hiei(GameContainer gc, PlayerCtrl playerCtrl) {
+        super("Hiei");
 
-        images = new Image[9][];
-        images[Chars.getMoveIndex("ATTACK")] = readFrames("ATTACK", 5);
-        images[Chars.getMoveIndex("DASH")] = readFrames("DASH", 3);
-        images[Chars.getMoveIndex("FALL")] = readFrames("FALL", 12);
-        images[Chars.getMoveIndex("GETHIT")] = readFrames("GETHIT", 4);
-        images[Chars.getMoveIndex("GUARD")] = readFrames("GUARD", 3);
-        images[Chars.getMoveIndex("JUMP")] = readFrames("JUMP", 8);
-        images[Chars.getMoveIndex("STAND")] = readFrames("STAND", 4);
-        images[Chars.getMoveIndex("ULTACTION")] = readFrames("ULTACTION", 6);
-        images[Chars.getMoveIndex("WALK")] = readFrames("WALK", 8);
+        images = new Image[10][];
+        images[CharsMoves.getMoveIndex("ATTACK")] = readFrames("ATTACK", 5);
+        images[CharsMoves.getMoveIndex("DASH")] = readFrames("DASH", 3);
+        images[CharsMoves.getMoveIndex("FALL")] = readFrames("FALL", 12);
+        images[CharsMoves.getMoveIndex("GETHIT")] = readFrames("GETHIT", 4);
+        images[CharsMoves.getMoveIndex("GUARD")] = readFrames("GUARD", 3);
+        images[CharsMoves.getMoveIndex("JUMP")] = readFrames("JUMP", 8);
+        images[CharsMoves.getMoveIndex("STAND")] = readFrames("STAND", 4);
+        images[CharsMoves.getMoveIndex("ULTACTION")] = readFrames("ULTACTION", 6);
+        images[CharsMoves.getMoveIndex("WALK")] = readFrames("WALK", 8);
+        images[CharsMoves.getMoveIndex("LOSE")] = readFrames("LOSE", 4);
 
         setPosition(new Point(300, 335));
-        setColisionBox(new Rectangle(getPosition(), new Dimension(64, 64)));
+        setColisionBox(new Rectangle(new Point(getPosition().x, getPosition().y), new Dimension(96  , 96)));
         gc.getMainPanel().addKeyListener(playerCtrl);
         gc.getStageSelected().addEntity(this);
         this.hieiInfo = new CharacterInfo("HieiInfo", playerCtrl, gc.getStageSelected());

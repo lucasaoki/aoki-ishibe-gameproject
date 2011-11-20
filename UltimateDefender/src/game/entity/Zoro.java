@@ -5,7 +5,7 @@
 package game.entity;
 
 import game.component.characters.CharacterInfo;
-import game.component.characters.Chars;
+import game.component.characters.CharsMoves;
 import game.component.controller.PlayerCtrl;
 import game.component.render.AnimationRenderComponent;
 import game.gui.GameContainer;
@@ -20,22 +20,23 @@ import java.awt.Rectangle;
  */
 public class Zoro extends Entity {
 
-    public Zoro(String id, GameContainer gc, PlayerCtrl playerCtrl) {
-        super(id);
+    public Zoro(GameContainer gc, PlayerCtrl playerCtrl) {
+        super("Zoro");
 
-        images = new Image[9][];
-        images[Chars.getMoveIndex("ATTACK")] = readFrames("ATTACK", 6);
-        images[Chars.getMoveIndex("DASH")] = readFrames("DASH", 2);
-        images[Chars.getMoveIndex("FALL")] = readFrames("FALL", 11);
-        images[Chars.getMoveIndex("GETHIT")] = readFrames("GETHIT", 4);
-        images[Chars.getMoveIndex("GUARD")] = readFrames("GUARD", 3);
-        images[Chars.getMoveIndex("JUMP")] = readFrames("JUMP", 6);
-        images[Chars.getMoveIndex("STAND")] = readFrames("STAND", 4);
-        images[Chars.getMoveIndex("ULTACTION")] = readFrames("ULTACTION", 7);
-        images[Chars.getMoveIndex("WALK")] = readFrames("WALK", 8);
+        images = new Image[10][];
+        images[CharsMoves.getMoveIndex("ATTACK")] = readFrames("ATTACK", 6);
+        images[CharsMoves.getMoveIndex("DASH")] = readFrames("DASH", 2);
+        images[CharsMoves.getMoveIndex("FALL")] = readFrames("FALL", 11);
+        images[CharsMoves.getMoveIndex("GETHIT")] = readFrames("GETHIT", 4);
+        images[CharsMoves.getMoveIndex("GUARD")] = readFrames("GUARD", 3);
+        images[CharsMoves.getMoveIndex("JUMP")] = readFrames("JUMP", 6);
+        images[CharsMoves.getMoveIndex("STAND")] = readFrames("STAND", 4);
+        images[CharsMoves.getMoveIndex("ULTACTION")] = readFrames("ULTACTION", 7);
+        images[CharsMoves.getMoveIndex("WALK")] = readFrames("WALK", 8);
+        images[CharsMoves.getMoveIndex("LOSE")] = readFrames("LOSE", 5);       
 
         setPosition(new Point(500, 335));
-        setColisionBox(new Rectangle(getPosition(), new Dimension(64, 64)));
+        setColisionBox(new Rectangle(new Point(getPosition().x + 20, getPosition().y), new Dimension(64, 64)));
         gc.getMainPanel().addKeyListener(playerCtrl);
         gc.getStageSelected().addEntity(this);
         this.zoroInfo = new CharacterInfo("ZoroInfo", playerCtrl, gc.getStageSelected());

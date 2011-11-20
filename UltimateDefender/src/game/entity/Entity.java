@@ -6,7 +6,7 @@ package game.entity;
 
 import game.component.Component;
 import game.component.characters.CharacterInfo;
-import game.component.characters.Chars;
+import game.component.characters.CharsMoves;
 import game.component.render.RenderComponent;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -36,7 +36,7 @@ public class Entity {
         position = new Point(0, 0);
         box = new Rectangle();
         components = new ArrayList<>();
-        scale = 1;
+        scale = 1.5f;
     }
 
     public void addComponent(Component component) {
@@ -99,7 +99,7 @@ public class Entity {
         Image tmp[] = new Image[num];
         for (int i = 1; i <= num; i++) {
             String filename = "/images/" + this.getId() + "/" + move + " (" + i + ").png";
-            URL url = Chars.class.getResource(filename);
+            URL url = CharsMoves.class.getResource(filename);
             tmp[i - 1] = (new ImageIcon(url)).getImage();
         }
         return tmp;

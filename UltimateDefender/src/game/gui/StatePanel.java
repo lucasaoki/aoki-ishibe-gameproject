@@ -20,11 +20,10 @@ public class StatePanel extends JPanel {
 
     protected ArrayList<Entity> entities = null;
 
-    public StatePanel(int width,int height) {
+    public StatePanel(int width, int height) {
         entities = new ArrayList<>();
         this.setPreferredSize(new Dimension(width, height));
         this.setBackground(new Color(255, 255, 255, 0));
-
     }
 
     protected Entity getEntity(String id) {

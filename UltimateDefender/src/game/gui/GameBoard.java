@@ -7,8 +7,6 @@ package game.gui;
 import game.component.render.ImageRenderComponent;
 import game.entity.Entity;
 import java.awt.BorderLayout;
-import java.awt.Component;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 /**

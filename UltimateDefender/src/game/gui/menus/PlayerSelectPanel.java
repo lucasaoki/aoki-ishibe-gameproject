@@ -2,10 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.gui;
+package game.gui.menus;
 
 import game.component.render.ImageRenderComponent;
 import game.entity.Entity;
+import game.gui.GameContainer;
+import game.gui.StatePanel;
 
 /**
  *

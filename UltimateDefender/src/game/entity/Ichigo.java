@@ -5,7 +5,7 @@
 package game.entity;
 
 import game.component.characters.CharacterInfo;
-import game.component.characters.Chars;
+import game.component.characters.CharsMoves;
 import game.component.controller.PlayerCtrl;
 import game.component.render.AnimationRenderComponent;
 import game.gui.GameContainer;
@@ -20,19 +20,20 @@ import java.awt.Rectangle;
  */
 public class Ichigo extends Entity {
 
-    public Ichigo(String id, GameContainer gc, PlayerCtrl playerCtrl) {
-        super(id);
+    public Ichigo(GameContainer gc, PlayerCtrl playerCtrl) {
+        super("Ichigo");
 
-        images = new Image[9][];
-        images[Chars.getMoveIndex("ATTACK")] = readFrames("ATTACK", 6);
-        images[Chars.getMoveIndex("DASH")] = readFrames("DASH", 2);
-        images[Chars.getMoveIndex("FALL")] = readFrames("FALL", 11);
-        images[Chars.getMoveIndex("GETHIT")] = readFrames("GETHIT", 4);
-        images[Chars.getMoveIndex("GUARD")] = readFrames("GUARD", 3);
-        images[Chars.getMoveIndex("JUMP")] = readFrames("JUMP", 9);
-        images[Chars.getMoveIndex("STAND")] = readFrames("STAND", 4);
-        images[Chars.getMoveIndex("ULTACTION")] = readFrames("ULTACTION", 9);
-        images[Chars.getMoveIndex("WALK")] = readFrames("WALK", 8);
+        images = new Image[10][];
+        images[CharsMoves.getMoveIndex("ATTACK")] = readFrames("ATTACK", 6);
+        images[CharsMoves.getMoveIndex("DASH")] = readFrames("DASH", 2);
+        images[CharsMoves.getMoveIndex("FALL")] = readFrames("FALL", 11);
+        images[CharsMoves.getMoveIndex("GETHIT")] = readFrames("GETHIT", 4);
+        images[CharsMoves.getMoveIndex("GUARD")] = readFrames("GUARD", 3);
+        images[CharsMoves.getMoveIndex("JUMP")] = readFrames("JUMP", 9);
+        images[CharsMoves.getMoveIndex("STAND")] = readFrames("STAND", 4);
+        images[CharsMoves.getMoveIndex("ULTACTION")] = readFrames("ULTACTION", 9);
+        images[CharsMoves.getMoveIndex("WALK")] = readFrames("WALK", 8);
+        images[CharsMoves.getMoveIndex("LOSE")] = readFrames("LOSE", 6);
 
         setPosition(new Point(400, 335));
         setColisionBox(new Rectangle(getPosition(), new Dimension(64, 64)));

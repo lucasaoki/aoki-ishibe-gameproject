@@ -8,7 +8,7 @@ package game.component.characters;
  *
  * @author Lucas
  */
-public class Chars {
+public class CharsMoves {
 
     public static int getMoveIndex(String move) {
         int index = 0;
@@ -39,6 +39,9 @@ public class Chars {
                 break;
             case "WALK":
                 index = 8;
+                break;
+            case "LOSE":
+                index = 9;
                 break;
         }
         return index;
