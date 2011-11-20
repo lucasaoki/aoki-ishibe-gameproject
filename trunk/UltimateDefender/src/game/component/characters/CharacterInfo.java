@@ -31,7 +31,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
     private boolean isAttacking;
     private boolean isDashing;
     private boolean getHit;
-    private boolean isDead;
+    private boolean lose;
 
     public CharacterInfo(String id, PlayerCtrl playerCtrl, Stage stage) {
         this.id = id;
@@ -45,7 +45,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
         this.isDashing = false;
         this.toRight = true;
         this.getHit = false;
-        this.isDead = false;
+        this.lose = false;
         this.life = 100;
     }
 
@@ -89,12 +89,12 @@ public class CharacterInfo extends Component implements Colision, Constants {
         return getHit;
     }
 
-    public boolean isDead() {
-        return isDead;
+    public boolean lose() {
+        return lose;
     }
 
-    public void setIsDead(boolean isDead) {
-        this.isDead = isDead;
+    public void setLose(boolean lose) {
+        this.lose = lose;
     }
 
     public void setGetHit(boolean getHit) {
@@ -113,8 +113,9 @@ public class CharacterInfo extends Component implements Colision, Constants {
     public void update() {
         Point pos = owner.getPosition();
         colision();
+        
         if (life < 0) {
-            isDead = true;
+            lose = true;
         } else {
             if (!getHit) {
                 if (!isAttacking) {
@@ -165,7 +166,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
                 }
             } else {
                 life--;
-                System.out.println(life);
+                
             }
         }
 

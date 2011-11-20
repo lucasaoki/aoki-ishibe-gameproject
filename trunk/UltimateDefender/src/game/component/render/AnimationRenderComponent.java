@@ -6,7 +6,7 @@ package game.component.render;
 
 import game.component.Component;
 import game.component.characters.CharacterInfo;
-import game.component.characters.Chars;
+import game.component.characters.CharsMoves;
 import game.gui.GameContainer;
 import game.util.Timer;
 import game.util.TimerListener;
@@ -46,7 +46,7 @@ public class AnimationRenderComponent extends RenderComponent {
 
         this.index = 0;
         this.animation = imageFrames;
-        this.currentAnimation = this.animation[Chars.getMoveIndex("STAND")]; //FAZER CONTROLE AQUI
+        this.currentAnimation = this.animation[CharsMoves.getMoveIndex("STAND")]; //FAZER CONTROLE AQUI
     }
 
     public void setAnimation(Image[] animation) {
@@ -55,58 +55,78 @@ public class AnimationRenderComponent extends RenderComponent {
 
     @Override
     public void update() {
-        if (characterInfo.isDead()) {
-            currentAnimation = this.animation[Chars.getMoveIndex("FALL")];
-
-        } else {
+        //ainda não perdeu
+        if (!characterInfo.lose()) {
+            //getting hit
             if (characterInfo.isGetHit()) {
-                currentAnimation = this.animation[Chars.getMoveIndex("GETHIT")];
+                if (currentAnimation != this.animation[CharsMoves.getMoveIndex("GETHIT")]) {
+                    index = 0;
+                }
+                currentAnimation = this.animation[CharsMoves.getMoveIndex("GETHIT")];
             } else {
+                //attacking
                 if (characterInfo.isAttacking()) {
-                    if (currentAnimation != this.animation[Chars.getMoveIndex("B")]) {
+                    if (currentAnimation != this.animation[CharsMoves.getMoveIndex("B")]) {
                         index = 0;
                     }
-                    currentAnimation = this.animation[Chars.getMoveIndex("B")];
+                    currentAnimation = this.animation[CharsMoves.getMoveIndex("B")];
                     if (index + 1 == currentAnimation.length) {
                         characterInfo.setIsAttacking(false);
                     }
-                } else if (characterInfo.isDashing()) {
-                    if (currentAnimation != this.animation[Chars.getMoveIndex("DASH")]) {
+                } else //dashing
+                if (characterInfo.isDashing()) {
+                    if (currentAnimation != this.animation[CharsMoves.getMoveIndex("DASH")]) {
                         index = 0;
                     }
-                    currentAnimation = this.animation[Chars.getMoveIndex("DASH")];
+                    currentAnimation = this.animation[CharsMoves.getMoveIndex("DASH")];
                     if (index + 1 == currentAnimation.length) {
                         characterInfo.setIsDashing(false);
                     }
-                } else if (characterInfo.isJumping()) {
-                    if (currentAnimation != this.animation[Chars.getMoveIndex("JUMP")]) {
+                } else //jumping
+                if (characterInfo.isJumping()) {
+                    if (currentAnimation != this.animation[CharsMoves.getMoveIndex("JUMP")]) {
                         index = 0;
                     }
-                    currentAnimation = this.animation[Chars.getMoveIndex("JUMP")];
-                } else if (characterInfo.isWalkingR()) {
-                    currentAnimation = this.animation[Chars.getMoveIndex("WALK")];
-                } else if (characterInfo.isWalkingL()) {
-                    currentAnimation = this.animation[Chars.getMoveIndex("WALK")];
-                } else {
-                    currentAnimation = this.animation[Chars.getMoveIndex("STAND")];
-                }
-
-                if (index >= currentAnimation.length) { /*correção de erro array index out of bounds*/
-                    index = 0;
+                    currentAnimation = this.animation[CharsMoves.getMoveIndex("JUMP")];
+                } else //walking to right
+                if (characterInfo.isWalkingR()) {
+                    if (currentAnimation != this.animation[CharsMoves.getMoveIndex("WALK")]) {
+                        index = 0;
+                    }
+                    currentAnimation = this.animation[CharsMoves.getMoveIndex("WALK")];
+                } else //walking to left
+                if (characterInfo.isWalkingL()) {
+                    if (currentAnimation != this.animation[CharsMoves.getMoveIndex("WALK")]) {
+                        index = 0;
+                    }
+                    currentAnimation = this.animation[CharsMoves.getMoveIndex("WALK")];
+                } else //standing
+                {
+                    if (currentAnimation != this.animation[CharsMoves.getMoveIndex("STAND")]) {
+                        index = 0;
+                    }
+                    currentAnimation = this.animation[CharsMoves.getMoveIndex("STAND")];
                 }
             }
-
+        } else//loose
+        {
+            if (currentAnimation != this.animation[CharsMoves.getMoveIndex("LOSE")]) {
+                index = 0;
+            }
+            currentAnimation = this.animation[CharsMoves.getMoveIndex("LOSE")];
         }
     }
 
     public void updateFrame() {
-        if (!characterInfo.isDead()) {
+//        if (!characterInfo.lose()) {
             index = (index + 1) % currentAnimation.length;
-        } else if (index < animation[Chars.getMoveIndex("FALL")].length) {
-            index++;
-        } else {
-            index = animation[Chars.getMoveIndex("FALL")].length;
-        }
+//        } else {
+//            if (index - 1 < currentAnimation.length) {
+//                index++;
+//            }
+//            else index = currentAnimation.length-1;
+//        }
+
         gc.getMainFrame().repaint();
     }
 
