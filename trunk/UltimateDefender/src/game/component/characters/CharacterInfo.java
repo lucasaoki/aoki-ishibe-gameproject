@@ -10,6 +10,7 @@ import game.component.controller.PlayerCtrl;
 import game.entity.Entity;
 import game.stages.Stage;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.Iterator;
 
 /**
@@ -32,6 +33,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
     private boolean lose = false;
     private boolean won = false;
     private boolean isGuarding = false;
+    private Rectangle colidedBox = null;
 
     public CharacterInfo(String id, PlayerCtrl playerCtrl, Stage stage) {
         this.id = id;
@@ -114,42 +116,67 @@ public class CharacterInfo extends Component implements Colision, Constants {
         Point pos = owner.getPosition();
         colision();
 
-        if (!won) {
-            if (life < 0) {
+
+        if (!won) { //jogando
+            if (life < 0) { //morreu
                 lose = true;
-            } else {
-                if (playerCtrl.isGuarding()) {
+            } else { //engine do player
+                if (playerCtrl.isGuarding() && !isJumping) {
                     isGuarding = true;
                 } else {
                     isGuarding = false;
-                    if (!getHit) {
-                        if (!isAttacking) {
+                    if (!getHit) { //não levando hit
+                        if (!isAttacking) {// não atacando
                             if (playerCtrl.isMovingRight() && pos.x < 640 - 80) {
-                                pos.x += walkSpeed;
+                                pos.x += WALKSPEED;
                                 toRight = true;
                                 isWalkingR = true;
                             } else if (playerCtrl.isMovingLeft() && pos.x > 0) {
-                                pos.x -= walkSpeed;
+                                pos.x -= WALKSPEED;
                                 toRight = false;
                                 isWalkingL = true;
                             } else { //is standing
                                 isWalkingL = false;
                                 isWalkingR = false;
                             }
-                            if (isJumping) {
-                                pos.y -= vertSpeed;
-                                if (vertSpeed <= -jumpSpeed) {
-                                    vertSpeed = 0;
-                                    isJumping = false;
+                            if (!isJumping) {
+                                if (!stageColision()) {
+                                    pos.y -= vertSpeed;
+                                    vertSpeed -= GRAVITY;
+                                } else {
+                                    if (vertSpeed < 0) {
+                                        vertSpeed = 0;
+                                    }
                                 }
-                                vertSpeed -= gravity;
-                            } else if (playerCtrl.isJumping()) {
-                                vertSpeed = jumpSpeed;
-                                isJumping = true;
-                            } else if (playerCtrl.isAttacking()) {
-                                isAttacking = true;
+                                if (playerCtrl.isJumping() && stageColision()) {
+                                    vertSpeed = JUMPSPEED;
+                                    isJumping = true;
+                                } else if (playerCtrl.isAttacking()) {
+                                    isAttacking = true;
+                                }
+                            } else { //is jumping
+                                if (stageColision()) {
+                                    if (vertSpeed < 0) {
+                                        double dif = colidedBox.getY() - owner.getColisionBox().getY();
+                                        if (colidedBox.getY() > owner.getColisionBox().getY() && owner.getColisionBox().height - dif < 5) {
+                                            vertSpeed = 0;
+                                            isJumping = false;
+
+                                        } else {
+                                            pos.y -= vertSpeed;
+                                            vertSpeed -= GRAVITY;
+                                        }
+                                    } else {
+                                        pos.y -= vertSpeed;
+                                        vertSpeed -= GRAVITY;
+                                    }
+                                } else {
+                                    pos.y -= vertSpeed;
+                                    vertSpeed -= GRAVITY;
+                                }
                             }
 
+                            //dash
                             if (!isDashing && !playerCtrl.isHolding()) {
                                 if (playerCtrl.isDashing()) {
                                     playerCtrl.startHolding();
@@ -157,12 +184,12 @@ public class CharacterInfo extends Component implements Colision, Constants {
                                 }
                             } else if (isDashing && playerCtrl.isHolding()) {
                                 if (toRight) {
-                                    if (pos.x + 10 * walkSpeed < 640 - 80) {
-                                        pos.x += 10 * walkSpeed;
+                                    if (pos.x + 10 * WALKSPEED < 640 - 80) {
+                                        pos.x += 10 * WALKSPEED;
                                     }
                                 } else {
-                                    if (pos.x - 10 * walkSpeed > 0) {
-                                        pos.x -= 10 * walkSpeed;
+                                    if (pos.x - 10 * WALKSPEED > 0) {
+                                        pos.x -= 10 * WALKSPEED;
                                     }
                                 }
                             } else if (!playerCtrl.isDashing()) {
@@ -174,9 +201,20 @@ public class CharacterInfo extends Component implements Colision, Constants {
                     }
                 }
             }
+        } else {
+            isJumping = false;
+            isWalkingR = false;
+            isWalkingL = false;
+            isAttacking = false;
+            isDashing = false;
+            getHit = false;
+            isGuarding = false;
         }
-
-        owner.getColisionBox().setLocation(pos);
+        if (toRight) {
+            owner.getColisionBox().setLocation(new Point(pos.x + 32, pos.y + 16));
+        } else {
+            owner.getColisionBox().setLocation(new Point(pos.x - 32, pos.y + 16));
+        }
         owner.setPosition(pos);
     }
 
@@ -186,7 +224,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
         boolean colision = false;
         while (it.hasNext()) {
             Entity entity = it.next();
-            if (owner.intersects(entity) && !entity.getId().equals("Stage")) {
+            if (owner.intersects(entity)) {
                 if (!entity.getId().equals(owner.getId())) {
                     this.colisionAction(entity);
                     colision = true;
@@ -213,5 +251,18 @@ public class CharacterInfo extends Component implements Colision, Constants {
         } else {
             setGetHit(false);
         }
+    }
+
+    @Override
+    public boolean stageColision() {
+        Iterator<Rectangle> it = stage.getBoxesIterator();
+        while (it.hasNext()) {
+            Rectangle box = it.next();
+            if (owner.intersects(box)) {
+                colidedBox = box;
+                return true;
+            }
+        }
+        return false;
     }
 }

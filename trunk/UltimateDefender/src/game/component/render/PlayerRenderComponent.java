@@ -13,13 +13,15 @@ import game.util.TimerListener;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
+import java.util.Iterator;
 
 /**
  *
  * @author Lucas
  */
-public class AnimationRenderComponent extends RenderComponent {
+public class PlayerRenderComponent extends RenderComponent {
 
     private Timer frameTimer;
     private long frameCtrl;
@@ -29,7 +31,7 @@ public class AnimationRenderComponent extends RenderComponent {
     private Image[] currentAnimation;
     private int index;
 
-    public AnimationRenderComponent(String id, GameContainer gc, Component characterInfo, Image[][] imageFrames) {
+    public PlayerRenderComponent(String id, GameContainer gc, Component characterInfo, Image[][] imageFrames) {
         super(id);
         this.gc = gc;
         if (characterInfo instanceof CharacterInfo) {
@@ -129,5 +131,12 @@ public class AnimationRenderComponent extends RenderComponent {
 
         gr.drawImage(currentAnimation[index], af, null);
 
+        gr.draw(owner.getColisionBox());
+        
+        Iterator<Rectangle> it = gc.getStageSelected().getBoxesIterator();
+        while (it.hasNext()) {
+            Rectangle rectangle = it.next();
+            gr.draw(rectangle);
+        }
     }
 }
