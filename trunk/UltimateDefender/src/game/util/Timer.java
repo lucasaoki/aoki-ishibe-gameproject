@@ -19,6 +19,10 @@ public class Timer extends Thread {
         this.time = time;
     }
 
+    public void setTime(long time) {
+        this.time = time;
+    }
+
     @Override
     public void run() {
         while (run) {

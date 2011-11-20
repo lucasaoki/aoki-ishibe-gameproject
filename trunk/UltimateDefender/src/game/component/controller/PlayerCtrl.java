@@ -43,6 +43,8 @@ public abstract class PlayerCtrl extends Component implements KeyListener {
     public abstract boolean isDashing();
 
     public abstract boolean isAttacking();
+    
+    public abstract boolean isGuarding();
 
     @Override
     public void keyTyped(KeyEvent e) {
