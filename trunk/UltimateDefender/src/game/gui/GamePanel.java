@@ -4,7 +4,6 @@
  */
 package game.gui;
 
-import game.component.controller.CreepCtrl;
 import game.component.controller.P1control;
 import game.entity.Entity;
 import game.entity.Kenshin;
@@ -28,7 +27,7 @@ public class GamePanel extends StatePanel {
 
         Kenshin kenshin = new Kenshin(gc, new P1control("KenshinCtrl"));
         entities.add(kenshin);
-        Zoro zoro = new Zoro(gc, new CreepCtrl("ZoroCtrl", kenshin));
+        Zoro zoro = new Zoro(gc, new P1control("ZoroCtrl"));
         entities.add(zoro);
 
         timer = new Timer(new TimerListener() {
