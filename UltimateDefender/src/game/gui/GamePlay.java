@@ -12,10 +12,10 @@ import java.awt.BorderLayout;
  */
 public class GamePlay extends StatePanel {
 
-    public GamePlay(GameContainer cp) {
+    public GamePlay(GameContainer gc) {
         super(640, 480);
         this.setLayout(new BorderLayout());
-        this.add(new GamePanel(cp), BorderLayout.CENTER);
-//        this.add(new GameBoard(cp), BorderLayout.SOUTH);
+        this.add(new GamePanel(gc), BorderLayout.CENTER);
+        this.add(new GameBoard(gc), BorderLayout.SOUTH);
     }
 }
