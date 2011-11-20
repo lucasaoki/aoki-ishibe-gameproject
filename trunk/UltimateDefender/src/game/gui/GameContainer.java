@@ -27,7 +27,7 @@ public class GameContainer extends Thread {
 
     @Override
     public void run() {
-        setGameState(GameContainer.State.PLAYERSELECT);
+        setGameState(GameContainer.State.MENUSTATE);
     }
 
     public JFrame getMainFrame() {

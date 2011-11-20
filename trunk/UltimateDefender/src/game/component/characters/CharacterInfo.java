@@ -148,23 +148,29 @@ public class CharacterInfo extends Component implements Colision, Constants {
                                         vertSpeed = 0;
                                     }
                                 }
-                                if (playerCtrl.isJumping() && stageColision()) {
-                                    vertSpeed = JUMPSPEED;
-                                    isJumping = true;
+                                if (stageColision()) {
+                                    if (playerCtrl.isJumping() && vertSpeed == 0) {
+                                        vertSpeed = JUMPSPEED;
+                                        isJumping = true;
+                                    }
+
                                 } else if (playerCtrl.isAttacking()) {
                                     isAttacking = true;
                                 }
+
                             } else { //is jumping
                                 if (stageColision()) {
                                     if (vertSpeed < 0) {
                                         double dif = colidedBox.getY() - owner.getColisionBox().getY();
-                                        if (colidedBox.getY() > owner.getColisionBox().getY() && owner.getColisionBox().height - dif < 5) {
+                                        if (dif > 70) {
                                             vertSpeed = 0;
                                             isJumping = false;
+                                            System.out.println(vertSpeed + "  " + owner.getColisionBox().height + "   " + dif + " " + (-1) * (dif - owner.getColisionBox().height));
 
-                                        } else {
-                                            pos.y -= vertSpeed;
-                                            vertSpeed -= GRAVITY;
+
+                                        }else{
+                                        pos.y -= vertSpeed;
+                                        vertSpeed -= GRAVITY;
                                         }
                                     } else {
                                         pos.y -= vertSpeed;

@@ -15,7 +15,9 @@ import game.util.TimerListener;
  * @author Seiji
  */
 public class CreepCtrl extends PlayerCtrl implements Constants {
-
+    
+    private boolean  ia = false;
+    private int random = 0; 
     Entity entity = null;
     CharacterInfo entityInfo = null;
     private boolean followNow = false;

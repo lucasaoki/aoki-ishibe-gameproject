@@ -16,6 +16,6 @@ public class GamePlay extends StatePanel {
         super(640, 480);
         this.setLayout(new BorderLayout());
         this.add(new GamePanel(gc, playerChoice), BorderLayout.CENTER);
-        this.add(new GameBoard(gc), BorderLayout.SOUTH);
+        this.add(new MenuBorder(gc), BorderLayout.SOUTH);
     }
 }
