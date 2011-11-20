@@ -6,6 +6,8 @@ package game.gui;
 
 import game.component.controller.P1control;
 import game.entity.Entity;
+import game.entity.Hiei;
+import game.entity.Ichigo;
 import game.entity.Kenshin;
 import game.entity.Zoro;
 import game.stages.Stage;
@@ -20,15 +22,13 @@ public class GamePanel extends StatePanel {
 
     private final Timer timer;
 
-    public GamePanel(GameContainer gc) {
-        super(640, 380);
+    public GamePanel(GameContainer gc, int playerChoice) {
+        super(640, 480);
+        gc.getMainFrame().setSize(640, 580);
         gc.setMainPanel(this);
-        entities.add(new Stage("Background", gc));
+        entities.add(new Stage("Stage", gc));
 
-        Kenshin kenshin = new Kenshin(gc, new P1control("KenshinCtrl"));
-        entities.add(kenshin);
-        Zoro zoro = new Zoro(gc, new P1control("ZoroCtrl"));
-        entities.add(zoro);
+        setPlayer(gc, playerChoice);
 
         timer = new Timer(new TimerListener() {
 
@@ -38,8 +38,29 @@ public class GamePanel extends StatePanel {
                     entity.update();
                 }
             }
-        }, 45);
+        }, 40);
 
         timer.start();
+    }
+    
+    private void setPlayer(GameContainer gc, int playerChoice){
+        switch (playerChoice) {
+            case 0:
+                Kenshin kenshin = new Kenshin(gc, new P1control("KenshinCtrl"));
+                entities.add(kenshin);
+                break;
+            case 1:
+                Hiei hiei = new Hiei(gc, new P1control("HieiCtrl"));
+                entities.add(hiei);
+                break;
+            case 2:
+                Ichigo ichigo = new Ichigo(gc, new P1control("IchigoCtrl"));
+                entities.add(ichigo);
+                break;
+            case 3:
+                Zoro zoro = new Zoro(gc, new P1control("ZoroCtrl"));
+                entities.add(zoro);
+                break;
+        }
     }
 }

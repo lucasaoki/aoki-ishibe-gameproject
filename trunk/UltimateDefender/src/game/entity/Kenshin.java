@@ -43,7 +43,6 @@ public class Kenshin extends Entity {
         this.addComponent(playerCtrl);
         this.addComponent(kenshinInfo);
         this.addComponent(new AnimationRenderComponent("KenshinRender", gc, kenshinInfo, images));
-        System.out.println(gc.getStageSelected().getEntityIterator());
     }
     private Image images[][];
     private CharacterInfo kenshinInfo;
