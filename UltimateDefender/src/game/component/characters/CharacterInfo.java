@@ -186,7 +186,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
         boolean colision = false;
         while (it.hasNext()) {
             Entity entity = it.next();
-            if (owner.intersects(entity) && !entity.getId().equals("Background")) {
+            if (owner.intersects(entity) && !entity.getId().equals("Stage")) {
                 if (!entity.getId().equals(owner.getId())) {
                     this.colisionAction(entity);
                     colision = true;

@@ -4,10 +4,10 @@
  */
 package game.gui;
 
-import game.gui.menus.PlayerSelectPanel;
 import game.gui.menus.MenuCredits;
 import game.gui.menus.MenuHighscore;
 import game.gui.menus.MenuPanel;
+import game.gui.menus.PlayerSelectionPanel;
 import game.stages.Stage;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -27,7 +27,7 @@ public class GameContainer extends Thread {
 
     @Override
     public void run() {
-        setGameState(GameContainer.State.MENUSTATE);
+        setGameState(GameContainer.State.PLAYERSELECT);
     }
 
     public JFrame getMainFrame() {
@@ -51,6 +51,14 @@ public class GameContainer extends Thread {
         this.mainPanel.setFocusable(true);
     }
 
+    public int getChoice() {
+        return choice;
+    }
+
+    public void setChoice(int choice) {
+        this.choice = choice;
+    }
+
     public void createNewFrame() {
         mainFrame = new JFrame(id);
         mainFrame.setSize(640, 480);
@@ -72,10 +80,10 @@ public class GameContainer extends Thread {
                 cp.add(new MenuPanel(this));
                 break;
             case PLAYERSELECT:
-                cp.add(new PlayerSelectPanel(this));
+                cp.add(new PlayerSelectionPanel(this));
                 break;
             case GAMESTATE:
-                cp.add(new GamePlay(this));
+                cp.add(new GamePlay(this, choice));
                 break;
             case HIGHSTATE:
                 cp.add(new MenuHighscore(this));
@@ -96,4 +104,5 @@ public class GameContainer extends Thread {
     private StatePanel mainPanel = null;
     private Container cp = null;
     private Stage stageSelected = null;
+    private int choice = 0;
 }
