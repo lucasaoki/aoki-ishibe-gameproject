@@ -57,4 +57,9 @@ public class CreepCtrl extends PlayerCtrl {
     @Override
     public void update() {
     }
+
+    @Override
+    public boolean isGuarding() {
+        return false;
+    }
 }

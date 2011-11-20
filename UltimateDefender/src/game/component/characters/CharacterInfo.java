@@ -22,39 +22,23 @@ public class CharacterInfo extends Component implements Colision, Constants {
     private Stage stage;
     private PlayerCtrl playerCtrl;
     private float vertSpeed;
-    private float direction;
-    private float speed;
-    private boolean isJumping;
-    private boolean isWalkingR;
-    private boolean isWalkingL;
-    private boolean toRight;
-    private boolean isAttacking;
-    private boolean isDashing;
-    private boolean getHit;
-    private boolean lose;
+    private boolean isJumping = false;
+    private boolean isWalkingR = false;
+    private boolean isWalkingL = false;
+    private boolean toRight = true;
+    private boolean isAttacking = false;
+    private boolean isDashing = false;
+    private boolean getHit = false;
+    private boolean lose = false;
+    private boolean won = false;
+    private boolean isGuarding = false;
 
     public CharacterInfo(String id, PlayerCtrl playerCtrl, Stage stage) {
         this.id = id;
         this.vertSpeed = 0;
         this.stage = stage;
         this.playerCtrl = playerCtrl;
-        this.isJumping = false;
-        this.isWalkingR = false;
-        this.isWalkingL = false;
-        this.isAttacking = false;
-        this.isDashing = false;
-        this.toRight = true;
-        this.getHit = false;
-        this.lose = false;
         this.life = 100;
-    }
-
-    public float getDirection() {
-        return direction;
-    }
-
-    public float getSpeed() {
-        return speed;
     }
 
     public float getVertSpeed() {
@@ -93,6 +77,22 @@ public class CharacterInfo extends Component implements Colision, Constants {
         return lose;
     }
 
+    public boolean isWon() {
+        return won;
+    }
+
+    public boolean isGuarding() {
+        return isGuarding;
+    }
+
+    public void setIsGuarding(boolean isGuarding) {
+        this.isGuarding = isGuarding;
+    }
+
+    public void setWon(boolean won) {
+        this.won = won;
+    }
+
     public void setLose(boolean lose) {
         this.lose = lose;
     }
@@ -113,63 +113,68 @@ public class CharacterInfo extends Component implements Colision, Constants {
     public void update() {
         Point pos = owner.getPosition();
         colision();
-        
-        if (life < 0) {
-            lose = true;
-        } else {
-            if (!getHit) {
-                if (!isAttacking) {
-                    if (playerCtrl.isMovingRight() && pos.x < 640 - 80) {
-                        pos.x += walkSpeed;
-                        toRight = true;
-                        isWalkingR = true;
-                    } else if (playerCtrl.isMovingLeft() && pos.x > 0) {
-                        pos.x -= walkSpeed;
-                        toRight = false;
-                        isWalkingL = true;
-                    } else { //is standing
-                        isWalkingL = false;
-                        isWalkingR = false;
-                    }
-                    if (isJumping) {
-                        pos.y -= vertSpeed;
-                        if (vertSpeed <= -jumpSpeed) {
-                            vertSpeed = 0;
-                            isJumping = false;
-                        }
-                        vertSpeed -= gravity;
-                    } else if (playerCtrl.isJumping()) {
-                        vertSpeed = jumpSpeed;
-                        isJumping = true;
-                    } else if (playerCtrl.isAttacking()) {
-                        isAttacking = true;
-                    }
 
-                    if (!isDashing && !playerCtrl.isHolding()) {
-                        if (playerCtrl.isDashing()) {
-                            playerCtrl.startHolding();
-                            isDashing = true;
-                        }
-                    } else if (isDashing && playerCtrl.isHolding()) {
-                        if (toRight) {
-                            if (pos.x + 5 * walkSpeed < 640 - 80) {
-                                pos.x += 5 * walkSpeed;
+        if (!won) {
+            if (life < 0) {
+                lose = true;
+            } else {
+                if (playerCtrl.isGuarding()) {
+                    isGuarding = true;
+                } else {
+                    isGuarding = false;
+                    if (!getHit) {
+                        if (!isAttacking) {
+                            if (playerCtrl.isMovingRight() && pos.x < 640 - 80) {
+                                pos.x += walkSpeed;
+                                toRight = true;
+                                isWalkingR = true;
+                            } else if (playerCtrl.isMovingLeft() && pos.x > 0) {
+                                pos.x -= walkSpeed;
+                                toRight = false;
+                                isWalkingL = true;
+                            } else { //is standing
+                                isWalkingL = false;
+                                isWalkingR = false;
                             }
-                        } else {
-                            if (pos.x - 5 * walkSpeed > 0) {
-                                pos.x -= 5 * walkSpeed;
+                            if (isJumping) {
+                                pos.y -= vertSpeed;
+                                if (vertSpeed <= -jumpSpeed) {
+                                    vertSpeed = 0;
+                                    isJumping = false;
+                                }
+                                vertSpeed -= gravity;
+                            } else if (playerCtrl.isJumping()) {
+                                vertSpeed = jumpSpeed;
+                                isJumping = true;
+                            } else if (playerCtrl.isAttacking()) {
+                                isAttacking = true;
+                            }
+
+                            if (!isDashing && !playerCtrl.isHolding()) {
+                                if (playerCtrl.isDashing()) {
+                                    playerCtrl.startHolding();
+                                    isDashing = true;
+                                }
+                            } else if (isDashing && playerCtrl.isHolding()) {
+                                if (toRight) {
+                                    if (pos.x + 10 * walkSpeed < 640 - 80) {
+                                        pos.x += 10 * walkSpeed;
+                                    }
+                                } else {
+                                    if (pos.x - 10 * walkSpeed > 0) {
+                                        pos.x -= 10 * walkSpeed;
+                                    }
+                                }
+                            } else if (!playerCtrl.isDashing()) {
+                                playerCtrl.stopHolding();
                             }
                         }
-                    } else if (!playerCtrl.isDashing()) {
-                        playerCtrl.stopHolding();
+                    } else {
+                        life--;
                     }
                 }
-            } else {
-                life--;
-                
             }
         }
-
 
         owner.getColisionBox().setLocation(pos);
         owner.setPosition(pos);
@@ -193,10 +198,16 @@ public class CharacterInfo extends Component implements Colision, Constants {
 
     @Override
     public void colisionAction(Entity entity) {
+        int i = 0;
+        if (entity.getCharInfo().lose) {
+            i++;
+            if (i == 1) {
+                this.won = true;
+            }
+        }
         if (entity.getCharInfo().isAttacking) {
-            if ((entity.getCharInfo().toRight && owner.getPosition().x > entity.getPosition().x) || 
-                    (!entity.getCharInfo().toRight && owner.getPosition().x < entity.getPosition().x)) {
-
+            if ((entity.getCharInfo().toRight && owner.getPosition().x > entity.getPosition().x)
+                    || (!entity.getCharInfo().toRight && owner.getPosition().x < entity.getPosition().x)) {
                 setGetHit(true);
             }
         } else {

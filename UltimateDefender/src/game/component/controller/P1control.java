@@ -42,6 +42,11 @@ public class P1control extends PlayerCtrl {
     }
 
     @Override
+    public boolean isGuarding() {
+        return input[KeyEvent.VK_S];
+    }
+    
+    @Override
     public void update() {
     }
 }
