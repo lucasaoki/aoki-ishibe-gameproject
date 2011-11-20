@@ -23,7 +23,7 @@ public class GameBoard extends StatePanel {
     private StatePanel PanelCenter = new StatePanel(100, 100);
     private StatePanel PanelEast = new StatePanel(225, 100);
     
-    private StatePanel PanelScoreWest = new StatePanel(75, 20);// Usado para posicionar o JtextArea Score.
+    private StatePanel PanelScoreWest = new StatePanel(75, 20);
     private StatePanel PanelScoreNorth = new StatePanel(10, 48);
     
     private StatePanel PanelHPWest = new StatePanel(0, 20);
@@ -40,7 +40,7 @@ public class GameBoard extends StatePanel {
         getEntity("Background").addComponent(new ImageRenderComponent("BGImage", "/Score3.jpg"));
 
         PanelWest.entities.add(new Entity("Background"));
-        PanelWest.getEntity("Background").addComponent(new ImageRenderComponent("BGImage", "/Kenshin.jpg"));
+        PanelWest.getEntity("Background").addComponent(new ImageRenderComponent("BGImage", "/Zoro.png"));
 
         this.setLayout(new BorderLayout());
         this.add(PanelWest, BorderLayout.WEST);
@@ -66,7 +66,7 @@ public class GameBoard extends StatePanel {
     }
 
     public JTextArea confArea() {
-        JTextArea ta = new JTextArea("wsfsfsdf");
+        JTextArea ta = new JTextArea("vvv");
         ta.setBackground(new Color(255, 255, 255, 0));
         ta.setForeground(Color.BLACK);
         ta.setFont(new Font("Arial", Font.BOLD, 20));

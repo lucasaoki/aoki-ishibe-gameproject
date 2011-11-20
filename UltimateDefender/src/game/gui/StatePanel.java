@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 /*
  *
  * @author Lucas Aoki
@@ -45,5 +46,11 @@ public class StatePanel extends JPanel {
             entity.render(gr2d);
         }
         repaint();
+    }
+
+    public JToggleButton ButtonConf(String string, int width, int heigth) {
+        JToggleButton button = new JToggleButton(string);
+        button.setPreferredSize(new Dimension(width, heigth));
+        return button;
     }
 }

@@ -40,7 +40,7 @@ public class HighScorePanel extends StatePanel {
             String texto = "";
 
             while ((linha = bReader.readLine()) != null) {
-                texto += i + "A--";
+                texto += i + " -----";
                 i++;
                 texto += linha;
                 texto += "\r\n";
