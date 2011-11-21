@@ -17,6 +17,9 @@ import java.util.Iterator;
  *
  * @author Lucas
  */
+/**
+ * Classe que retêm as informações e as ações do caracter. 
+ **/
 public class CharacterInfo extends Component implements Colision, Constants {
 
     private float life;
@@ -35,6 +38,12 @@ public class CharacterInfo extends Component implements Colision, Constants {
     private boolean isGuarding = false;
     private Rectangle colidedBox = null;
 
+    /**
+     * Método que guarda os informações do caracter.
+     * @param id 
+     * @param playerCtrl 
+     * @param stage 
+     */
     public CharacterInfo(String id, PlayerCtrl playerCtrl, Stage stage) {
         this.id = id;
         this.vertSpeed = 0;
@@ -43,14 +52,23 @@ public class CharacterInfo extends Component implements Colision, Constants {
         this.life = 100;
     }
 
+    /*****************************************************************************/
+    /**
+     * Conjunto de métodos que lê as informações do personagem.
+     */
     public int getLife() {
-        return (int)life;
+        return (int) life;
     }
 
     public double getVertSpeed() {
         return vertSpeed;
     }
 
+    /*****************************************************************************/
+    /*****************************************************************************/
+    /**
+     * Conjunto de métodos boleanos que verificam se o usuário está em alguma ação.
+     */
     public boolean isJumping() {
         return isJumping;
     }
@@ -71,6 +89,10 @@ public class CharacterInfo extends Component implements Colision, Constants {
         return isDashing;
     }
 
+    /**
+     * Método boleano que irá mudar as imagens para direita;
+     * @toRight 
+     */
     public boolean toRight() {
         return toRight;
     }
@@ -91,6 +113,11 @@ public class CharacterInfo extends Component implements Colision, Constants {
         return isGuarding;
     }
 
+    /*****************************************************************************/
+    /*****************************************************************************/
+    /**
+     * Conjunto de métodos que escrevem e reescreem o valor inicializado. 
+     */
     public void setIsGuarding(boolean isGuarding) {
         this.isGuarding = isGuarding;
     }
@@ -115,6 +142,11 @@ public class CharacterInfo extends Component implements Colision, Constants {
         this.isDashing = isDashing;
     }
 
+    /*****************************************************************************/
+    /*****************************************************************************/
+    /**
+     * Método que controla e restringe as ações do usuário.
+     */
     @Override
     public void update() {
         Point pos = owner.getPosition();
@@ -172,19 +204,19 @@ public class CharacterInfo extends Component implements Colision, Constants {
                                                 isJumping = false;
                                             } else {
                                                 pos.setLocation(pos.getX(), pos.getY() - vertSpeed);
-                                                vertSpeed -= GRAVITY/2;
+                                                vertSpeed -= GRAVITY / 2;
                                             }
                                         } else {
                                             pos.setLocation(pos.getX(), pos.getY() - vertSpeed);
-                                                vertSpeed -= GRAVITY/2;
+                                            vertSpeed -= GRAVITY / 2;
                                         }
                                     } else {
                                         pos.setLocation(pos.getX(), pos.getY() - vertSpeed);
-                                                vertSpeed -= GRAVITY/2;
+                                        vertSpeed -= GRAVITY / 2;
                                     }
                                 } else {
                                     pos.setLocation(pos.getX(), pos.getY() - vertSpeed);
-                                                vertSpeed -= GRAVITY/2;
+                                    vertSpeed -= GRAVITY / 2;
                                 }
                             }
 
@@ -229,7 +261,10 @@ public class CharacterInfo extends Component implements Colision, Constants {
         }
         owner.setPosition(pos);
     }
-
+/*****************************************************************************/
+    /**
+     * Método que verifica a colisão do personagem com outro objeto.
+     */
     @Override
     public boolean colision() {
         Iterator<Entity> it = stage.getEntityIterator();
@@ -245,6 +280,11 @@ public class CharacterInfo extends Component implements Colision, Constants {
         }
         return colision;
     }
+    /*****************************************************************************/
+    
+    /**
+     * 
+     */
 
     @Override
     public void colisionAction(Entity entity) {
