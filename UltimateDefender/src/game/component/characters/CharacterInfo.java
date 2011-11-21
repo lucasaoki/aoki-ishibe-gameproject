@@ -19,7 +19,7 @@ import java.util.Iterator;
  */
 public class CharacterInfo extends Component implements Colision, Constants {
 
-    float life;
+    private float life;
     private Stage stage;
     private PlayerCtrl playerCtrl;
     private double vertSpeed;
@@ -41,6 +41,10 @@ public class CharacterInfo extends Component implements Colision, Constants {
         this.stage = stage;
         this.playerCtrl = playerCtrl;
         this.life = 100;
+    }
+
+    public int getLife() {
+        return (int)life;
     }
 
     public double getVertSpeed() {
@@ -116,7 +120,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
         Point pos = owner.getPosition();
         colision();
         if (!won) { //jogando
-            if (life < 0) { //morreu
+            if (life < 0 && owner.getId().equals(stage.getMainPlayer().getId())) { //morreu
                 lose = true;
             } else { //engine do player
                 if (playerCtrl.isGuarding() && !isJumping) {
@@ -205,7 +209,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
                             }
                         }
                     } else {
-                        life--;
+                        life = life - 0.75f;
                     }
                 }
             }

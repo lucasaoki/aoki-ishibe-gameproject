@@ -18,6 +18,7 @@ import java.util.Iterator;
  */
 public final class Stage extends Entity {
 
+    private Entity mainPlayer = null;
     private Rectangle box = null;
     private ArrayList<Rectangle> boxes = null;
     private ArrayList<Entity> entities = null;
@@ -29,8 +30,6 @@ public final class Stage extends Entity {
         gc.setStageSelected(this);
         
         this.createStage();
-
-//        this.addEntity(this);
     }
 
     /*insercao de entidades que implementam colisao no mapa*/
@@ -45,9 +44,16 @@ public final class Stage extends Entity {
     public Iterator<Rectangle> getBoxesIterator(){
         return boxes.iterator();
     }
+
+    public Entity getMainPlayer() {
+        return mainPlayer;
+    }
+
+    public void setMainPlayer(Entity mainPlayer) {
+        this.mainPlayer = mainPlayer;
+    }
     
     public final void createStage(){
-//        box = new Rectangle(0, 0, 640, 480);
         this.boxes.add(new Rectangle(0, 240, 105-36, 25));
         this.boxes.add(new Rectangle(105+36, 105, 105-72, 25));
         this.boxes.add(new Rectangle(210+36, 290, 220-72, 25));
@@ -56,7 +62,5 @@ public final class Stage extends Entity {
         this.boxes.add(new Rectangle(0, 425, 640, 300));
         this.addComponent(new ImageRenderComponent("BGImage", "/images/backgrounds/bg_bleach.png"));
         this.setPosition(new Point(0, 0));
-//        this.setColisionBox(box);
-//        this.setScale(1);
     }
 }

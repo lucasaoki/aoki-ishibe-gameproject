@@ -21,15 +21,16 @@ import game.util.TimerListener;
  */
 public class GamePanel extends StatePanel {
 
+    private Stage stage;
     private final Timer timer;
 
-    public GamePanel(GameContainer gc, int playerChoice) {
+    public GamePanel(GameContainer gc) {
         super(640, 480);
         gc.getMainFrame().setSize(640, 580);
         gc.setMainPanel(this);
-        entities.add(new Stage("Stage", gc));
-
-        setPlayer(gc, playerChoice);
+        stage = new Stage("Stage", gc);
+        entities.add(stage);
+        setPlayer(gc, gc.getChoice());
 
         timer = new Timer(new TimerListener() {
 
@@ -52,6 +53,8 @@ public class GamePanel extends StatePanel {
                 entities.add(new Ichigo(gc, new CreepCtrl("IchigoCtrl", kenshin)));
                 entities.add(new Zoro(gc, new CreepCtrl("ZoroCtrl", kenshin)));
                 entities.add(kenshin);
+                stage.setMainPlayer(kenshin);
+                gc.setPlayerChoice(kenshin);
                 break;
             case 1:
                 Hiei hiei = new Hiei(gc, new P1control("HieiCtrl"));
@@ -59,6 +62,8 @@ public class GamePanel extends StatePanel {
                 entities.add(new Ichigo(gc, new CreepCtrl("IchigoCtrl", hiei)));
                 entities.add(new Zoro(gc, new CreepCtrl("ZoroCtrl", hiei)));
                 entities.add(hiei);
+                stage.setMainPlayer(hiei);
+                gc.setPlayerChoice(hiei);
                 break;
             case 2:
                 Ichigo ichigo = new Ichigo(gc, new P1control("IchigoCtrl"));
@@ -66,6 +71,8 @@ public class GamePanel extends StatePanel {
                 entities.add(new Kenshin(gc, new CreepCtrl("KenshinCtrl", ichigo)));
                 entities.add(new Zoro(gc, new CreepCtrl("ZoroCtrl", ichigo)));
                 entities.add(ichigo);
+                stage.setMainPlayer(stage);
+                gc.setPlayerChoice(ichigo);
                 break;
             case 3:
                 Zoro zoro = new Zoro(gc, new P1control("ZoroCtrl"));
@@ -73,6 +80,8 @@ public class GamePanel extends StatePanel {
                 entities.add(new Ichigo(gc, new CreepCtrl("IchigoCtrl", zoro)));
                 entities.add(new Kenshin(gc, new CreepCtrl("KenshinCtrl", zoro)));
                 entities.add(zoro);
+                stage.setMainPlayer(zoro);
+                gc.setPlayerChoice(zoro);
                 break;
         }
     }

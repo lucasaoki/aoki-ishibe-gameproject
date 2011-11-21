@@ -4,6 +4,7 @@
  */
 package game.gui;
 
+import game.entity.Entity;
 import game.gui.menus.MenuCredits;
 import game.gui.menus.MenuHighscore;
 import game.gui.menus.MenuPanel;
@@ -59,6 +60,14 @@ public class GameContainer extends Thread {
         this.choice = choice;
     }
 
+    public Entity getPlayerChoice() {
+        return playerChoice;
+    }
+
+    public void setPlayerChoice(Entity playerChoice) {
+        this.playerChoice = playerChoice;
+    }
+
     public void createNewFrame() {
         mainFrame = new JFrame(id);
         mainFrame.setSize(640, 480);
@@ -83,7 +92,7 @@ public class GameContainer extends Thread {
                 cp.add(new PlayerSelectionPanel(this));
                 break;
             case GAMESTATE:
-                cp.add(new GamePlay(this, choice));
+                cp.add(new GamePlay(this));
                 break;
             case HIGHSTATE:
                 cp.add(new MenuHighscore(this));
@@ -104,5 +113,6 @@ public class GameContainer extends Thread {
     private StatePanel mainPanel = null;
     private Container cp = null;
     private Stage stageSelected = null;
+    private Entity playerChoice = null;
     private int choice = 0;
 }
