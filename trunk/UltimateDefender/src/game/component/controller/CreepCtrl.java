@@ -15,9 +15,7 @@ import game.util.TimerListener;
  * @author Seiji
  */
 public class CreepCtrl extends PlayerCtrl implements Constants {
-    
-    private boolean  ia = false;
-    private int random = 0; 
+
     Entity entity = null;
     CharacterInfo entityInfo = null;
     private boolean followNow = false;
@@ -43,7 +41,7 @@ public class CreepCtrl extends PlayerCtrl implements Constants {
                 standing = false;
                 followNow = true;
             }
-        }, 3000);
+        }, 3500);
 
         attackTimer = new Timer(new TimerListener() {
 
@@ -52,7 +50,7 @@ public class CreepCtrl extends PlayerCtrl implements Constants {
                 standing = false;
                 attackNow = true;
             }
-        }, 4000);
+        }, 4500);
 
         standTimer = new Timer(new TimerListener() {
 
@@ -62,14 +60,17 @@ public class CreepCtrl extends PlayerCtrl implements Constants {
                 attackNow = false;
                 followNow = false;
             }
-        }, 5000);
-//        standTimer.start();
-//        chaseTimer.start();
-//        attackTimer.start();
+        }, 5500);
+        standTimer.start();
+        chaseTimer.start();
+        attackTimer.start();
     }
 
     @Override
     public boolean isMovingRight() {
+        if ((entity.getPosition().y - 50 > owner.getPosition().y) && owner.getPosition().x > 100) {
+            return true;
+        }
         if (owner.getPosition().x < entity.getPosition().x - 50 && followNow) {
             return true;
         }
@@ -78,6 +79,9 @@ public class CreepCtrl extends PlayerCtrl implements Constants {
 
     @Override
     public boolean isMovingLeft() {
+        if ((entity.getPosition().y - 50 > owner.getPosition().y) && owner.getPosition().x < 640) {
+            return true;
+        }
         if (owner.getPosition().x > entity.getPosition().x + 50 && followNow) {
             return true;
         }

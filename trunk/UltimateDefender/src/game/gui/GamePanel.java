@@ -39,7 +39,7 @@ public class GamePanel extends StatePanel {
                     entity.update();
                 }
             }
-        }, 40);
+        }, 15);
 
         timer.start();
     }

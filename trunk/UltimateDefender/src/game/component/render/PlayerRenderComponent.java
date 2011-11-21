@@ -130,13 +130,5 @@ public class PlayerRenderComponent extends RenderComponent {
         af.scale(scale, scale);
 
         gr.drawImage(currentAnimation[index], af, null);
-
-        gr.draw(owner.getColisionBox());
-        
-        Iterator<Rectangle> it = gc.getStageSelected().getBoxesIterator();
-        while (it.hasNext()) {
-            Rectangle rectangle = it.next();
-            gr.draw(rectangle);
-        }
     }
 }

@@ -22,7 +22,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
     float life;
     private Stage stage;
     private PlayerCtrl playerCtrl;
-    private float vertSpeed;
+    private double vertSpeed;
     private boolean isJumping = false;
     private boolean isWalkingR = false;
     private boolean isWalkingL = false;
@@ -43,7 +43,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
         this.life = 100;
     }
 
-    public float getVertSpeed() {
+    public double getVertSpeed() {
         return vertSpeed;
     }
 
@@ -115,8 +115,6 @@ public class CharacterInfo extends Component implements Colision, Constants {
     public void update() {
         Point pos = owner.getPosition();
         colision();
-
-
         if (!won) { //jogando
             if (life < 0) { //morreu
                 lose = true;
@@ -127,75 +125,62 @@ public class CharacterInfo extends Component implements Colision, Constants {
                     isGuarding = false;
                     if (!getHit) { //não levando hit
                         if (!isAttacking) {// não atacando
-                            if (playerCtrl.isMovingRight() && pos.x < 640 - 80) {
-                                pos.x += WALKSPEED;
+                            if (playerCtrl.isMovingRight() && pos.getX() < 640 - 80) {
+                                pos.setLocation(pos.getX() + WALKSPEED, pos.getY());
                                 toRight = true;
                                 isWalkingR = true;
-                            } else if (playerCtrl.isMovingLeft() && pos.x > 0) {
-                                pos.x -= WALKSPEED;
+                            } else if (playerCtrl.isMovingLeft() && pos.getX() > 0) {
+                                pos.setLocation(pos.getX() - WALKSPEED, pos.getY());
                                 toRight = false;
                                 isWalkingL = true;
                             } else { //is standing
                                 isWalkingL = false;
                                 isWalkingR = false;
                             }
-                            if (!isJumping) {
-                                if (!stageColision()) {
-                                    pos.y -= vertSpeed;
-                                    vertSpeed -= GRAVITY;
-                                } else {
-                                    if (vertSpeed < 0) {
+//                            if (vertSpeed < -JUMPSPEED) {
+//                                vertSpeed = -JUMPSPEED;
+//                            }
+                            if (!isJumping) { //not jumping
+                                //começou a pular
+                                if (playerCtrl.isJumping() && vertSpeed == 0) {
+                                    vertSpeed = JUMPSPEED;
+                                    isJumping = true;
+                                } else if (stageColision()) {
+                                    if (vertSpeed <= 0) {
+                                        isJumping = false;
                                         vertSpeed = 0;
                                     }
+                                } else {
+                                    isJumping = true;
+                                    pos.setLocation(pos.getX(), pos.getY() - vertSpeed);
+                                    vertSpeed -= GRAVITY;
                                 }
-                                if (stageColision()) {
-                                    if (playerCtrl.isJumping() && vertSpeed == 0) {
-                                        vertSpeed = JUMPSPEED;
-                                        isJumping = true;
-                                    } else {
-                                        if (vertSpeed < 0) {
-                                            double dif = colidedBox.getY() - owner.getColisionBox().getY();
-                                            if (dif < 70) {
-                                                vertSpeed = 0;
-                                                
-
-                                            }
-                                        }
-                                    }
-
-                                } else if (playerCtrl.isAttacking()) {
+                                if (playerCtrl.isAttacking()) {
                                     isAttacking = true;
                                 }
 
                             } else { //is jumping
                                 if (stageColision()) {
                                     if (vertSpeed < 0) {
-                                        double dif = colidedBox.getY() - owner.getColisionBox().getY();
-                                        if (dif > 70) {
-                                            vertSpeed = 0;
-                                            isJumping = false;
-
+                                        if (colidedBox.getY() > owner.getColisionBox().getY()) {
+                                            if (owner.getColisionBox().getHeight() - (colidedBox.getY() - owner.getColisionBox().getY()) < 12.5) {
+                                                vertSpeed = 0;
+                                                isJumping = false;
+                                            } else {
+                                                pos.setLocation(pos.getX(), pos.getY() - vertSpeed);
+                                                vertSpeed -= GRAVITY/2;
+                                            }
                                         } else {
-                                            if (vertSpeed > -9) {
-                                                pos.y -= vertSpeed;
-                                                vertSpeed -= GRAVITY;
-                                            } else {
-                                                pos.y -= vertSpeed;
-                                            }
+                                            pos.setLocation(pos.getX(), pos.getY() - vertSpeed);
+                                                vertSpeed -= GRAVITY/2;
                                         }
-                                    } else {   if (vertSpeed > -9) {
-                                                pos.y -= vertSpeed;
-                                                vertSpeed -= GRAVITY;
-                                            } else {
-                                                pos.y -= vertSpeed;
-                                            }
+                                    } else {
+                                        pos.setLocation(pos.getX(), pos.getY() - vertSpeed);
+                                                vertSpeed -= GRAVITY/2;
                                     }
-                                } else {   if (vertSpeed > -9) {
-                                                pos.y -= vertSpeed;
-                                                vertSpeed -= GRAVITY;
-                                            } else {
-                                                pos.y -= vertSpeed;
-                                            }
+                                } else {
+                                    pos.setLocation(pos.getX(), pos.getY() - vertSpeed);
+                                                vertSpeed -= GRAVITY/2;
                                 }
                             }
 
