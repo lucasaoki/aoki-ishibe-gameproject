@@ -53,7 +53,7 @@ public final class Stage extends Entity {
         this.boxes.add(new Rectangle(210+36, 290, 220-72, 25));
         this.boxes.add(new Rectangle(425+36, 105, 105-72, 25));
         this.boxes.add(new Rectangle(535+36, 240, 105-36, 25));
-        this.boxes.add(new Rectangle(0, 425, 640, 55));
+        this.boxes.add(new Rectangle(0, 425, 640, 300));
         this.addComponent(new ImageRenderComponent("BGImage", "/images/backgrounds/bg_bleach.png"));
         this.setPosition(new Point(0, 0));
 //        this.setColisionBox(box);
