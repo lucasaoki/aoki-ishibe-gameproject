@@ -4,18 +4,16 @@
  */
 package game.component.controller;
 
-import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 /**
- *
+ * Classe de controle do jogador
  * @author Lucas
  */
 public class P1control extends PlayerCtrl {
 
     public P1control(String id) {
         super(id);
-//        owner.setPosition(new Point(100, 335));
     }
 
     @Override

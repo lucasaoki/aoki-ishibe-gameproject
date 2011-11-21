@@ -16,7 +16,7 @@ import game.util.Timer;
 import game.util.TimerListener;
 
 /**
- *
+ * Painel principal do jogo
  * @author Lucas
  */
 public class GamePanel extends StatePanel {
@@ -43,7 +43,13 @@ public class GamePanel extends StatePanel {
         }, 15);
         timer.start();
     }
-    
+     /**
+     * Inicializa os personagens, de acordo com a escolha do usuário
+     * @param gc
+     * Container do jogo
+     * @param playerChoice 
+     * Escolha do jogador
+     */
     private void setPlayer(GameContainer gc, int playerChoice) {
         switch (playerChoice) {
             case 0:
@@ -70,7 +76,7 @@ public class GamePanel extends StatePanel {
                 entities.add(new Kenshin(gc, new CreepCtrl("KenshinCtrl", ichigo)));
                 entities.add(new Zoro(gc, new CreepCtrl("ZoroCtrl", ichigo)));
                 entities.add(ichigo);
-                stage.setMainPlayer(stage);
+                stage.setMainPlayer(ichigo);
                 gc.setPlayerChoice(ichigo);
                 break;
             case 3:

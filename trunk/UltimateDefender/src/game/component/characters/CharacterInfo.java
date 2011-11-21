@@ -19,7 +19,8 @@ import java.util.Iterator;
  * @author Lucas
  */
 public class CharacterInfo extends Component implements Colision, Constants {
-    
+
+    private static int creepsCtrl = 0;
     private float life;
     private Stage stage;
     private PlayerCtrl playerCtrl;
@@ -44,10 +45,11 @@ public class CharacterInfo extends Component implements Colision, Constants {
      */
     public CharacterInfo(String id, PlayerCtrl playerCtrl, Stage stage) {
         this.id = id;
+        this.creepsCtrl = 0;
         this.vertSpeed = 0;
         this.stage = stage;/*Informações da fase*/
         this.playerCtrl = playerCtrl;/*Informações do controlador*/
-        this.life = 100;
+        this.life = 1000;
     }
 
     /*****************************************************************************/
@@ -57,7 +59,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
     public int getLife() {
         return (int) life;
     }
-    
+
     public double getVertSpeed() {
         return vertSpeed;
     }
@@ -69,19 +71,19 @@ public class CharacterInfo extends Component implements Colision, Constants {
     public boolean isJumping() {
         return isJumping;
     }
-    
+
     public boolean isWalkingR() {
         return isWalkingR;
     }
-    
+
     public boolean isWalkingL() {
         return isWalkingL;
     }
-    
+
     public boolean isAttacking() {
         return isAttacking;
     }
-    
+
     public boolean isDashing() {
         return isDashing;
     }
@@ -93,19 +95,19 @@ public class CharacterInfo extends Component implements Colision, Constants {
     public boolean toRight() {
         return toRight;
     }
-    
+
     public boolean isHit() {
         return getHit;
     }
-    
+
     public boolean lose() {
         return lose;
     }
-    
+
     public boolean won() {
         return won;
     }
-    
+
     public boolean isGuarding() {
         return isGuarding;
     }
@@ -117,23 +119,23 @@ public class CharacterInfo extends Component implements Colision, Constants {
     public void setIsGuarding(boolean isGuarding) {
         this.isGuarding = isGuarding;
     }
-    
+
     public void setWon(boolean won) {
         this.won = won;
     }
-    
+
     public void setLose(boolean lose) {
         this.lose = lose;
     }
-    
+
     public void setIsHit(boolean getHit) {
         this.getHit = getHit;
     }
-    
+
     public void setIsAttacking(boolean isAttacking) {
         this.isAttacking = isAttacking;
     }
-    
+
     public void setIsDashing(boolean isDashing) {
         this.isDashing = isDashing;
     }
@@ -148,8 +150,14 @@ public class CharacterInfo extends Component implements Colision, Constants {
             Point pos = owner.getPosition();
             colision();
             if (!won) { //jogando
-                if (life < 0 && owner.getId().equals(stage.getMainPlayer().getId())) { //morreu
+                if (life < 0) { //morreu
                     lose = true;
+                    if (!owner.getId().equals(stage.getMainPlayer().getId())) {
+                        creepsCtrl++;
+                        if (creepsCtrl >= 3) {
+                            stage.getMainPlayer().getCharInfo().setWon(true);
+                        }
+                    }
                 } else { //engine do player
                     if (playerCtrl.isGuarding() && !isJumping) {//defendendo
                         isGuarding = true;
@@ -187,7 +195,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
                                     if (playerCtrl.isAttacking()) {//ataque basico nao pode ser executado enquanto pula
                                         isAttacking = true;
                                     }
-                                    
+
                                 } else { //is jumping
                                     if (stageColision()) {
                                         if (vertSpeed < 0) {
@@ -234,18 +242,20 @@ public class CharacterInfo extends Component implements Colision, Constants {
                                 }
                             }
                         } else {//getting hit
-                            life = life - 1f;
+                            life = life - 5f;
                         }
                     }
                 }
             } else {//lose
-                isJumping = false;
-                isWalkingR = false;
-                isWalkingL = false;
-                isAttacking = false;
-                isDashing = false;
-                getHit = false;
-                isGuarding = false;
+                if (!owner.getId().equals(stage.getMainPlayer().getId())) {
+                    isJumping = false;
+                    isWalkingR = false;
+                    isWalkingL = false;
+                    isAttacking = false;
+                    isDashing = false;
+                    getHit = false;
+                    isGuarding = false;
+                }
             }
             if (toRight) {//controle da caixa de colisao para seguir a posição do personagem
                 owner.getColisionBox().setLocation(new Point(pos.x + 32, pos.y + 16));
@@ -298,7 +308,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
             setIsHit(false);
         }
     }
-    
+
     /*****************************************************************************/
     /**
      * Controle de colisão com o cenario. 

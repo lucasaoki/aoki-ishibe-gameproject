@@ -15,14 +15,14 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 /**
- *
+ * Classe do personagem do jogo
  * @author Lucas
  */
 public class Kenshin extends Entity {
 
     public Kenshin(GameContainer gc, PlayerCtrl playerCtrl) {
         super("Kenshin");
-
+        //Captura dos movimentos
         images = new Image[10][];
         images[CharsMoves.getMoveIndex("ATTACK")] = readFrames("ATTACK", 5);
         images[CharsMoves.getMoveIndex("DASH")] = readFrames("DASH", 2);
@@ -34,7 +34,7 @@ public class Kenshin extends Entity {
         images[CharsMoves.getMoveIndex("ULTACTION")] = readFrames("ULTACTION", 6);
         images[CharsMoves.getMoveIndex("WALK")] = readFrames("WALK", 8);
         images[CharsMoves.getMoveIndex("LOSE")] = readFrames("LOSE", 5);
-
+        //Inicialização e captura de componentes
         setPosition(new Point(200, 330));
         setColisionBox(new Rectangle(new Point(getPosition().x, getPosition().y + 26), new Dimension(64, 80)));
         gc.getMainPanel().addKeyListener(playerCtrl);

@@ -16,7 +16,8 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 /**
- *
+ * Container do jogo
+ * Carrega as principais informações do jogo
  * @author Lucas
  */
 public  class GameContainer extends Thread {
@@ -25,61 +26,111 @@ public  class GameContainer extends Thread {
         super(name);
         this.id = name;
     }
-
+    
     @Override
     public void run() {
         setGameState(GameContainer.State.MENUSTATE);
     }
-
+ 
+    /**
+     * Retorna o frame principal
+     * @return 
+     */
     public JFrame getMainFrame() {
         return mainFrame;
     }
 
+    /**
+     * Retorna o painel principal do jogo
+     * @return 
+     */
     public StatePanel getMainPanel() {
         return gamePanel;
     }
 
+    /**
+     * Retorna o estágio principal
+     * @return 
+     */
     public Stage getStageSelected() {
         return stageSelected;
     }
 
+    /**
+     * Seta o estágio principal
+     * @param stageSelected 
+     */
     public void setStageSelected(Stage stageSelected) {
         this.stageSelected = stageSelected;
     }
 
+    /**
+     * Seta o painel principal
+     * @param mainPanel 
+     */
     public void setMainPanel(GamePanel mainPanel) {
         this.gamePanel = mainPanel;
         this.gamePanel.setFocusable(true);
     }
 
+    /**
+     * Retorna a escolha do personagem do jogador
+     * @return 
+     */
     public int getChoice() {
         return choice;
     }
 
+    /**
+     * Seta a escolha do jogador
+     * @param choice 
+     */
     public void setChoice(int choice) {
         this.choice = choice;
     }
 
+    /**
+     * Retorna a entidade escolhida pelo jogador
+     * @return 
+     */
     public Entity getPlayerChoice() {
         return playerChoice;
     }
 
+    /**
+     * Seta a entidade escolhida pelo jogador
+     * @param playerChoice 
+     */
     public void setPlayerChoice(Entity playerChoice) {
         this.playerChoice = playerChoice;
     }
 
+    /**
+     * Pausa o jogo
+     */
     public void pauseGame() {
         pause = true;
     }
 
+    /**
+     * Despausa o jogo
+     */
     public void unPause() {
         pause = false;
     }
 
+    /**
+     * Checa o estado do pause
+     * @return 
+     * Retorna se true se pausado ou false c.c.
+     */
     public boolean isPause(){
         return pause;
     }
 
+    /**
+     * Cria o novo frame
+     */
     public void createNewFrame() {
         mainFrame = new JFrame(id);
         mainFrame.setSize(640, 480);
@@ -91,6 +142,11 @@ public  class GameContainer extends Thread {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Seta o estágio
+     * @param state 
+     * estagio selecionado
+     */
     public void setGameState(State state) {
         if (mainFrame != null) {
             mainFrame.dispose();
@@ -116,6 +172,9 @@ public  class GameContainer extends Thread {
         cp.validate();
     }
 
+    /**
+     * Estados do jogo
+     */
     public enum State {
 
         MENUSTATE, PLAYERSELECT, GAMESTATE, HIGHSTATE, CREDITS;

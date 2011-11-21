@@ -106,15 +106,6 @@ public class PlayerRenderComponent extends RenderComponent {
             }
         }
     }
-    
-        /**
-     * Escolha da animação a ser renderizada
-     * @param animation 
-     * Animação escolhida
-     */
-//    public void setAnimation(Image[] animation) {
-//        this.currentAnimation = animation;
-//    }
 
     /**
      * Escolha da animação a ser renderizada
