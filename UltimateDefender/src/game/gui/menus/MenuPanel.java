@@ -30,12 +30,12 @@ public class MenuPanel extends StatePanel implements ActionListener, KeyListener
 
     /** Creates new form MenuPanel2 */
     public MenuPanel(GameContainer gc) {
-        super(640, 480);
+        super(gc);
         initComponents();
         this.gc = gc;
 
         entities.add(new Entity("Background"));
-        getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/BG5.jpg"));
+        getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/images/backgrounds/maintitle.jpg"));
 
         gc.getMainFrame().addKeyListener(this);
         Start.setSelected(true);

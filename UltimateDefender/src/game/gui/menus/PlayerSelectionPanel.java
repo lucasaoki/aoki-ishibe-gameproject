@@ -30,13 +30,13 @@ public class PlayerSelectionPanel extends StatePanel implements KeyListener, Act
 
     /** Creates new form PlayerSelectionPanel */
     public PlayerSelectionPanel(GameContainer gc) {
-        super(640, 480);
+        super(gc);
         initComponents();
 
         this.gc = gc;
 
         entities.add(new Entity("Background"));
-        getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/BG4.jpg"));
+        getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/images/backgrounds/basicbackground.jpg"));
 
         gc.getMainFrame().addKeyListener(this);
 

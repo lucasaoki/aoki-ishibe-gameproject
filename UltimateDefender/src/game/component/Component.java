@@ -7,12 +7,13 @@ package game.component;
 import game.entity.Entity;
 
 /**
- *
+ * Componentes que uma determinada entidade carrega.
  * @author Lucas Aoki
  */
 public abstract class Component {
-
+    /*id da componente*/
     protected String id;
+    /*Entidade pai*/
     protected Entity owner;
 
     public String getID() {
