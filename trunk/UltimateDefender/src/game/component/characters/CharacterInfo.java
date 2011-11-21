@@ -152,6 +152,15 @@ public class CharacterInfo extends Component implements Colision, Constants {
                                     if (playerCtrl.isJumping() && vertSpeed == 0) {
                                         vertSpeed = JUMPSPEED;
                                         isJumping = true;
+                                    } else {
+                                        if (vertSpeed < 0) {
+                                            double dif = colidedBox.getY() - owner.getColisionBox().getY();
+                                            if (dif < 70) {
+                                                vertSpeed = 0;
+                                                
+
+                                            }
+                                        }
                                     }
 
                                 } else if (playerCtrl.isAttacking()) {
@@ -165,20 +174,28 @@ public class CharacterInfo extends Component implements Colision, Constants {
                                         if (dif > 70) {
                                             vertSpeed = 0;
                                             isJumping = false;
-                                            System.out.println(vertSpeed + "  " + owner.getColisionBox().height + "   " + dif + " " + (-1) * (dif - owner.getColisionBox().height));
 
-
-                                        }else{
-                                        pos.y -= vertSpeed;
-                                        vertSpeed -= GRAVITY;
+                                        } else {
+                                            if (vertSpeed > -9) {
+                                                pos.y -= vertSpeed;
+                                                vertSpeed -= GRAVITY;
+                                            } else {
+                                                pos.y -= vertSpeed;
+                                            }
                                         }
-                                    } else {
-                                        pos.y -= vertSpeed;
-                                        vertSpeed -= GRAVITY;
+                                    } else {   if (vertSpeed > -9) {
+                                                pos.y -= vertSpeed;
+                                                vertSpeed -= GRAVITY;
+                                            } else {
+                                                pos.y -= vertSpeed;
+                                            }
                                     }
-                                } else {
-                                    pos.y -= vertSpeed;
-                                    vertSpeed -= GRAVITY;
+                                } else {   if (vertSpeed > -9) {
+                                                pos.y -= vertSpeed;
+                                                vertSpeed -= GRAVITY;
+                                            } else {
+                                                pos.y -= vertSpeed;
+                                            }
                                 }
                             }
 

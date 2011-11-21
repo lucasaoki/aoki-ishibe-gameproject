@@ -4,21 +4,24 @@
  */
 package game.gui.menus;
 
+import game.gui.GameContainer;
 import game.gui.StatePanel;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 /**
  *
  * @author Seiji
  */
-public class HighScorePanel extends StatePanel {
+public class HighScorePanel extends StatePanel{
 
     private JTextArea HighScore = null;
     private String linha = null;
@@ -27,47 +30,62 @@ public class HighScorePanel extends StatePanel {
     private BufferedReader bReader = null;
     private FileReader fReader = null;
 
-    public HighScorePanel(int width, int height) {
-        super(width, height);
+    public HighScorePanel(GameContainer gc) {
+        super(345, 365);
+        
+        Arq = new File("Highscore.txt");
+        HighScore = new JTextArea(345, 365);
         try {
-
-            Arq = new File("Highscore.txt");
-            HighScore = new JTextArea(10, 20);
-
-            add(HighScore);
             fReader = new FileReader(Arq);
-            bReader = new BufferedReader(fReader);
-            String texto = "";
-
+        } catch (FileNotFoundException ex) {
+        }
+        bReader = new BufferedReader(fReader);
+        String texto = "";
+        try {
             while ((linha = bReader.readLine()) != null) {
                 texto += i + " -----";
                 i++;
                 texto += linha;
                 texto += "\r\n";
             }
-            confArea(HighScore, texto);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
+            HighScore.setLineWrap(true);
+            HighScore.setEditable(false);
+            HighScore.setBackground(new Color(255, 255, 255, 0));
+            HighScore.setFont(new Font("TimesRoman", Font.BOLD, 24));
+
+            HighScore.setText(texto);
+            add(HighScore);
         } catch (IOException ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                bReader.close();
-                fReader.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+        }
+
+
+
+
+        System.out.println(texto);
+        add(HighScore);
+        try {
+            bReader.close();
+            fReader.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
-    public void confArea(JTextArea Area, String texto) {
+    public JTextArea confArea(JTextArea Area, String texto) {
 
         Area.setLineWrap(true);
         Area.setEditable(false);
         Area.setBackground(new Color(255, 255, 255, 0));
-        Area.getSelectedTextColor();
         Area.setFont(new Font("TimesRoman", Font.BOLD, 24));
+        Area.setText(texto);
+        return Area;
+    }
 
-        HighScore.setText(texto);
+    public static void main(String[] args) {
+        JFrame JF = new JFrame();
+        Container Cp = new Container();
+
+
     }
 }
