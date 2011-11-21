@@ -9,7 +9,7 @@ import game.gui.menus.MenuCredits;
 import game.gui.menus.MenuHighscore2;
 import game.gui.menus.MenuPanel;
 import game.gui.menus.PlayerSelectionPanel;
-import game.stages.Stage;
+import game.stage.Stage;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -19,7 +19,7 @@ import javax.swing.JFrame;
  *
  * @author Lucas
  */
-public class GameContainer extends Thread {
+public  class GameContainer extends Thread {
 
     public GameContainer(String name) {
         super(name);
@@ -36,7 +36,7 @@ public class GameContainer extends Thread {
     }
 
     public StatePanel getMainPanel() {
-        return mainPanel;
+        return gamePanel;
     }
 
     public Stage getStageSelected() {
@@ -47,9 +47,9 @@ public class GameContainer extends Thread {
         this.stageSelected = stageSelected;
     }
 
-    public void setMainPanel(StatePanel mainPanel) {
-        this.mainPanel = mainPanel;
-        this.mainPanel.setFocusable(true);
+    public void setMainPanel(GamePanel mainPanel) {
+        this.gamePanel = mainPanel;
+        this.gamePanel.setFocusable(true);
     }
 
     public int getChoice() {
@@ -66,6 +66,18 @@ public class GameContainer extends Thread {
 
     public void setPlayerChoice(Entity playerChoice) {
         this.playerChoice = playerChoice;
+    }
+
+    public void pauseGame() {
+        pause = true;
+    }
+
+    public void unPause() {
+        pause = false;
+    }
+
+    public boolean isPause(){
+        return pause;
     }
 
     public void createNewFrame() {
@@ -110,9 +122,10 @@ public class GameContainer extends Thread {
     }
     private String id;
     private JFrame mainFrame = null;
-    private StatePanel mainPanel = null;
+    private GamePanel gamePanel = null;
     private Container cp = null;
     private Stage stageSelected = null;
     private Entity playerChoice = null;
     private int choice = 0;
+    private boolean pause = false;
 }

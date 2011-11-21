@@ -9,7 +9,13 @@ package game.component.characters;
  * @author Lucas
  */
 public class CharsMoves {
-
+    /**
+     * Informação dos movimentos do personagem
+     * @param move
+     * Movimento desejado
+     * @return 
+     * Informação de indice do movimento desejado
+     */
     public static int getMoveIndex(String move) {
         int index = 0;
         switch (move) {

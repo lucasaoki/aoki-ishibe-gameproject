@@ -12,6 +12,7 @@ import game.entity.Entity;
  */
 public interface Colision {
     
+    /*Para classes que implementa colisão*/
     public boolean colision();
     public void colisionAction(Entity entity);
     public boolean stageColision();

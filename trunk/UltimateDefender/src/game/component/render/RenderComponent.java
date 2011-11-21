@@ -8,7 +8,7 @@ import game.component.Component;
 import java.awt.Graphics2D;
 
 /**
- *
+ * Componente base para a renderização
  * @author Lucas Aoki
  */
 public abstract class RenderComponent extends Component {

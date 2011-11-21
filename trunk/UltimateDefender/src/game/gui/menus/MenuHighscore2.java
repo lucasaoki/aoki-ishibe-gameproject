@@ -40,18 +40,18 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
 
     /** Creates new form MenuHighscore2 */
     public MenuHighscore2(GameContainer gc) {
-          super(0, 0);
-        
-        initComponents(); 
+        super(gc);
+
+        initComponents();
         this.gc = gc;
 
         entities.add(new Entity("Background"));
-        getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/BG4.jpg"));
-        
+        getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/images/backgrounds/basicbackground.jpg"));
+
         backButton.setSelected(true);
         backButton.addActionListener(this);
         backButton.addKeyListener(this);
-        
+
         JTextHigh.setText(JText());
     }
 

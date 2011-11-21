@@ -10,6 +10,8 @@
  */
 package game.gui.menus;
 
+import game.component.render.ImageRenderComponent;
+import game.entity.Entity;
 import game.gui.GameContainer;
 import game.gui.StatePanel;
 import java.awt.event.KeyEvent;
@@ -24,8 +26,12 @@ public class MenuCredits extends StatePanel implements KeyListener {
     
     /** Creates new form MenuCreditos2 */
     public MenuCredits(GameContainer gc) {
-        super(640, 480);
+        super(gc);
         this.gc = gc;
+        
+        entities.add(new Entity("Background"));
+        getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/images/backgrounds/basicbackground.jpg"));
+        
         initComponents();
         
         gc.getMainFrame().addKeyListener(this);
@@ -39,23 +45,25 @@ public class MenuCredits extends StatePanel implements KeyListener {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
 
-        setLayout(new java.awt.BorderLayout());
+        setLayout(new java.awt.GridBagLayout());
 
-        backButton.setFont(new java.awt.Font("Lithos Pro Regular", 0, 18));
+        backButton.setFont(new java.awt.Font("Lithos Pro Regular", 0, 18)); // NOI18N
         backButton.setText("BACK");
         backButton.setFocusable(false);
-        jPanel1.add(backButton);
-
-        add(jPanel1, java.awt.BorderLayout.PAGE_END);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
+        gridBagConstraints.weighty = 0.1;
+        add(backButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
     @Override

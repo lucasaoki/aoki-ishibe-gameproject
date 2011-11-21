@@ -10,6 +10,9 @@ package game.component.characters;
  */
 public interface Constants {
 
+    /**
+     * Constantes dos personagens
+     */
     static final double GRAVITY = 0.4f;
     static final double JUMPSPEED = 8f;
     static final double WALKSPEED = 2f;

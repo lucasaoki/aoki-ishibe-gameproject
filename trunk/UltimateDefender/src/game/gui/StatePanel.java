@@ -9,7 +9,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 /*
@@ -17,14 +20,15 @@ import javax.swing.JToggleButton;
  * @author Lucas Aoki
  */
 
-public class StatePanel extends JPanel {
+public class StatePanel extends JPanel implements KeyListener {
 
     protected ArrayList<Entity> entities = null;
+    GameContainer gc = null;
 
-    public StatePanel(int width, int height) {
+    public StatePanel(GameContainer gc) {
         entities = new ArrayList<>();
-        this.setPreferredSize(new Dimension(width, height));
-        this.setBackground(new Color(255, 255, 255, 0));
+        this.gc = gc;
+        addKeyListener(this);
     }
 
     protected Entity getEntity(String id) {
@@ -52,5 +56,28 @@ public class StatePanel extends JPanel {
         JToggleButton button = new JToggleButton(string);
         button.setPreferredSize(new Dimension(width, heigth));
         return button;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int keyTyped = e.getKeyCode();
+        if (keyTyped == KeyEvent.VK_ESCAPE) {
+            gc.pauseGame();
+            int op = JOptionPane.showConfirmDialog(this, "Deseja retornar ao menu inicial?", "Retornar?", JOptionPane.OK_CANCEL_OPTION);
+            if (op == 0) {
+                gc.setGameState(GameContainer.State.MENUSTATE);
+            }
+            else {
+                gc.unPause();
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
     }
 }

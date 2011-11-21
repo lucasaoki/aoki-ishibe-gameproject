@@ -11,7 +11,7 @@ import game.entity.Hiei;
 import game.entity.Ichigo;
 import game.entity.Kenshin;
 import game.entity.Zoro;
-import game.stages.Stage;
+import game.stage.Stage;
 import game.util.Timer;
 import game.util.TimerListener;
 
@@ -20,20 +20,20 @@ import game.util.TimerListener;
  * @author Lucas
  */
 public class GamePanel extends StatePanel {
-
+    
     private Stage stage;
     private final Timer timer;
-
+    
     public GamePanel(GameContainer gc) {
-        super(640, 480);
+        super(gc);
         gc.getMainFrame().setSize(640, 580);
         gc.setMainPanel(this);
         stage = new Stage("Stage", gc);
         entities.add(stage);
         setPlayer(gc, gc.getChoice());
-
+        
         timer = new Timer(new TimerListener() {
-
+            
             @Override
             public void update(Timer timer) {
                 for (Entity entity : entities) {
@@ -41,10 +41,9 @@ public class GamePanel extends StatePanel {
                 }
             }
         }, 15);
-
         timer.start();
     }
-
+    
     private void setPlayer(GameContainer gc, int playerChoice) {
         switch (playerChoice) {
             case 0:
