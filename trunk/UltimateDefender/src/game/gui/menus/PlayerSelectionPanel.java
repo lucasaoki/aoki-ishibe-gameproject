@@ -95,7 +95,7 @@ public class PlayerSelectionPanel extends StatePanel implements KeyListener, Act
         gridBagConstraints.gridy = 1;
         add(zoroSelect, gridBagConstraints);
 
-        confirm.setFont(new java.awt.Font("Lithos Pro Regular", 1, 18)); // NOI18N
+        confirm.setFont(new java.awt.Font("Lithos Pro Regular", 1, 18));
         confirm.setText("Continuar");
         confirm.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -106,7 +106,7 @@ public class PlayerSelectionPanel extends StatePanel implements KeyListener, Act
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
         add(confirm, gridBagConstraints);
 
-        title.setFont(new java.awt.Font("Lithos Pro Regular", 0, 36)); // NOI18N
+        title.setFont(new java.awt.Font("AR JULIAN", 0, 36)); // NOI18N
         title.setText("Player Selection");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

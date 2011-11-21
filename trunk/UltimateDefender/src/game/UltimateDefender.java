@@ -12,9 +12,9 @@ import game.gui.GameContainer;
  */
 public class UltimateDefender {
 
-    
+  
     /**
-     * @param args the command line arguments
+     *  Esta classe inicia o Jogo Utimate Defender.
      */
     public static void main(String[] args) {
         GameContainer gc = new GameContainer("Ultimate Defender");

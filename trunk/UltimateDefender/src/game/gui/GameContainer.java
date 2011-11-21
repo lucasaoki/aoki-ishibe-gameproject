@@ -6,7 +6,7 @@ package game.gui;
 
 import game.entity.Entity;
 import game.gui.menus.MenuCredits;
-import game.gui.menus.MenuHighscore;
+import game.gui.menus.MenuHighscore2;
 import game.gui.menus.MenuPanel;
 import game.gui.menus.PlayerSelectionPanel;
 import game.stages.Stage;
@@ -95,7 +95,7 @@ public class GameContainer extends Thread {
                 cp.add(new GamePlay(this));
                 break;
             case HIGHSTATE:
-                cp.add(new MenuHighscore(this));
+                cp.add(new MenuHighscore2(this));
                 break;
             case CREDITS:
                 cp.add(new MenuCredits(this));
