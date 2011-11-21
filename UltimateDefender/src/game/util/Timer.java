@@ -5,7 +5,7 @@
 package game.util;
 
 /**
- *
+ * Classe timer para o jogo
  * @author Lucas
  */
 public class Timer extends Thread {

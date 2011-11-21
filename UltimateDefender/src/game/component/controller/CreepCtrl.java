@@ -11,7 +11,7 @@ import game.util.Timer;
 import game.util.TimerListener;
 
 /**
- *
+ * Classe de controle da inteligencia artificial
  * @author Seiji
  */
 public class CreepCtrl extends PlayerCtrl implements Constants {
@@ -26,14 +26,14 @@ public class CreepCtrl extends PlayerCtrl implements Constants {
     private Timer standTimer;
     private int timesAttacking = 0;
 
-    public CreepCtrl(String id, Entity entities) {
+    public CreepCtrl(String id, Entity entity) {
         super(id);
-        this.entity = entities;
-        
-        if (CharacterInfo.class.isInstance(entity.getComponent(entity.getId()+"Info"))) {
-            entityInfo = (CharacterInfo)entity.getComponent(entity.getId()+"Info");
+        this.entity = entity;
+
+        if (CharacterInfo.class.isInstance(entity.getComponent(entity.getId() + "Info"))) {
+            entityInfo = (CharacterInfo) entity.getComponent(entity.getId() + "Info");
         }
-        
+
         chaseTimer = new Timer(new TimerListener() {
 
             @Override
@@ -60,7 +60,7 @@ public class CreepCtrl extends PlayerCtrl implements Constants {
                 attackNow = false;
                 followNow = false;
             }
-        }, 5500);
+        }, 2500);
         standTimer.start();
         chaseTimer.start();
         attackTimer.start();
@@ -126,7 +126,13 @@ public class CreepCtrl extends PlayerCtrl implements Constants {
 
     @Override
     public void update() {
-        attackTimer.setTime(owner.getPosition().x * 5);
-        chaseTimer.setTime(owner.getPosition().x * 4);
+        if (owner.getPosition().getX() > 320) {
+            attackTimer.setTime(owner.getPosition().x * 5);
+            chaseTimer.setTime(owner.getPosition().x * 4);
+        }
+        else {
+            attackTimer.setTime(owner.getPosition().x * 15);
+            chaseTimer.setTime(owner.getPosition().x * 14);            
+        }
     }
 }

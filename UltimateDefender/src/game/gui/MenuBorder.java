@@ -40,7 +40,7 @@ public class MenuBorder extends StatePanel {
         mainPlayer = gc.getPlayerChoice();
         charInfo = mainPlayer.getCharInfo();
         
-        jLabel2.setIcon(readIcon("/images/backgrounds/" + mainPlayer.getId().toLowerCase() + "select.jpg"));
+        icon.setIcon(readIcon("/images/backgrounds/" + mainPlayer.getId().toLowerCase() + "select.jpg"));
     }
 
     private Icon readIcon(String path){
@@ -52,8 +52,8 @@ public class MenuBorder extends StatePanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        jLabel1.setText(charInfo.getLife() + " / 100");
-        jProgressBar1.setValue(charInfo.getLife());
+        charName.setText(mainPlayer.getId());
+        lifeBar.setValue(charInfo.getLife()/10);
         Graphics2D gr2d = (Graphics2D) g;
 
         for (Entity entity : entities) {
@@ -71,52 +71,52 @@ public class MenuBorder extends StatePanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lifeBar = new javax.swing.JProgressBar();
+        iconPanel = new javax.swing.JPanel();
+        icon = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        score = new javax.swing.JTextArea();
+        charName = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(640, 100));
 
-        jProgressBar1.setForeground(new java.awt.Color(255, 0, 0));
-        jProgressBar1.setToolTipText("");
+        lifeBar.setForeground(new java.awt.Color(255, 0, 0));
+        lifeBar.setToolTipText("");
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(64, 61));
+        iconPanel.setPreferredSize(new java.awt.Dimension(64, 61));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2)
+        javax.swing.GroupLayout iconPanelLayout = new javax.swing.GroupLayout(iconPanel);
+        iconPanel.setLayout(iconPanelLayout);
+        iconPanelLayout.setHorizontalGroup(
+            iconPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(iconPanelLayout.createSequentialGroup()
+                .addComponent(icon)
                 .addContainerGap(64, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2)
+        iconPanelLayout.setVerticalGroup(
+            iconPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(iconPanelLayout.createSequentialGroup()
+                .addComponent(icon)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jScrollPane3.setHorizontalScrollBar(null);
         jScrollPane3.setWheelScrollingEnabled(false);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setEditable(false);
-        jTextArea2.setFont(new java.awt.Font("AR JULIAN", 0, 20));
-        jTextArea2.setLineWrap(true);
-        jTextArea2.setRows(1);
-        jTextArea2.setText("1255");
-        jTextArea2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTextArea2.setName(""); // NOI18N
-        jTextArea2.setRequestFocusEnabled(false);
-        jScrollPane3.setViewportView(jTextArea2);
+        score.setColumns(20);
+        score.setEditable(false);
+        score.setFont(new java.awt.Font("AR JULIAN", 0, 20)); // NOI18N
+        score.setLineWrap(true);
+        score.setRows(1);
+        score.setText("1255");
+        score.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        score.setName(""); // NOI18N
+        score.setRequestFocusEnabled(false);
+        jScrollPane3.setViewportView(score);
 
-        jLabel1.setFont(new java.awt.Font("Lithos Pro Regular", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        charName.setFont(new java.awt.Font("Lithos Pro Regular", 1, 14)); // NOI18N
+        charName.setForeground(new java.awt.Color(255, 0, 0));
+        charName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -124,11 +124,11 @@ public class MenuBorder extends StatePanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(iconPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+                    .addComponent(charName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lifeBar, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
                 .addGap(287, 287, 287)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78))
@@ -143,19 +143,19 @@ public class MenuBorder extends StatePanel {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                        .addComponent(charName, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lifeBar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(iconPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(181, 181, 181))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel charName;
+    private javax.swing.JLabel icon;
+    private javax.swing.JPanel iconPanel;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JProgressBar lifeBar;
+    private javax.swing.JTextArea score;
     // End of variables declaration//GEN-END:variables
 }

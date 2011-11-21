@@ -5,7 +5,6 @@
 package game.gui;
 
 import game.entity.Entity;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,11 +14,12 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+
 /*
- *
+ * Painel de Estado padrão para os outros paineis
+ * Esta carrega as entidades de cada painel
  * @author Lucas Aoki
  */
-
 public class StatePanel extends JPanel implements KeyListener {
 
     protected ArrayList<Entity> entities = null;
@@ -31,6 +31,13 @@ public class StatePanel extends JPanel implements KeyListener {
         addKeyListener(this);
     }
 
+    /**
+     * Retorna entidade desejada
+     * @param id
+     * id da entidade desejada
+     * @return 
+     * Retorna a identidade
+     */
     protected Entity getEntity(String id) {
         for (Entity entity : entities) {
             if (entity.getId().equals(id)) {
@@ -69,9 +76,9 @@ public class StatePanel extends JPanel implements KeyListener {
             gc.pauseGame();
             int op = JOptionPane.showConfirmDialog(this, "Deseja retornar ao menu inicial?", "Retornar?", JOptionPane.OK_CANCEL_OPTION);
             if (op == 0) {
+                gc.unPause();
                 gc.setGameState(GameContainer.State.MENUSTATE);
-            }
-            else {
+            } else {
                 gc.unPause();
             }
         }
