@@ -34,9 +34,9 @@ public class Kenshin extends Entity {
         images[CharsMoves.getMoveIndex("ULTACTION")] = readFrames("ULTACTION", 6);
         images[CharsMoves.getMoveIndex("WALK")] = readFrames("WALK", 8);
         images[CharsMoves.getMoveIndex("LOSE")] = readFrames("LOSE", 5);
-        
+
         setPosition(new Point(0, 0));
-        setColisionBox(new Rectangle(new Point(getPosition().x, getPosition().y+26), new Dimension(64, 80)));
+        setColisionBox(new Rectangle(new Point(getPosition().x, getPosition().y + 26), new Dimension(64, 80)));
         gc.getMainPanel().addKeyListener(playerCtrl);
         gc.getStageSelected().addEntity(this);
         this.kenshinInfo = new CharacterInfo("KenshinInfo", playerCtrl, gc.getStageSelected());

@@ -4,43 +4,31 @@
  */
 
 /*
- * MenuCredits2.java
+ * MenuCreditos2.java
  *
- * Created on Nov 20, 2011, 1:13:51 PM
+ * Created on 21/11/2011, 00:11:04
  */
 package game.gui.menus;
 
-import game.component.render.ImageRenderComponent;
-import game.entity.Entity;
 import game.gui.GameContainer;
 import game.gui.StatePanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
  *
- * @author Seiji
+ * @author Lucas Aoki
  */
-public class MenuCredits extends StatePanel implements ActionListener, KeyListener {
-
-    int choice = 0;
-    private GameContainer gc = null;
-
-    /** Creates new form MenuHighscore2 */
+public class MenuCredits extends StatePanel implements KeyListener {
+    private GameContainer gc;
+    
+    /** Creates new form MenuCreditos2 */
     public MenuCredits(GameContainer gc) {
         super(640, 480);
-        initComponents();
         this.gc = gc;
-
-        entities.add(new Entity("Background"));
-        getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/BG4.jpg"));
-
+        initComponents();
+        
         gc.getMainFrame().addKeyListener(this);
-        back.setSelected(true);
-        back.addActionListener(this);
-        back.addKeyListener(this);
     }
 
     /** This method is called from within the constructor to
@@ -52,59 +40,37 @@ public class MenuCredits extends StatePanel implements ActionListener, KeyListen
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        back = new javax.swing.JToggleButton();
+        jPanel1 = new javax.swing.JPanel();
+        backButton = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(640, 480));
+        setLayout(new java.awt.BorderLayout());
 
-        back.setText("Back");
-        back.setPreferredSize(new java.awt.Dimension(100, 50));
+        backButton.setFont(new java.awt.Font("Lithos Pro Regular", 0, 18));
+        backButton.setText("BACK");
+        backButton.setFocusable(false);
+        jPanel1.add(backButton);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(286, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(394, Short.MAX_VALUE)
-                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-        );
+        add(jPanel1, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton back;
+    private javax.swing.JButton backButton;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        Object obj = e.getSource();
-        if (obj == back) {
-            gc.setGameState(GameContainer.State.MENUSTATE);
-        }
-    }
-
-    @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         int keyTyped = e.getKeyCode();
         if (keyTyped == KeyEvent.VK_ENTER) {
-            if (back.isSelected()) {
-                back.doClick();
-            }
+            gc.setGameState(GameContainer.State.MENUSTATE);
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
