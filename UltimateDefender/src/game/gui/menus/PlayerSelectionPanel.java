@@ -32,7 +32,7 @@ public class PlayerSelectionPanel extends StatePanel implements KeyListener, Act
     public PlayerSelectionPanel(GameContainer gc) {
         super(640, 480);
         initComponents();
-        
+
         this.gc = gc;
 
         entities.add(new Entity("Background"));
@@ -44,6 +44,7 @@ public class PlayerSelectionPanel extends StatePanel implements KeyListener, Act
         hieiSelect.addActionListener(this);
         ichigoSelect.addActionListener(this);
         zoroSelect.addActionListener(this);
+        confirm.addActionListener(this);
     }
 
     /** This method is called from within the constructor to
@@ -169,7 +170,12 @@ public class PlayerSelectionPanel extends StatePanel implements KeyListener, Act
         if (src == zoroSelect) {
             choice = 3;
         }
+        if (src == confirm) {
+            gc.setChoice(choice);
+            gc.setGameState(GameContainer.State.GAMESTATE);
+        }
         setChoice();
+
     }
 
     @Override

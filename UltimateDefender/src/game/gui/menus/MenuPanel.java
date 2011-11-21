@@ -162,7 +162,7 @@ public class MenuPanel extends StatePanel implements ActionListener, KeyListener
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if (obj == Start) {
-            gc.setGameState(GameContainer.State.GAMESTATE);
+            gc.setGameState(GameContainer.State.PLAYERSELECT);
         } else if (obj == Credits) {
             gc.setGameState(GameContainer.State.CREDITS);
         } else if (obj == Highscore) {

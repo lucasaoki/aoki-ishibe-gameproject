@@ -14,6 +14,7 @@ import game.component.render.ImageRenderComponent;
 import game.entity.Entity;
 import game.gui.GameContainer;
 import game.gui.StatePanel;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -41,6 +42,9 @@ public class MenuHighscore extends StatePanel implements ActionListener, KeyList
         back.setSelected(true);
         back.addActionListener(this);
         back.addKeyListener(this);
+        
+        setLayout(new BorderLayout());
+        add(new HighScorePanel(gc),BorderLayout.CENTER);
     }
 
     /** This method is called from within the constructor to
@@ -53,22 +57,26 @@ public class MenuHighscore extends StatePanel implements ActionListener, KeyList
     private void initComponents() {
 
         back = new javax.swing.JToggleButton();
-        jPanel1 = new javax.swing.JPanel();
+        HighScore = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(640, 480));
 
         back.setText("Back");
         back.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        HighScore.setBackground(new java.awt.Color(255, 255, 255));
+        HighScore.setFocusable(false);
+        HighScore.setPreferredSize(new java.awt.Dimension(345, 365));
+
+        javax.swing.GroupLayout HighScoreLayout = new javax.swing.GroupLayout(HighScore);
+        HighScore.setLayout(HighScoreLayout);
+        HighScoreLayout.setHorizontalGroup(
+            HighScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 345, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 366, Short.MAX_VALUE)
+        HighScoreLayout.setVerticalGroup(
+            HighScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 365, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -81,23 +89,22 @@ public class MenuHighscore extends StatePanel implements ActionListener, KeyList
                         .addGap(256, 256, 256)
                         .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(151, Short.MAX_VALUE))
+                        .addGap(136, 136, 136)
+                        .addComponent(HighScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(HighScore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGap(398, 398, 398))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel HighScore;
     private javax.swing.JToggleButton back;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
    
