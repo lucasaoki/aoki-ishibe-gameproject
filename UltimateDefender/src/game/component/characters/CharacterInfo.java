@@ -47,7 +47,6 @@ public class CharacterInfo extends Component implements Colision, Constants {
     public CharacterInfo(String id, PlayerCtrl playerCtrl, Stage stage) {
         this.id = id;
         this.score = 0;
-        this.creepsCtrl = 0;
         this.vertSpeed = 0;
         this.stage = stage;/*Informações da fase*/
         this.playerCtrl = playerCtrl;/*Informações do controlador*/
@@ -263,7 +262,6 @@ public class CharacterInfo extends Component implements Colision, Constants {
                 isDashing = false;
                 getHit = false;
                 isGuarding = false;
-//                }
             }
             if (toRight) {//controle da caixa de colisao para seguir a posição do personagem
                 owner.getColisionBox().setLocation(new Point(pos.x + 32, pos.y + 16));

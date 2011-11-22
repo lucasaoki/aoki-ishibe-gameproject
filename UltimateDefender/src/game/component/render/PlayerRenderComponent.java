@@ -8,6 +8,7 @@ import game.component.Component;
 import game.component.characters.CharacterInfo;
 import game.component.characters.CharsMoves;
 import game.gui.GameContainer;
+import game.stage.Stage;
 import game.util.Timer;
 import game.util.TimerListener;
 import java.awt.Graphics2D;

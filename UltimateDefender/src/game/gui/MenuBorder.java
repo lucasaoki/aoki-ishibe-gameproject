@@ -48,10 +48,8 @@ public class MenuBorder extends StatePanel {
     }
     
     /**
-     * Método que retorna um ícone. 
-     * 
+     * Método que retorna um ícone.
      */
-    
     private Icon readIcon(String path){
         URL url = ImageRenderComponent.class.getResource(path);
         return new ImageIcon(url);

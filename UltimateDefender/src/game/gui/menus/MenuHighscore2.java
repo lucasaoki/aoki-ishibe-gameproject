@@ -56,7 +56,7 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
         backButton.addActionListener(this);
         backButton.addKeyListener(this);
 
-        Score(120, "Rafael");
+//        Score(120, "Rafael");
         showHighScore();
     }
 
@@ -294,7 +294,6 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -309,6 +308,5 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
