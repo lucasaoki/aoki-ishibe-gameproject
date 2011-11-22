@@ -24,6 +24,10 @@ import javax.swing.ImageIcon;
  *
  * @author Seiji
  */
+
+/**
+ * Classe que cria um JPanel com o life, o score e a foto do personagem escolhido.
+ */
 public class MenuBorder extends StatePanel {
 
     Entity mainPlayer;
@@ -42,7 +46,12 @@ public class MenuBorder extends StatePanel {
         
         icon.setIcon(readIcon("/images/backgrounds/" + mainPlayer.getId().toLowerCase() + "select.jpg"));
     }
-
+    
+    /**
+     * Método que retorna um ícone. 
+     * 
+     */
+    
     private Icon readIcon(String path){
         URL url = ImageRenderComponent.class.getResource(path);
         return new ImageIcon(url);
