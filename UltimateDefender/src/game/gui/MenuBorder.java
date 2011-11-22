@@ -43,7 +43,7 @@ public class MenuBorder extends StatePanel {
         getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/Score3.jpg"));
         mainPlayer = gc.getPlayerChoice();
         charInfo = mainPlayer.getCharInfo();
-        
+        gc.resetScore();
         icon.setIcon(readIcon("/images/backgrounds/" + mainPlayer.getId().toLowerCase() + "select.jpg"));
     }
     
@@ -60,7 +60,6 @@ public class MenuBorder extends StatePanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-//        String score = ;
         score.setText(gc.getAtualScore()+"");
         charName.setText(mainPlayer.getId());
         lifeBar.setValue(charInfo.getLife()/10);

@@ -151,6 +151,7 @@ public  class GameContainer extends Thread {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cp = mainFrame.getContentPane();
         mainFrame.setVisible(true);
+        atualScore = 0;
     }
 
     /**
