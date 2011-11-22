@@ -36,6 +36,7 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
     int choice = 0;
     private GameContainer gc = null;
     private String linha = null;
+    private String text = null;
     private int i = 1;
     private File Arq = null;
     private BufferedReader bReader = null;
@@ -54,7 +55,9 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
         backButton.setSelected(true);
         backButton.addActionListener(this);
         backButton.addKeyListener(this);
-//        showHighScore();
+
+        Score(120, "Rafael");
+        showHighScore();
     }
 
     /** This method is called from within the constructor to
@@ -68,26 +71,51 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
 
         backButton = new javax.swing.JButton();
         TitleScore = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        JTextHigh = new javax.swing.JTextArea();
+        Score1 = new javax.swing.JLabel();
+        Score3 = new javax.swing.JLabel();
+        Score7 = new javax.swing.JLabel();
+        Score9 = new javax.swing.JLabel();
+        Score5 = new javax.swing.JLabel();
+        Score8 = new javax.swing.JLabel();
+        Score6 = new javax.swing.JLabel();
+        Score2 = new javax.swing.JLabel();
+        Score4 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(640, 480));
 
-        backButton.setText("jButton1");
+        backButton.setText("Back");
         backButton.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        TitleScore.setFont(new java.awt.Font("AR JULIAN", 0, 36)); // NOI18N
+        TitleScore.setFont(new java.awt.Font("AR JULIAN", 0, 36));
         TitleScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TitleScore.setText("Score");
 
-        JTextHigh.setColumns(20);
-        JTextHigh.setEditable(false);
-        JTextHigh.setFont(new java.awt.Font("AR JULIAN", 0, 24)); // NOI18N
-        JTextHigh.setLineWrap(true);
-        JTextHigh.setRows(5);
-        JTextHigh.setAutoscrolls(false);
-        jScrollPane1.setViewportView(JTextHigh);
-        JTextHigh.getAccessibleContext().setAccessibleDescription("");
+        Score1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Score1.setText("-");
+
+        Score3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Score3.setText("-");
+
+        Score7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Score7.setText("-");
+
+        Score9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Score9.setText("-");
+
+        Score5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Score5.setText("-");
+
+        Score8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Score8.setText("-");
+
+        Score6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Score6.setText("-");
+
+        Score2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Score2.setText("-");
+
+        Score4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Score4.setText("-");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -96,103 +124,165 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(261, 261, 261)
                         .addComponent(TitleScore))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                        .addGap(146, 146, 146)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Score1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Score3, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Score7, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Score9, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Score5, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Score8, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Score6, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Score2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Score4, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(TitleScore, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(Score1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Score2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Score3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Score4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Score5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Score6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(Score7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Score8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Score9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea JTextHigh;
+    private javax.swing.JLabel Score1;
+    private javax.swing.JLabel Score2;
+    private javax.swing.JLabel Score3;
+    private javax.swing.JLabel Score4;
+    private javax.swing.JLabel Score5;
+    private javax.swing.JLabel Score6;
+    private javax.swing.JLabel Score7;
+    private javax.swing.JLabel Score8;
+    private javax.swing.JLabel Score9;
     private javax.swing.JLabel TitleScore;
     private javax.swing.JButton backButton;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     /*
      * Método que extrai de um arquivo o nome do personagem e o quantantidades de pontos(highscore).
      * Retornando uma String com todos s nome e valores.
      */
-  
-    
-    
-//    public void Score(int score, String character) {
-//        
-//        ObjectInputStream in = null;
-//        ObjectOutputStream out = null;
-//        int i = 0;
-//        try {
-//            Packhigh[] arrayPack = new Packhigh[10];
-//            File arquivo = new File("Highscore.objs");
-//            in = new ObjectInputStream(new FileInputStream(arquivo));
-//            out = new ObjectOutputStream(new FileOutputStream(arquivo));
-//            arrayPack = (Packhigh[]) in.readObject();
-//            while (i < 10) {
-//                if (arrayPack[i].getScore() <= score) {
-//                    arrayPack[i].setScore(score, character);
-//                }
-//                i++;
-//            }
-//            out.writeObject(arrayPack);
-//
-//        } catch (ClassNotFoundException ex) {
-//            ex.printStackTrace();
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        } finally {
-//            try {
-//                in.close();
-//                out.close();
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-//        }
-//    }
-//
-//    public void showHighScore() {
-//        ObjectInputStream in = null;
-//        int i = 0;
-//        try {
-//            Packhigh[] arrayPack = new Packhigh[10];
-//            File arquivo = new File("Highscore.objs");
-//            if (!arquivo.exists()) {
-//                arquivo.createNewFile();
-//            }
-//            in = new ObjectInputStream(new FileInputStream(arquivo));
-//
-//            arrayPack = (Packhigh[]) in.readObject();
-//            while (i < 10) {
-//                arrayPack[i].getScore();
-//                i++;
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            ex.printStackTrace();
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        } finally {
-//            try {
-//                in.close();
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-//        }
-//    }
+    public void Score(int score, String character) {
+        ObjectInputStream in = null;
+        Packhigh aux = new Packhigh();
+        try {
+            int i = 0;
+            Packhigh[] arrayPack = new Packhigh[10];
+            File arquivo = new File("Highscore.objs");
+            in = new ObjectInputStream(new FileInputStream(arquivo));
+            for (i = 0; i < 10; i++) {
+                
+                aux = (Packhigh) in.readObject();
+            }
+            for (i = 0; i < 10; i++) {
+                if (arrayPack[i].getScore() <= score) {
+                    arrayPack[i].setScore(score, character);
+                    i=10;
+                }
+            }
+            
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(arquivo));
+            out.writeObject(arrayPack);
+            out.close();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+
+
+
+    }
+
+    public void showHighScore() {
+        ObjectInputStream in = null;
+        try {
+            int i = 0;
+            File arquivo = new File("Highscore.objs");
+            if (!arquivo.exists()) {
+                try {
+                    arquivo.createNewFile();
+                    ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(arquivo));
+                    for (i = 0; i < 10; i++) {
+                        out.writeObject(new Packhigh());
+                    }
+                    out.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            in = new ObjectInputStream(new FileInputStream(arquivo));
+
+            Packhigh Pack1 = (Packhigh) in.readObject();
+            Score1.setText(Pack1.getChar() + "---------" + Pack1.getScore());
+            Packhigh Pack2 = (Packhigh) in.readObject();
+            Score2.setText(Pack2.getChar() + "---------" + Pack2.getScore());
+            Packhigh Pack3 = (Packhigh) in.readObject();
+            Score3.setText(Pack3.getChar() + "---------" + Pack3.getScore());
+            Packhigh Pack4 = (Packhigh) in.readObject();
+            Score4.setText(Pack4.getChar() + "---------" + Pack4.getScore());
+            Packhigh Pack5 = (Packhigh) in.readObject();
+            Score5.setText(Pack5.getChar() + "---------" + Pack5.getScore());
+            Packhigh Pack6 = (Packhigh) in.readObject();
+            Score6.setText(Pack6.getChar() + "---------" + Pack6.getScore());
+            Packhigh Pack7 = (Packhigh) in.readObject();
+            Score7.setText(Pack7.getChar() + "---------" + Pack7.getScore());
+            Packhigh Pack8 = (Packhigh) in.readObject();
+            Score8.setText(Pack8.getChar() + "---------" + Pack8.getScore());
+            Packhigh Pack9 = (Packhigh) in.readObject();
+            Score9.setText(Pack9.getChar() + "---------" + Pack9.getScore());
+
+
+
+
+            in.close();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
