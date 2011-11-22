@@ -40,7 +40,7 @@ public class MenuBorder extends StatePanel {
         entities = new ArrayList<>();
         initComponents();
         entities.add(new Entity("Background"));
-        getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/Score3.jpg"));
+        getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/images/backgrounds/barrainf.jpg"));
         mainPlayer = gc.getPlayerChoice();
         charInfo = mainPlayer.getCharInfo();
         gc.resetScore();
