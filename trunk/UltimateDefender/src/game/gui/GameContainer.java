@@ -128,6 +128,17 @@ public  class GameContainer extends Thread {
         return pause;
     }
 
+    public int getAtualScore() {
+        return atualScore;
+    }
+
+    public void setAtualScore(int atualScore) {
+        this.atualScore = atualScore;
+    }
+
+    public void resetScore(){
+        setAtualScore(0);
+    }
     /**
      * Cria o novo frame
      */
@@ -186,5 +197,6 @@ public  class GameContainer extends Thread {
     private Stage stageSelected = null;
     private Entity playerChoice = null;
     private int choice = 0;
+    private int atualScore = 0;
     private boolean pause = false;
 }

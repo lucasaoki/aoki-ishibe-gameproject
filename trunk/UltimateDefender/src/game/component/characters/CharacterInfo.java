@@ -21,6 +21,7 @@ import java.util.Iterator;
 public class CharacterInfo extends Component implements Colision, Constants {
 
     private static int creepsCtrl = 0;
+    private int score = 0;
     private float life;
     private Stage stage;
     private PlayerCtrl playerCtrl;
@@ -45,6 +46,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
      */
     public CharacterInfo(String id, PlayerCtrl playerCtrl, Stage stage) {
         this.id = id;
+        this.score = 0;
         this.creepsCtrl = 0;
         this.vertSpeed = 0;
         this.stage = stage;/*Informações da fase*/
@@ -149,15 +151,15 @@ public class CharacterInfo extends Component implements Colision, Constants {
         if (!(stage.isPause())) { //controle de pause do jogo
             Point pos = owner.getPosition();
             colision();
-            if (!won) { //jogando
+            if (!stage.getMainPlayer().getCharInfo().won() && !stage.getMainPlayer().getCharInfo().lose()) { //jogando
                 if (life < 0) { //morreu
-                    lose = true;
-                    if (!owner.getId().equals(stage.getMainPlayer().getId())) {
+                    if (!owner.getId().equals(stage.getMainPlayer().getId()) && !owner.getCharInfo().lose()) {
                         creepsCtrl++;
                         if (creepsCtrl >= 3) {
                             stage.getMainPlayer().getCharInfo().setWon(true);
                         }
                     }
+                    lose = true;
                 } else { //engine do player
                     if (playerCtrl.isGuarding() && !isJumping) {//defendendo
                         isGuarding = true;
@@ -240,22 +242,28 @@ public class CharacterInfo extends Component implements Colision, Constants {
                                 } else if (!playerCtrl.isDashing()) {
                                     playerCtrl.stopHolding();
                                 }
+                            } else {
+                                if (colision() && owner.getId().equals(stage.getMainPlayer().getId())) {
+                                    score += 100;
+                                }
                             }
                         } else {//getting hit
                             life = life - 5f;
+                            if (colision() && owner.getId().equals(stage.getMainPlayer().getId())) {
+                                score += 2;
+                            }
                         }
                     }
                 }
-            } else {//lose
-                if (!owner.getId().equals(stage.getMainPlayer().getId())) {
-                    isJumping = false;
-                    isWalkingR = false;
-                    isWalkingL = false;
-                    isAttacking = false;
-                    isDashing = false;
-                    getHit = false;
-                    isGuarding = false;
-                }
+            } else {//ganhou
+                isJumping = false;
+                isWalkingR = false;
+                isWalkingL = false;
+                isAttacking = false;
+                isDashing = false;
+                getHit = false;
+                isGuarding = false;
+//                }
             }
             if (toRight) {//controle da caixa de colisao para seguir a posição do personagem
                 owner.getColisionBox().setLocation(new Point(pos.x + 32, pos.y + 16));
@@ -263,6 +271,7 @@ public class CharacterInfo extends Component implements Colision, Constants {
                 owner.getColisionBox().setLocation(new Point(pos.x - 32, pos.y + 16));
             }
             owner.setPosition(pos);
+            stage.setScore(score);
         }
     }
 
@@ -293,12 +302,6 @@ public class CharacterInfo extends Component implements Colision, Constants {
     @Override
     public void colisionAction(Entity entity) {
         int i = 0;
-        if (entity.getCharInfo().lose) {
-            i++;
-            if (i == 1) {
-                this.won = true;
-            }
-        }
         if (entity.getCharInfo().isAttacking) {
             if ((entity.getCharInfo().toRight && owner.getPosition().x > entity.getPosition().x)
                     || (!entity.getCharInfo().toRight && owner.getPosition().x < entity.getPosition().x)) {

@@ -18,7 +18,6 @@ import java.util.Iterator;
  */
 public final class Stage extends Entity {
 
-    
     private Entity mainPlayer = null;
     private ArrayList<Rectangle> boxes = null;
     private ArrayList<Entity> entities = null;
@@ -56,6 +55,14 @@ public final class Stage extends Entity {
     public void setMainPlayer(Entity mainPlayer) {
         this.mainPlayer = mainPlayer;
         mainPlayer.setPosition(new Point(0, 100));
+    }
+
+    public int getScore() {
+        return gc.getAtualScore();
+    }
+
+    public void setScore(int score) {
+        gc.setAtualScore(score);
     }
     
     public final void createStage(){

@@ -71,7 +71,7 @@ public class PlayerRenderComponent extends RenderComponent {
             //ainda não perdeu
             if (!characterInfo.lose()) {
                 if (characterInfo.isGuarding()) {//in guard
-                    setCurrentAnimation(CharsMoves.getMoveIndex("GUARD"), 500);
+                    setCurrentAnimation(CharsMoves.getMoveIndex("GUARD"), 1000);
                 } else //getting hit
                 if (characterInfo.isHit()) {
                     setCurrentAnimation(CharsMoves.getMoveIndex("GETHIT"), 500);
@@ -90,7 +90,7 @@ public class PlayerRenderComponent extends RenderComponent {
                         }
                     } else //jumping
                     if (characterInfo.isJumping()) {
-                        setCurrentAnimation(CharsMoves.getMoveIndex("JUMP"), 150);
+                        setCurrentAnimation(CharsMoves.getMoveIndex("JUMP"), 200);
                     } else //walking to right
                     if (characterInfo.isWalkingR()) {
                         setCurrentAnimation(CharsMoves.getMoveIndex("WALK"), 100);

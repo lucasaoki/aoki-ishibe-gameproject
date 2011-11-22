@@ -14,6 +14,7 @@ import game.component.render.ImageRenderComponent;
 import game.entity.Entity;
 import game.gui.GameContainer;
 import game.gui.StatePanel;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -30,8 +31,8 @@ public class MenuCredits extends StatePanel implements KeyListener {
         this.gc = gc;
         
         entities.add(new Entity("Background"));
-        getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/images/backgrounds/basicbackground.jpg"));
-        
+        getEntity("Background").addComponent(new ImageRenderComponent("bGround", "/images/backgrounds/credits.png"));
+        getEntity("Background").setPosition(new Point(0, 0));
         initComponents();
         
         gc.getMainFrame().addKeyListener(this);
