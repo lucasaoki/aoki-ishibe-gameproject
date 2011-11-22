@@ -60,7 +60,8 @@ public class MenuBorder extends StatePanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+//        String score = ;
+        score.setText(gc.getAtualScore()+"");
         charName.setText(mainPlayer.getId());
         lifeBar.setValue(charInfo.getLife()/10);
         Graphics2D gr2d = (Graphics2D) g;
@@ -117,13 +118,13 @@ public class MenuBorder extends StatePanel {
         score.setFont(new java.awt.Font("AR JULIAN", 0, 20)); // NOI18N
         score.setLineWrap(true);
         score.setRows(1);
-        score.setText("1255");
+        score.setText("0");
         score.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         score.setName(""); // NOI18N
         score.setRequestFocusEnabled(false);
         jScrollPane3.setViewportView(score);
 
-        charName.setFont(new java.awt.Font("Lithos Pro Regular", 1, 14)); // NOI18N
+        charName.setFont(new java.awt.Font("Lithos Pro Regular", 1, 14));
         charName.setForeground(new java.awt.Color(255, 0, 0));
         charName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 

@@ -18,32 +18,32 @@ public class P1control extends PlayerCtrl {
 
     @Override
     public boolean isMovingRight() {
-        return input[KeyEvent.VK_D];
+        return input[KeyEvent.VK_RIGHT];
     }
 
     @Override
     public boolean isMovingLeft() {
-        return input[KeyEvent.VK_A];
+        return input[KeyEvent.VK_LEFT];
     }
 
     @Override
     public boolean isJumping() {
-        return input[KeyEvent.VK_K];
+        return input[KeyEvent.VK_X];
     }
 
     @Override
     public boolean isDashing() {
-        return input[KeyEvent.VK_L];
+        return input[KeyEvent.VK_C];
     }
 
     @Override
     public boolean isAttacking() {
-        return input[KeyEvent.VK_J];
+        return input[KeyEvent.VK_Z];
     }
 
     @Override
     public boolean isGuarding() {
-        return input[KeyEvent.VK_S];
+        return input[KeyEvent.VK_DOWN];
     }
     
     @Override

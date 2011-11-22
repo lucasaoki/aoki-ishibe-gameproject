@@ -31,7 +31,7 @@ public class GamePanel extends StatePanel {
         stage = new Stage("Stage", gc);
         entities.add(stage);
         setPlayer(gc, gc.getChoice());
-        
+        gc.resetScore();
         timer = new Timer(new TimerListener() {
             
             @Override

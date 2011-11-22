@@ -185,12 +185,12 @@ public class PlayerSelectionPanel extends StatePanel implements KeyListener, Act
     @Override
     public void keyPressed(KeyEvent e) {
         int keyTyped = e.getKeyCode();
-        if (keyTyped == KeyEvent.VK_D) {
+        if (keyTyped == KeyEvent.VK_RIGHT) {
             if (choice < 4) {
                 choice++;
             }
         }
-        if (keyTyped == KeyEvent.VK_A) {
+        if (keyTyped == KeyEvent.VK_LEFT) {
             if (choice > 0) {
                 choice--;
             }

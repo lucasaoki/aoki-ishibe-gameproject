@@ -187,12 +187,12 @@ public class MenuPanel extends StatePanel implements ActionListener, KeyListener
     @Override
     public void keyPressed(KeyEvent e) {
         int keyTyped = e.getKeyCode();
-        if (keyTyped == KeyEvent.VK_S) {
+        if (keyTyped == KeyEvent.VK_DOWN) {
             if (choice < 4) {
                 choice++;
             }
         }
-        if (keyTyped == KeyEvent.VK_W) {
+        if (keyTyped == KeyEvent.VK_UP) {
             if (choice > 0) {
                 choice--;
             }
