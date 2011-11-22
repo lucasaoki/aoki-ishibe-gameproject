@@ -23,12 +23,15 @@ import java.awt.event.KeyListener;
  *
  * @author Seiji
  */
+/*
+ * 
+ */
 public class MenuPanel extends StatePanel implements ActionListener, KeyListener {
 
     int choice = 0;
     GameContainer gc = null;
 
-    /** Creates new form MenuPanel2 */
+    /** Creates new form MenuPanel */
     public MenuPanel(GameContainer gc) {
         super(gc);
         initComponents();
@@ -129,6 +132,10 @@ public class MenuPanel extends StatePanel implements ActionListener, KeyListener
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
+    
+    /*
+     * Método que seleciona uma opção do menu inicial.
+     */
     public void setChoice() {
         switch (choice) {
             case 0:

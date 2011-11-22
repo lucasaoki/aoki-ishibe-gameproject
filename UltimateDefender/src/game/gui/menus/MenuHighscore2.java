@@ -20,9 +20,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  *
@@ -51,8 +54,7 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
         backButton.setSelected(true);
         backButton.addActionListener(this);
         backButton.addKeyListener(this);
-
-        JTextHigh.setText(JText());
+//        showHighScore();
     }
 
     /** This method is called from within the constructor to
@@ -123,35 +125,74 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    public String JText() {
-
-        Arq = new File("Highscore.txt");
-
-        try {
-            fReader = new FileReader(Arq);
-        } catch (FileNotFoundException ex) {
-        }
-        bReader = new BufferedReader(fReader);
-        String texto = "";
-        try {
-            while ((linha = bReader.readLine()) != null && i < 11) {
-                texto += i + "-----";
-                i++;
-                texto += linha;
-                texto += "\r\n";
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            bReader.close();
-            fReader.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return texto;
-    }
+    /*
+     * Método que extrai de um arquivo o nome do personagem e o quantantidades de pontos(highscore).
+     * Retornando uma String com todos s nome e valores.
+     */
+  
+    
+    
+//    public void Score(int score, String character) {
+//        
+//        ObjectInputStream in = null;
+//        ObjectOutputStream out = null;
+//        int i = 0;
+//        try {
+//            Packhigh[] arrayPack = new Packhigh[10];
+//            File arquivo = new File("Highscore.objs");
+//            in = new ObjectInputStream(new FileInputStream(arquivo));
+//            out = new ObjectOutputStream(new FileOutputStream(arquivo));
+//            arrayPack = (Packhigh[]) in.readObject();
+//            while (i < 10) {
+//                if (arrayPack[i].getScore() <= score) {
+//                    arrayPack[i].setScore(score, character);
+//                }
+//                i++;
+//            }
+//            out.writeObject(arrayPack);
+//
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        } finally {
+//            try {
+//                in.close();
+//                out.close();
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//    }
+//
+//    public void showHighScore() {
+//        ObjectInputStream in = null;
+//        int i = 0;
+//        try {
+//            Packhigh[] arrayPack = new Packhigh[10];
+//            File arquivo = new File("Highscore.objs");
+//            if (!arquivo.exists()) {
+//                arquivo.createNewFile();
+//            }
+//            in = new ObjectInputStream(new FileInputStream(arquivo));
+//
+//            arrayPack = (Packhigh[]) in.readObject();
+//            while (i < 10) {
+//                arrayPack[i].getScore();
+//                i++;
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        } finally {
+//            try {
+//                in.close();
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

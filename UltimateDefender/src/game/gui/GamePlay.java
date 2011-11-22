@@ -10,6 +10,9 @@ import java.awt.BorderLayout;
  *
  * @author Seiji
  */
+/*
+ * Classe 
+ */
 public class GamePlay extends StatePanel {
 
     public GamePlay(GameContainer gc) {
