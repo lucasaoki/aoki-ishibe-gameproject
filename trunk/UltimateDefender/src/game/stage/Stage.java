@@ -39,16 +39,16 @@ public final class Stage extends Entity {
     public Iterator<Entity> getEntityIterator() {
         return entities.iterator();
     }
-    
-    public Iterator<Rectangle> getBoxesIterator(){
+
+    public Iterator<Rectangle> getBoxesIterator() {
         return boxes.iterator();
     }
 
     public Entity getMainPlayer() {
         return mainPlayer;
     }
-    
-    public boolean isPause(){
+
+    public boolean isPause() {
         return gc.isPause();
     }
 
@@ -64,13 +64,13 @@ public final class Stage extends Entity {
     public void setScore(int score) {
         gc.setAtualScore(score);
     }
-    
-    public final void createStage(){
-        this.boxes.add(new Rectangle(0, 240, 105-36, 25));
-        this.boxes.add(new Rectangle(105+36, 105, 105-72, 25));
-        this.boxes.add(new Rectangle(210+36, 290, 220-72, 25));
-        this.boxes.add(new Rectangle(425+36, 105, 105-72, 25));
-        this.boxes.add(new Rectangle(535+36, 240, 105-36, 25));
+
+    public final void createStage() {
+        this.boxes.add(new Rectangle(0, 240, 105 - 36, 25));
+        this.boxes.add(new Rectangle(105 + 36, 105, 105 - 72, 25));
+        this.boxes.add(new Rectangle(210 + 36, 290, 220 - 72, 25));
+        this.boxes.add(new Rectangle(425 + 36, 105, 105 - 72, 25));
+        this.boxes.add(new Rectangle(535 + 36, 240, 105 - 36, 25));
         this.boxes.add(new Rectangle(0, 425, 640, 300));
         this.addComponent(new ImageRenderComponent("BGImage", "/images/backgrounds/bg_bleach.png"));
         this.setPosition(new Point(0, 0));
