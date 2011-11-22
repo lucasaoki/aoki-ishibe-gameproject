@@ -76,6 +76,7 @@ public class StatePanel extends JPanel implements KeyListener {
             gc.pauseGame();
             int op = JOptionPane.showConfirmDialog(this, "Deseja retornar ao menu inicial?", "Retornar?", JOptionPane.OK_CANCEL_OPTION);
             if (op == 0) {
+                gc.resetScore();
                 gc.unPause();
                 gc.setGameState(GameContainer.State.MENUSTATE);
             } else {
