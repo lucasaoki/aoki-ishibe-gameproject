@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Packhigh implements Serializable {
 
     private int score = 0;
-    private String character = "";
+    private String character = "----------";
 
     public Packhigh() {
     }
