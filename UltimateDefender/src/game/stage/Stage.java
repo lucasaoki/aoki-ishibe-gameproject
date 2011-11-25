@@ -29,6 +29,7 @@ public final class Stage extends Entity {
         this.boxes = new ArrayList<>();
         gc.setStageSelected(this);
         this.gc = gc;
+        this.gc.resetScore();
         this.createStage();
     }
 

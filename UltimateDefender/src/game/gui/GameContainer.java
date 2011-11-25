@@ -4,6 +4,7 @@
  */
 package game.gui;
 
+import de.muntjak.tinylookandfeel.TinyLookAndFeel;
 import game.entity.Entity;
 import game.gui.menus.MenuCredits;
 import game.gui.menus.MenuHighscore2;
@@ -13,25 +14,39 @@ import game.stage.Stage;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 /**
  * Container do jogo
  * Carrega as principais informações do jogo
  * @author Lucas
  */
-public  class GameContainer extends Thread {
+public class GameContainer extends Thread {
 
     public GameContainer(String name) {
         super(name);
         this.id = name;
     }
-    
+
     @Override
     public void run() {
         setGameState(GameContainer.State.MENUSTATE);
+        try {
+            Sound sound = new Sound("applause.wav");
+//            Audio teste = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("button.wav"));
+//            teste.playAsSoundEffect(1.0f, 1.0f, false);
+//		SoundStore.get().poll(0);
+            sound.play();
+        } catch (SlickException ex) {
+            ex.printStackTrace();
+        }
     }
- 
+
     /**
      * Retorna o frame principal
      * @return 
@@ -124,7 +139,7 @@ public  class GameContainer extends Thread {
      * @return 
      * Retorna se true se pausado ou false c.c.
      */
-    public boolean isPause(){
+    public boolean isPause() {
         return pause;
     }
 
@@ -136,9 +151,10 @@ public  class GameContainer extends Thread {
         this.atualScore = atualScore;
     }
 
-    public void resetScore(){
+    public void resetScore() {
         setAtualScore(0);
     }
+
     /**
      * Cria o novo frame
      */
@@ -150,8 +166,13 @@ public  class GameContainer extends Thread {
         mainFrame.setResizable(false);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cp = mainFrame.getContentPane();
+        try {
+            UIManager.setLookAndFeel(new TinyLookAndFeel());
+        } catch (UnsupportedLookAndFeelException ex) {
+            ex.printStackTrace();
+        }
         mainFrame.setVisible(true);
-        atualScore = 0;
+        resetScore();
     }
 
     /**
@@ -198,6 +219,6 @@ public  class GameContainer extends Thread {
     private Stage stageSelected = null;
     private Entity playerChoice = null;
     private int choice = 0;
-    private int atualScore = 0;
+    private static int atualScore = 0;
     private boolean pause = false;
 }
