@@ -52,9 +52,15 @@ public class MenuCredits extends StatePanel implements KeyListener {
 
         setLayout(new java.awt.GridBagLayout());
 
-        backButton.setFont(new java.awt.Font("Lithos Pro Regular", 0, 18)); // NOI18N
+        backButton.setFont(new java.awt.Font("FangSong", 1, 16)); // NOI18N
         backButton.setText("BACK");
         backButton.setFocusable(false);
+        backButton.setPreferredSize(new java.awt.Dimension(100, 50));
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 2;
@@ -62,6 +68,10 @@ public class MenuCredits extends StatePanel implements KeyListener {
         gridBagConstraints.weighty = 0.1;
         add(backButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_backButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;

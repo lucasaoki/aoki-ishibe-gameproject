@@ -56,7 +56,6 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
         backButton.addActionListener(this);
         backButton.addKeyListener(this);
 
-//        Score(120, "Rafael");
         showHighScore();
     }
 
@@ -80,13 +79,23 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
         Score6 = new javax.swing.JLabel();
         Score2 = new javax.swing.JLabel();
         Score4 = new javax.swing.JLabel();
+        Name6 = new javax.swing.JLabel();
+        Name9 = new javax.swing.JLabel();
+        Name7 = new javax.swing.JLabel();
+        Name3 = new javax.swing.JLabel();
+        Name1 = new javax.swing.JLabel();
+        Name8 = new javax.swing.JLabel();
+        Name5 = new javax.swing.JLabel();
+        Name2 = new javax.swing.JLabel();
+        Name4 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(640, 480));
 
+        backButton.setFont(new java.awt.Font("FangSong", 1, 16)); // NOI18N
         backButton.setText("Back");
         backButton.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        TitleScore.setFont(new java.awt.Font("AR JULIAN", 0, 36));
+        TitleScore.setFont(new java.awt.Font("FangSong", 0, 36)); // NOI18N
         TitleScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TitleScore.setText("Score");
 
@@ -117,6 +126,33 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
         Score4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Score4.setText("-");
 
+        Name6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Name6.setText("-");
+
+        Name9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Name9.setText("-");
+
+        Name7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Name7.setText("-");
+
+        Name3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Name3.setText("-");
+
+        Name1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Name1.setText("-");
+
+        Name8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Name8.setText("-");
+
+        Name5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Name5.setText("-");
+
+        Name2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Name2.setText("-");
+
+        Name4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Name4.setText("-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,54 +160,93 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
+                        .addGap(260, 260, 260)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(263, 263, 263)
                         .addComponent(TitleScore))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Score1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Score3, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Score7, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Score9, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Score5, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Score8, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Score6, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Score2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Score4, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(148, 148, 148)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Score9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Score8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Score7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Score6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Score5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Score4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Score3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Score2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Score1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Name9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Name8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Name7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Name6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Name5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Name4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Name3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Name2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Name1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(168, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(TitleScore, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addComponent(Score1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Score2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Score3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Score4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Score5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Score6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(Score7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Score8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Score9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TitleScore, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Score1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Score2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Score3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Score4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(Score5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Score6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(Score7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Score8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Score9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Name1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Name2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Name3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Name4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(Name5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Name6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(Name7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Name8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Name9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15)
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Name1;
+    private javax.swing.JLabel Name2;
+    private javax.swing.JLabel Name3;
+    private javax.swing.JLabel Name4;
+    private javax.swing.JLabel Name5;
+    private javax.swing.JLabel Name6;
+    private javax.swing.JLabel Name7;
+    private javax.swing.JLabel Name8;
+    private javax.swing.JLabel Name9;
     private javax.swing.JLabel Score1;
     private javax.swing.JLabel Score2;
     private javax.swing.JLabel Score3;
@@ -190,53 +265,70 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
      * Retornando uma String com todos s nome e valores.
      */
     public void Score(int score, String character) {
+
+        int i = 0;
+
+
+        File arquivo = new File("Highscore.objs");
         ObjectInputStream in = null;
+        ObjectOutputStream out = null;
+        Packhigh[] arrayPack = new Packhigh[10];
         Packhigh aux = new Packhigh();
+
         try {
-            int i = 0;
-            Packhigh[] arrayPack = new Packhigh[10];
-            File arquivo = new File("Highscore.objs");
-            in = new ObjectInputStream(new FileInputStream(arquivo));
-            for (i = 0; i < 10; i++) {
-                
-                aux = (Packhigh) in.readObject();
-            }
-            for (i = 0; i < 10; i++) {
-                if (arrayPack[i].getScore() <= score) {
-                    arrayPack[i].setScore(score, character);
-                    i=10;
+
+
+            if (!arquivo.exists()) {
+                try {
+                    arquivo.createNewFile();
+                    out = new ObjectOutputStream(new FileOutputStream(arquivo));
+                    for (i = 0; i < 10; i++) {
+                        out.writeObject(new Packhigh());
+                    }
+                    out.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             }
-            
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(arquivo));
-            out.writeObject(arrayPack);
+            in = new ObjectInputStream(new FileInputStream(arquivo));
+            for (i = 0; i < 10; i++) {
+                arrayPack[i] = new Packhigh();
+                arrayPack[i] = (Packhigh) in.readObject();
+                if (arrayPack[i].getScore() <= score) {
+                    aux.setScore(arrayPack[i].getScore(), arrayPack[i].getChar());
+                    arrayPack[i].setScore(score, character);
+                    character = aux.getChar();
+                    score = aux.getScore();
+
+                }
+            }
+            out = new ObjectOutputStream(new FileOutputStream(arquivo));
+
+            for (i = 0; i < 10; i++) {
+                out.writeObject(arrayPack[i]);
+            }
             out.close();
+
+            in.close();
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                in.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         }
-
-
 
 
     }
 
     public void showHighScore() {
         ObjectInputStream in = null;
+        ObjectOutputStream out = null;
         try {
             int i = 0;
             File arquivo = new File("Highscore.objs");
             if (!arquivo.exists()) {
                 try {
                     arquivo.createNewFile();
-                    ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(arquivo));
+                    out = new ObjectOutputStream(new FileOutputStream(arquivo));
                     for (i = 0; i < 10; i++) {
                         out.writeObject(new Packhigh());
                     }
@@ -248,23 +340,39 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
             in = new ObjectInputStream(new FileInputStream(arquivo));
 
             Packhigh Pack1 = (Packhigh) in.readObject();
-            Score1.setText(Pack1.getChar() + "---------" + Pack1.getScore());
+            Score1.setText(Pack1.getChar());
+            Name1.setText("" + Pack1.getScore());
             Packhigh Pack2 = (Packhigh) in.readObject();
-            Score2.setText(Pack2.getChar() + "---------" + Pack2.getScore());
+            Score2.setText(Pack2.getChar());
+            Name2.setText("" + Pack2.getScore());
+
             Packhigh Pack3 = (Packhigh) in.readObject();
-            Score3.setText(Pack3.getChar() + "---------" + Pack3.getScore());
+            Score3.setText(Pack3.getChar());
+            Name3.setText("" + Pack3.getScore());
+
             Packhigh Pack4 = (Packhigh) in.readObject();
-            Score4.setText(Pack4.getChar() + "---------" + Pack4.getScore());
+            Score4.setText(Pack4.getChar());
+            Name4.setText("" + Pack4.getScore());
+
             Packhigh Pack5 = (Packhigh) in.readObject();
-            Score5.setText(Pack5.getChar() + "---------" + Pack5.getScore());
+            Score5.setText(Pack5.getChar());
+            Name5.setText("" + Pack5.getScore());
+
             Packhigh Pack6 = (Packhigh) in.readObject();
-            Score6.setText(Pack6.getChar() + "---------" + Pack6.getScore());
+            Score6.setText(Pack6.getChar());
+            Name6.setText("" + Pack6.getScore());
+
             Packhigh Pack7 = (Packhigh) in.readObject();
-            Score7.setText(Pack7.getChar() + "---------" + Pack7.getScore());
+            Score7.setText(Pack7.getChar());
+            Name7.setText("" + Pack7.getScore());
+
             Packhigh Pack8 = (Packhigh) in.readObject();
-            Score8.setText(Pack8.getChar() + "---------" + Pack8.getScore());
+            Score8.setText(Pack8.getChar());
+            Name8.setText("" + Pack8.getScore());
+
             Packhigh Pack9 = (Packhigh) in.readObject();
-            Score9.setText(Pack9.getChar() + "---------" + Pack9.getScore());
+            Score9.setText(Pack9.getChar());
+            Name9.setText("" + Pack9.getScore());
 
 
 
