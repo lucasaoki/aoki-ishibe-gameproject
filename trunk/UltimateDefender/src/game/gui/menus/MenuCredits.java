@@ -48,33 +48,26 @@ public class MenuCredits extends StatePanel implements KeyListener {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        backButton = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        backButton = new javax.swing.JToggleButton();
+
+        jToggleButton1.setText("jToggleButton1");
 
         setLayout(new java.awt.GridBagLayout());
 
         backButton.setFont(new java.awt.Font("FangSong", 1, 16)); // NOI18N
-        backButton.setText("BACK");
+        backButton.setText("Back");
         backButton.setFocusable(false);
         backButton.setPreferredSize(new java.awt.Dimension(100, 50));
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
         gridBagConstraints.weighty = 0.1;
         add(backButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_backButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton;
+    private javax.swing.JToggleButton backButton;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 
     @Override

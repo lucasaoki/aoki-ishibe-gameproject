@@ -95,63 +95,82 @@ public class MenuHighscore2 extends StatePanel implements ActionListener, KeyLis
         backButton.setText("Back");
         backButton.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        TitleScore.setFont(new java.awt.Font("FangSong", 0, 36)); // NOI18N
+        TitleScore.setFont(new java.awt.Font("FangSong", 0, 36));
         TitleScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TitleScore.setText("Score");
+        TitleScore.setFocusable(false);
 
         Score1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Score1.setText("-");
+        Score1.setFocusable(false);
 
         Score3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Score3.setText("-");
+        Score3.setFocusable(false);
 
         Score7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Score7.setText("-");
+        Score7.setFocusable(false);
 
         Score9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Score9.setText("-");
+        Score9.setFocusable(false);
 
         Score5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Score5.setText("-");
+        Score5.setFocusable(false);
 
         Score8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Score8.setText("-");
+        Score8.setFocusable(false);
 
         Score6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Score6.setText("-");
+        Score6.setFocusable(false);
 
         Score2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Score2.setText("-");
+        Score2.setFocusable(false);
 
         Score4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Score4.setText("-");
+        Score4.setFocusable(false);
 
         Name6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name6.setText("-");
+        Name6.setFocusable(false);
 
         Name9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name9.setText("-");
+        Name9.setFocusable(false);
 
         Name7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name7.setText("-");
+        Name7.setFocusable(false);
 
         Name3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name3.setText("-");
+        Name3.setFocusable(false);
 
         Name1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name1.setText("-");
+        Name1.setFocusable(false);
 
         Name8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name8.setText("-");
+        Name8.setFocusable(false);
 
         Name5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name5.setText("-");
+        Name5.setFocusable(false);
 
         Name2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name2.setText("-");
+        Name2.setFocusable(false);
 
         Name4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Name4.setText("-");
+        Name4.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
