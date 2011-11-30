@@ -36,15 +36,15 @@ public class GameContainer extends Thread {
     @Override
     public void run() {
         setGameState(GameContainer.State.MENUSTATE);
-        try {
-            Sound sound = new Sound("applause.wav");
+//        try {
+//            Sound sound = new Sound("applause.wav");
 //            Audio teste = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("button.wav"));
 //            teste.playAsSoundEffect(1.0f, 1.0f, false);
 //		SoundStore.get().poll(0);
-            sound.play();
-        } catch (SlickException ex) {
-            ex.printStackTrace();
-        }
+//            sound.play();
+//        } catch (SlickException ex) {
+//            ex.printStackTrace();
+//        }
     }
 
     /**
